@@ -23,15 +23,15 @@
   <?php foreach (loop('NeatlineExhibit') as $e): ?>
     <div class="exhibit">
 
-      <span class="date">
-        <?php echo format_date($e->added, 'FF'); ?>
-      </span>
-
       <span class="title">
         <?php echo nl_getExhibitLink(
           $e, 'show', nl_getExhibitField('title'),
           array('class' => 'neatline'), true
         );?>
+      </span>
+
+      <span class="date">
+        <?php echo date('F d Y', strtotime($e->added)); ?>
       </span>
 
     </div>

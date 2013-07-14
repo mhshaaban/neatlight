@@ -10,8 +10,7 @@ hr{height:1px;background:#000;font-size:0;border:0}
 body.neatline.browse{background:#fcfcfc;}
 body.neatline.browse div.container{font-size:1.2em;margin:3em auto;width:50%;}
 body.neatline.browse div.container h1.title{font-family:"Oswald";margin-bottom:0;font-size:70px}
-body.neatline.browse div.container div.list span.date{font-family:"Inconsolata"}
-body.neatline.browse div.container div.list span.title{margin-left:.5em}
+body.neatline.browse div.container span.date{font-size:14px}
 body.neatline.show{background:#fefefe;}
 body.neatline.show div.exhibit{float:left;width:65%;}
 body.neatline.show div.exhibit #neatline,body.neatline.show div.exhibit #neatline-map{height:100%;width:100%}
