@@ -18,14 +18,14 @@ module.exports = function(grunt) {
     stylus: {
       dist: {
         files: {
-          'css/payloads/style.css': 'css/**/*.styl'
+          'css/payloads/style.css': 'css/*.styl'
         }
       }
     },
 
     watch: {
       dist: {
-        files: 'css/*.styl',
+        files: 'css/**/*.styl',
         tasks: ['stylus']
       }
     }

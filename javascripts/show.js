@@ -10,13 +10,28 @@
 
 $(function() {
 
-  var content = $('div.exhibit, div.narrative');
+  // Cache exhibit and text selections.
+  var content   = $('div.narrative, div.exhibit');
+  var narrative = $('div.narrative');
+  var exhibit   = $('div.exhibit');
+
+  // Cache the width of the text.
+  var textWidth = narrative.outerWidth();
 
   var position = function() {
-    content.css('height', $(window).height());
+
+    // Fill horizontal width with exhibit.
+    exhibit.outerWidth($(window).width() - textWidth);
+
+    // Fill vertical height with content.
+    content.outerHeight($(window).height());
+
+    // Refresh OpenLayers.
     Neatline.execute('MAP:updateSize');
+
   };
 
+  // Position on domready/resize.
   $(window).resize(function() { position(); });
   position();
 
