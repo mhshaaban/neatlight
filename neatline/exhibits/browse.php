@@ -11,6 +11,7 @@
 
 ?>
 
+<?php queue_css_file('payloads/style'); ?>
 <?php echo head(array('bodyclass' => 'neatline browse')); ?>
 
 <!-- Site Title -->

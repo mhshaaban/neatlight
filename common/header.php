@@ -23,7 +23,6 @@
       echo isset($title) ? ' | ' . $title : ''; ?>
     </title>
 
-    <?php queue_css_file('payloads/style'); ?>
     <?php echo head_css(); ?>
     <?php echo head_js(); ?>
 

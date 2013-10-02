@@ -11,6 +11,7 @@
 
 ?>
 
+<?php queue_css_file('payloads/style'); ?>
 <?php queue_js_file('show'); ?>
 
 <?php echo head(array(
