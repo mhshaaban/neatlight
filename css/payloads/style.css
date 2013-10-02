@@ -1,5 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300");
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300");
+@import url("http://fonts.googleapis.com/css?family=Londrina+Outline");
+@import url("http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600");
 *{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
 * ::selection{background:#006ebb;color:#fff}
 body{font-family:"Roboto Condensed";font-size:18px;font-weight:300;margin:0}
@@ -8,7 +10,7 @@ a:hover{text-decoration:underline}
 hr{height:1px;background:#000;font-size:0;border:0}
 body.neatline.browse{background:#fcfcfc;}
 body.neatline.browse div.container{font-size:1.2em;margin:3em auto;width:50%;}
-body.neatline.browse div.container h1.title{font-family:"Oswald";margin-bottom:0;font-size:70px}
+body.neatline.browse div.container h1.title{font-family:"Londrina Outline";font-weight:normal;margin-bottom:0;font-size:70px}
 body.neatline.browse div.container span.date{font-size:14px}
 body.neatline.show{background:#fefefe;}
 body.neatline.show div.exhibit{float:left;width:65%;}
@@ -16,7 +18,7 @@ body.neatline.show div.exhibit #neatline,body.neatline.show div.exhibit #neatlin
 body.neatline.show div.narrative{float:right;overflow-y:scroll;padding:2em;width:500px;}
 body.neatline.show div.narrative a.back{display:inline-block;font-family:"Roboto Condensed";padding:5px 8px;margin-bottom:1em;}
 body.neatline.show div.narrative a.back .arrow{font-size:13px}
-body.neatline.show div.narrative h1.title{margin:0 0 30px 0;font-family:"Oswald";font-weight:normal;font-size:70px}
+body.neatline.show div.narrative h1.title{margin:0 0 30px 0;font-family:"Oswald";font-weight:normal;font-size:40px}
 body.neatline.show div.narrative p{line-height:27px;}
 body.neatline.show div.narrative p.first:first-letter{float:left;margin:0 5px 5px 0;font-family:"Oswald";font-size:100px}
 body.neatline.show #static-bubble div.body{font-size:17px}
