@@ -8,13 +8,16 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+$(window).load(function() {
 
-  NProgress.configure({ showSpinner: false });
-  NProgress.start();
+  var text = $('#neatline-narrative');
 
-  Neatline.vent.on('MAP:ingest', function() {
-    NProgress.done();
-  });
+  var pos = function() {
+    text.css('left', $(window).width()/2-text.width()/2);
+    text.show();
+  };
+
+  //$(window).resize(pos);
+  //pos();
 
 });

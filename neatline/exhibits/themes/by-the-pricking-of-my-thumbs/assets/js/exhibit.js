@@ -10,11 +10,14 @@
 
 $(function() {
 
-  NProgress.configure({ showSpinner: false });
-  NProgress.start();
+  var map = $('#neatline-map');
 
-  Neatline.vent.on('MAP:ingest', function() {
-    NProgress.done();
-  });
+  var pos = function() {
+    map.outerHeight($(window).height());
+    Neatline.execute('MAP:updateSize');
+  };
+
+  $(window).resize(pos);
+  pos();
 
 });

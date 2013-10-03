@@ -19,9 +19,18 @@
 <!-- Exhibit -->
 <div class="exhibit"><?php echo nl_getExhibitMarkup(); ?></div>
 
-<!-- Narrative -->
+<!-- Text -->
 <div id="neatline-narrative" class="narrative">
   <?php echo nl_getExhibitField('narrative'); ?>
+</div>
+
+<!-- Back Link -->
+<div id="navigation">
+  <a href="<?php echo url('neatline'); ?>">
+    <span class="arrow">&larr;</span> View All
+  </a> ~
+  By <a href="https://twitter.com/clured">@clured</a>,
+  with <a href="http://neatline.org/">Neatline</a>
 </div>
 
 <?php echo foot(); ?>

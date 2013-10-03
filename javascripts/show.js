@@ -31,8 +31,7 @@ $(function() {
 
   };
 
-  // Position on domready/resize.
-  $(window).resize(function() { position(); });
+  $(window).resize(position);
   position();
 
 });

@@ -8,20 +8,33 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
+@import url("http://fonts.googleapis.com/css?family=EB+Garamond")
+
 body
+  font-family "EB Garamond"
   margin 0
 
 #neatline-narrative
+  width 600px
+  font-size 20px
+  text-align center
   position fixed
-  bottom 10px
+  bottom 20px
+  margin-left -300px
+  left 50%
 
-  p
-    margin 0
+  span
+    background transparent
+    padding 0
 
-    span
-      font-size 2em
-      background transparent
-      padding 0
+    &.highlighted, &.selected
+      color #9e0000
 
-      &.highlighted, &.selected
-        color #9e0000
+#navigation
+  position fixed
+  font-size 12px
+  top 5px
+  right 10px
+
+  a
+    color #9e0000
