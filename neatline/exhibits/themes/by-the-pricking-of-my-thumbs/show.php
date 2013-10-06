@@ -16,21 +16,31 @@
   'bodyclass' => 'neatline show'
 )); ?>
 
-<!-- Exhibit -->
+<!-- Exhibit. -->
 <div class="exhibit"><?php echo nl_getExhibitMarkup(); ?></div>
 
-<!-- Text -->
+<!-- Narrative. -->
 <div id="neatline-narrative" class="narrative">
   <?php echo nl_getExhibitField('narrative'); ?>
+  <p class="instructions">(Click words to auto-zoom.)</p>
 </div>
 
-<!-- Back Link -->
 <div id="navigation">
+
+  <!-- Back to exhibits browse. -->
   <a href="<?php echo url('neatline'); ?>">
     <span class="arrow">&larr;</span> View All
   </a> ~
+
+  <!-- Link to blog post. -->
+  <a href="http://dclure.org/?p=3088">
+    Read the blog post
+  </a> ~
+
+  <!-- Credits. -->
   By <a href="https://twitter.com/clured">@clured</a>,
   with <a href="http://neatline.org/">Neatline</a>
+
 </div>
 
 <?php echo foot(); ?>

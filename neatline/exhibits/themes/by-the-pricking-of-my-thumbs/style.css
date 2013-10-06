@@ -1,8 +1,10 @@
 @import url("http://fonts.googleapis.com/css?family=EB+Garamond");
 body{font-family:"EB Garamond";margin:0}
 #neatline-narrative{width:600px;font-size:20px;text-align:center;position:fixed;bottom:20px;margin-left:-300px;left:50%;}
+#neatline-narrative p{margin:0}
 #neatline-narrative span{background:transparent;padding:0;}
 #neatline-narrative span.highlighted,#neatline-narrative span.selected{color:#9e0000}
+#neatline-narrative .instructions{font-size:.8em;color:#b3b3b3}
 #navigation{position:fixed;font-size:12px;top:5px;right:10px;}
 #navigation a{color:#9e0000}
 
