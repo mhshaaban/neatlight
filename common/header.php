@@ -23,6 +23,8 @@
       echo isset($title) ? ' | ' . $title : ''; ?>
     </title>
 
+    <?php fire_plugin_hook('public_head', array('view'=>$this)); ?>
+
     <?php echo head_css(); ?>
     <?php echo head_js(); ?>
 
