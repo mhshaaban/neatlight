@@ -29,12 +29,12 @@
   <!-- Back to exhibits browse. -->
   <a href="<?php echo url('neatline'); ?>">
     <span class="arrow">&larr;</span> View All
-  </a> ~
+  </a> •
 
   <!-- Link to blog post. -->
   <a href="">
     Read the blog post
-  </a> ~
+  </a> •
 
   <!-- Credits. -->
   By <a href="https://twitter.com/clured">@clured</a>,

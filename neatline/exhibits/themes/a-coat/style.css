@@ -1,6 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Special+Elite");
-body{font-size:14px;font-family:"Special Elite";color:#333;font-weight:300;margin:0}
-#neatline-narrative{position:fixed;top:17px;left:58px;}
+@import url("http://fonts.googleapis.com/css?family=Cutive+Mono");
+body{font-size:14px;font-family:"Cutive Mono";color:#333;font-weight:300;margin:0}
+#neatline-narrative{position:fixed;top:13px;left:60px;}
 #neatline-narrative p{margin:0}
 #neatline-narrative span{display:block;line-height:17px;margin-top:2px;}
 #neatline-narrative span[data-neatline-slug="yeats"]{margin-top:5px}
