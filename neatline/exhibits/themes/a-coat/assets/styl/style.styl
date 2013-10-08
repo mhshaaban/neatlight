@@ -8,30 +8,38 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-@import url("http://fonts.googleapis.com/css?family=EB+Garamond")
+@import url("http://fonts.googleapis.com/css?family=Special+Elite")
+$highlight = #0087e4
 
 body
-  font-family "EB Garamond"
+  font-size 14px
+  font-family "Special Elite"
+  color lighten(black, 20%)
+  font-weight 300
   margin 0
 
 #neatline-narrative
-  width 600px
-  font-size 20px
-  text-align center
   position fixed
-  bottom 20px
-  margin-left -300px
-  left 50%
+  top 17px
+  left 58px
 
   p
     margin 0
+
+  span
+    display block
+    line-height 17px
+    margin-top 2px
+
+    &[data-neatline-slug="yeats"]
+      margin-top 5px
 
   span
     background transparent
     padding 0
 
     &.highlighted, &.selected
-      color #9e0000
+      color $highlight
 
   .instructions
     font-size 0.8em
@@ -40,8 +48,9 @@ body
 #navigation
   position fixed
   font-size 12px
-  top 5px
-  right 10px
+  top 10px
+  right 15px
 
   a
-    color #0087e4
+    text-decoration none
+    color $highlight
