@@ -32,7 +32,7 @@
   </a> •
 
   <!-- Link to blog post. -->
-  <a href="">
+  <a href="http://dclure.org/?p=3109">
     Read the blog post
   </a> •
 
