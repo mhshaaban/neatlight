@@ -27,7 +27,7 @@
   </a> •
 
   <!-- Link to blog post. -->
-  <a href="http://dclure.org/?p=3109">
+  <a href="http://dclure.org/?p=3136">
     Read the blog post
   </a> •
 
