@@ -32,7 +32,11 @@
       </span>
 
       <span class="date">
-        <?php echo date('F d Y', strtotime($e->added)); ?>
+        <?php if (!is_null($e->published)): ?>
+          <?php echo date('F d Y', strtotime($e->published)); ?>
+        <?php else: ?>
+          <?php echo date('F d Y', strtotime($e->added)); ?>
+        <?php endif; ?>
       </span>
 
     </div>
