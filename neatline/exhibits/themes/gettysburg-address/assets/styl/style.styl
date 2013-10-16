@@ -1,0 +1,31 @@
+
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+
+@import url("http://fonts.googleapis.com/css?family=Lusitana")
+@import url("http://fonts.googleapis.com/css?family=Neuton")
+
+body
+  font-family Neuton !important
+
+#neatline-narrative
+
+  [data-neatline-slug]
+    background transparent
+    padding 1px
+
+    &.highlighted
+      background #ffff80
+
+    &.selected
+      background #0080bb
+
+  p
+    font-size 1.3em
