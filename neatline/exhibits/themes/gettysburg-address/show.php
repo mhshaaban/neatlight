@@ -24,13 +24,7 @@
 
 <div id="neatline-narrative" class="narrative">
 
-  <!-- Back Link -->
-  <a href="<?php echo url('neatline'); ?>" class="back">
-    <span class="arrow">&larr;</span> View all Exhibits
-  </a>
-
   <!-- Narrative -->
-  <h1 class="title"><?php echo nl_getExhibitField('title'); ?></h1>
   <?php echo nl_getExhibitField('narrative'); ?>
 
   <!-- Colophon -->

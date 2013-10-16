@@ -9,7 +9,7 @@ a:hover{text-decoration:underline}
 hr{height:1px;background:#000;font-size:0;border:0}
 body.neatline.browse{background:#fcfcfc;}
 body.neatline.browse div.container{font-size:1.2em;margin:3em auto;width:50%;}
-body.neatline.browse div.container h1.title{font-family:"Londrina Shadow";font-weight:normal;margin-bottom:0;font-size:70px}
+body.neatline.browse div.container h1.title{font-family:"Londrina Shadow";font-weight:normal;margin-bottom:7px;font-size:60px}
 body.neatline.browse div.container span.date{font-size:14px}
 body.neatline.show{background:#fefefe;}
 body.neatline.show div.exhibit{float:left;width:65%;}
