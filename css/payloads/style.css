@@ -1,16 +1,17 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300");
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300");
 @import url("http://fonts.googleapis.com/css?family=Londrina+Shadow");
+@import url("http://fonts.googleapis.com/css?family=Lekton");
 *{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
 * ::selection{background:#006ebb;color:#fff}
 body{font-family:"Roboto Condensed";font-size:18px;font-weight:300;margin:0}
 a{text-decoration:none;color:#006ebb;}
 a:hover{text-decoration:underline}
 hr{height:1px;background:#000;font-size:0;border:0}
-body.neatline.browse{background:#fcfcfc;}
+body.neatline.browse{font-size:12px;background:#fcfcfc;font-family:Lekton;}
 body.neatline.browse div.container{font-size:1.2em;margin:3em auto;width:50%;}
-body.neatline.browse div.container h1.title{font-family:"Londrina Shadow";font-weight:normal;margin-bottom:7px;font-size:60px}
-body.neatline.browse div.container span.date{font-size:14px}
+body.neatline.browse div.container div.exhibit{margin:5px 0}
+body.neatline.browse div.container h1.title{margin-bottom:7px}
 body.neatline.show{background:#fefefe;}
 body.neatline.show div.exhibit{float:left;width:65%;}
 body.neatline.show div.exhibit #neatline,body.neatline.show div.exhibit #neatline-map{height:100%;width:100%}
@@ -23,4 +24,4 @@ body.neatline.show div.narrative p.first:first-letter{float:left;margin:0 5px 5p
 body.neatline.show #static-bubble div.body{font-size:17px}
 body.neatline.show #static-bubble a.close{font-size:2em;line-height:.8em;}
 body.neatline.show #static-bubble a.close:hover{color:#006ebb;background:none}
-#colophon{font-size:16px}
+#colophon{font-size:.9em}

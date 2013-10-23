@@ -15,6 +15,7 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300")
 @import url("http://fonts.googleapis.com/css?family=Londrina+Shadow")
+@import url("http://fonts.googleapis.com/css?family=Lekton")
 
 
 // VARIABLES
@@ -62,21 +63,20 @@ hr
 // ----------------------------------------------------------------------------
 
 body.neatline.browse
+  font-size 12px
   background darken(white, 1%)
+  font-family Lekton
 
   div.container
     font-size 1.2em
     margin 3em auto
     width 50%
 
-    h1.title
-      font-family $site-header
-      font-weight normal
-      margin-bottom 7px
-      font-size 60px
+    div.exhibit
+      margin 5px 0
 
-    span.date
-      font-size 14px
+    h1.title
+      margin-bottom 7px
 
 
 // EXHIBIT SHOW
@@ -141,4 +141,4 @@ body.neatline.show
 // ----------------------------------------------------------------------------
 
 #colophon
-  font-size 16px
+  font-size 0.9em
