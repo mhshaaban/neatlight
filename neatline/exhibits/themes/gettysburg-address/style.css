@@ -1,7 +1,7 @@
-@import url("http://fonts.googleapis.com/css?family=Lusitana");
-body.neatline.show{font-family:Lusitana;font-size:14px}
-#neatline-narrative{background:#f7f7f7;width:330px;}
-#neatline-narrative p{line-height:18px}
+@import url("http://fonts.googleapis.com/css?family=Lustria");
+body.neatline.show{font-family:Lustria;font-size:12px}
+#neatline-narrative{width:340px;}
+#neatline-narrative p{line-height:20px}
 #neatline-narrative h1,#neatline-narrative h3{margin:0}
 #neatline-narrative [data-neatline-slug]{background:transparent;padding:0;}
 #neatline-narrative [data-neatline-slug].highlighted{background:#ffffa9}
