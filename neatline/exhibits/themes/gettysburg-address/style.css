@@ -1,3 +1,8 @@
+@import url("http://fonts.googleapis.com/css?family=Lusitana");
+body.neatline.show{font-family:Lusitana;font-size:14px}
+#neatline-narrative{background:#f7f7f7;width:330px;}
+#neatline-narrative p{line-height:18px}
+#neatline-narrative h1,#neatline-narrative h3{margin:0}
 #neatline-narrative [data-neatline-slug]{background:transparent;padding:0;}
 #neatline-narrative [data-neatline-slug].highlighted{background:#ffffa9}
 #neatline-narrative [data-neatline-slug].selected{background:#0080bb}

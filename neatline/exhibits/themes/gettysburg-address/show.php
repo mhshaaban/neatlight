@@ -22,14 +22,9 @@
 <!-- Exhibit -->
 <div class="exhibit"><?php echo nl_getExhibitMarkup(); ?></div>
 
+<!-- Narrative -->
 <div id="neatline-narrative" class="narrative">
-
-  <!-- Narrative -->
   <?php echo nl_getExhibitField('narrative'); ?>
-
-  <!-- Colophon -->
-  <hr /><?php echo common('colophon'); ?>
-
 </div>
 
 <?php echo foot(); ?>
