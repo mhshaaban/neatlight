@@ -15,7 +15,7 @@
 <?php echo head(array('bodyclass' => 'neatline browse')); ?>
 
 <!-- Site Title -->
-<h1 class="title"><?php echo get_option('site_title'); ?></h1>
+<p class="title"><?php echo get_option('site_title'); ?></p>
 
 <?php if (nl_exhibitsHaveBeenCreated()): ?>
   <div class="list">

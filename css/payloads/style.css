@@ -11,7 +11,7 @@ hr{height:1px;background:#000;font-size:0;border:0}
 body.neatline.browse{font-size:12px;background:#fcfcfc;font-family:Lekton;}
 body.neatline.browse div.container{font-size:1.2em;margin:3em auto;width:50%;}
 body.neatline.browse div.container div.exhibit{margin:5px 0}
-body.neatline.browse div.container h1.title{margin-bottom:7px}
+body.neatline.browse div.container p.title{font-weight:bold}
 body.neatline.show{background:#fefefe;}
 body.neatline.show div.exhibit{float:left;width:65%;}
 body.neatline.show div.exhibit #neatline,body.neatline.show div.exhibit #neatline-map{height:100%;width:100%}
