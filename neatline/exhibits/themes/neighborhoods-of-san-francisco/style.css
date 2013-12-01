@@ -28,5 +28,5 @@ body{font-family:"Source Sans Pro";margin:0}
 #navigation h1{margin:0 0 5px 0;font-weight:300;font-size:3em}
 #navigation span.dot{margin:0 .4em}
 #navigation a{color:#fff}
-#nprogress .bar{background:#fff}
+#nprogress .bar{background:#fff;height:5px}
 #nprogress .peg{box-shadow:0 0 10px #fff,0 0 5px #fff}
