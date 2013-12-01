@@ -22,11 +22,11 @@
 }@keyframes nprogress-spinner{0%{transform:rotate(0);transform:rotate(0)}
 100%{transform:rotate(360deg);transform:rotate(360deg)}
 }
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic");
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 body{font-family:"Source Sans Pro";margin:0}
 #navigation{position:fixed;left:40px;bottom:40px;background-color:rgba(30,30,30,0.9);color:#fff;padding:1em;font-size:14px;font-weight:200;border-radius:2px;}
 #navigation h1{margin:0 0 5px 0;font-weight:300;font-size:3em}
 #navigation span.dot{margin:0 .4em}
 #navigation a{color:#fff}
-#nprogress .bar{background:#fff;height:5px}
+#nprogress .bar{background:#fff;height:8px}
 #nprogress .peg{box-shadow:0 0 10px #fff,0 0 5px #fff}

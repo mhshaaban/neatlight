@@ -25,7 +25,7 @@
 
   <!-- Back to exhibits browse. -->
   <a href="<?php echo url('neatline'); ?>">
-    <span class="arrow">&larr;</span> View All
+    <span class="arrow">&larr;</span> View All Exhibits
   </a>
 
   <span class="dot">•</span>
