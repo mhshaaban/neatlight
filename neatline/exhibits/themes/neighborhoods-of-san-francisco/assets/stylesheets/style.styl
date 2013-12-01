@@ -8,23 +8,38 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-
-@import url("http://fonts.googleapis.com/css?family=EB+Garamond")
-$highlight = #0087e4
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic")
 
 body
-  font-family "EB Garamond"
+  font-family "Source Sans Pro"
   margin 0
 
 #navigation
   position fixed
-  font-size 12px
-  top 10px
-  right 15px
+  left 40px
+  bottom 40px
+  background-color rgba(30,30,30,0.9)
+  color white
+  padding 1em
+  font-size 14px
+  font-weight 200
+  border-radius 2px
+
+  h1
+    margin 0 0 5px 0
+    font-weight 300
+    font-size 3em
+
+  span.dot
+    margin 0 0.4em
 
   a
-    text-decoration none
-    color $highlight
+    color white
 
-    &:hover
-      text-decoration underline
+#nprogress
+
+  .bar
+    background white
+
+  .peg
+    box-shadow 0 0 10px white, 0 0 5px white
