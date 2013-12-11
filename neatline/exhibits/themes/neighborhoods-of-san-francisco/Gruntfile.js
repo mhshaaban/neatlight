@@ -31,8 +31,9 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'style.css': [
+            'assets/stylesheets/fonts.styl',
             'bower_components/nprogress/nprogress.css',
-            'assets/stylesheets/*.styl'
+            'assets/stylesheets/style.styl'
           ]
         }
       }
