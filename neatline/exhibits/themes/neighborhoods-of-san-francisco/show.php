@@ -31,7 +31,7 @@
   <span class="dot">•</span>
 
   <!-- Link to blog post. -->
-  <a href="http://dclure.org/?p=3136">
+  <a href="http://dclure.org/essays/neighborhoods-of-san-francisco">
     Read the blog post
   </a>
 
