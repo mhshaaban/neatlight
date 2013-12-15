@@ -10,9 +10,10 @@
 
 module.exports = function(grunt) {
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-task');
 
   grunt.initConfig({
@@ -25,14 +26,20 @@ module.exports = function(grunt) {
       }
     },
 
+    concat: {
+      dist: {
+        src: [
+          'bower_components/nprogress/nprogress.js',
+          'assets/javascripts/*.js'
+        ],
+        dest: 'script.js'
+      }
+    },
+
     uglify: {
       dist: {
-        files: {
-          'script.js': [
-            'assets/js/*.js',
-            'bower_components/nprogress/nprogress.js'
-          ]
-        }
+        src: '<%= concat.dist.src %>',
+        dest: '<%= concat.dist.dest %>'
       }
     },
 
@@ -40,7 +47,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'style.css': [
-            'assets/styl/*.styl',
+            'assets/stylesheets/*.styl',
             'bower_components/nprogress/nprogress.css'
           ]
         }
@@ -49,11 +56,15 @@ module.exports = function(grunt) {
 
     watch: {
       dist: {
-        files: ['assets/**/*'],
-        tasks: ['stylus', 'uglify']
+        files: 'assets/**/*',
+        tasks: 'compile'
       }
     }
 
   });
+
+  grunt.registerTask('compile', ['stylus', 'concat']);
+  grunt.registerTask('compile:min', ['stylus', 'uglify']);
+  grunt.registerTask('default', 'compile:min');
 
 };
