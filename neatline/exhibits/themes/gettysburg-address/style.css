@@ -1,5 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300");
 body.neatline.show{font-family:"Roboto Condensed";font-size:13px}
+#neatline{background-image:url("images/paper.png")}
 #neatline-narrative{background:#fafafa;border-left:1px solid #e6e6e6;width:300px;}
 #neatline-narrative h1.title{margin-bottom:15px;font-size:25px}
 #neatline-narrative h2,#neatline-narrative h3{margin:0}
