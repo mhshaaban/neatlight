@@ -1,8 +1,10 @@
 @import url("http://fonts.googleapis.com/css?family=Lustria");
-body.neatline.show{font-family:Lustria;font-size:12px}
-#neatline-narrative{width:340px;}
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300");
+body.neatline.show{font-family:"Roboto Condensed";font-size:13px}
+#neatline-narrative{width:300px;}
+#neatline-narrative h1.title{margin-bottom:15px;font-size:25px}
+#neatline-narrative h2,#neatline-narrative h3{margin:0}
 #neatline-narrative p{line-height:20px}
-#neatline-narrative h1,#neatline-narrative h3{margin:0}
 #neatline-narrative [data-neatline-slug]{background:transparent;padding:0;}
 #neatline-narrative [data-neatline-slug].highlighted{background:#ffffa9}
 #neatline-narrative [data-neatline-slug].selected{background:#0080bb}
