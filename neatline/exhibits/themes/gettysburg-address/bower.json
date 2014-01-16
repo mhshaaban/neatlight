@@ -2,7 +2,6 @@
     "name": "gettysburg-address"
   , "version": "0.0.1"
   , "dependencies": {
-      "nprogress":  ">= 0.1.2"
-    , "foundation": ">= 5.0.3"
+      "nprogress": ">= 0.1.2"
   }
 }
