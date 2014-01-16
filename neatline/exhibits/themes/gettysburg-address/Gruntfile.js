@@ -7,18 +7,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bower-task');
 
   grunt.initConfig({
-
-    bower: {
-      install: {
-        options: {
-          copy: false
-        }
-      }
-    },
 
     concat: {
       dist: {
@@ -38,12 +30,13 @@ module.exports = function(grunt) {
     },
 
     stylus: {
+      options: {
+        paths: ['bower_components'],
+        'include css': true
+      },
       dist: {
         files: {
-          'style.css': [
-            'assets/stylesheets/*.styl',
-            'bower_components/nprogress/nprogress.css'
-          ]
+          'style.css': 'assets/stylesheets/*.styl'
         }
       }
     },
