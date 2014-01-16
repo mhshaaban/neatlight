@@ -30,13 +30,20 @@ module.exports = function(grunt) {
     },
 
     stylus: {
-      options: {
-        paths: ['bower_components'],
-        'include css': true
-      },
       dist: {
         files: {
           'style.css': 'assets/stylesheets/*.styl'
+        }
+      }
+    },
+
+    cssmin: {
+      dist: {
+        files: {
+          'style.css': [
+            'bower_components/nprogress/nprogress.css',
+            'style.css'
+          ]
         }
       }
     },
@@ -50,8 +57,8 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('compile', ['stylus', 'concat']);
-  grunt.registerTask('compile:min', ['stylus', 'uglify']);
+  grunt.registerTask('compile', ['stylus', 'cssmin', 'concat']);
+  grunt.registerTask('compile:min', ['stylus', 'cssmin', 'uglify']);
   grunt.registerTask('default', 'compile:min');
 
 };
