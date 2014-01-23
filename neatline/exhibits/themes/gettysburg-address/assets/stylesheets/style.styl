@@ -10,17 +10,43 @@
 
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300")
 
-body.neatline.show
-  font-family "Roboto Condensed"
-  font-size 13px
+*
+  box-sizing border-box
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
 
-#neatline
+  ::selection
+    background #006ebb
+    color white
+
+body.neatline.show
+
+  font-size 13px
+  margin 0
+
+  font-family "Roboto Condensed"
+  background darken(white, 0.5%)
+
+div.exhibit
+
+  float left
+  width 65%
+
   background-image url("images/paper.png")
 
-#neatline-narrative
-  background darken(white, 2%)
-  border-left 1px solid darken(white, 10%)
+  #neatline, #neatline-map
+    height 100%
+    width 100%
+
+div.narrative
+
+  float right
+  overflow-y scroll
+  padding 2em
   width 300px
+
+  border-left 1px solid darken(white, 10%)
+  background darken(white, 2%)
 
   h1
     margin-bottom 15px
@@ -32,12 +58,12 @@ body.neatline.show
   p
     line-height 20px
 
-  [data-neatline-slug]
-    background transparent
-    padding 0
+[data-neatline-slug]
+  background transparent
+  padding 0
 
-    &.highlighted
-      background lighten(#ffffa9, 20%)
+  &.highlighted
+    background lighten(#ffffa9, 20%)
 
-    &.selected
-      background #0080bb
+  &.selected
+    background #0080bb

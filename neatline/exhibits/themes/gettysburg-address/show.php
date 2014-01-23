@@ -11,8 +11,6 @@
 
 ?>
 
-<?php queue_css_file('payloads/style'); ?>
-
 <?php echo head(array(
   'title' => nl_getExhibitField('title'),
   'bodyclass' => 'neatline show'
