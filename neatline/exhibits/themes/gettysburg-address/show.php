@@ -12,7 +12,6 @@
 ?>
 
 <?php queue_css_file('payloads/style'); ?>
-<?php queue_js_file('show'); ?>
 
 <?php echo head(array(
   'title' => nl_getExhibitField('title'),
