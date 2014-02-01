@@ -40,16 +40,17 @@ module.exports = function(grunt) {
         files: {
           'style.css': 'assets/stylesheets/*.styl'
         }
+      },
+      options: {
+        paths: ['bower_components'],
+        'include css': true
       }
     },
 
     cssmin: {
       dist: {
         files: {
-          'style.css': [
-            'style.css',
-            'bower_components/nprogress/nprogress.css'
-          ]
+          'style.css': 'style.css'
         }
       }
     },

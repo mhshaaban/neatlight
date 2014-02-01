@@ -10,6 +10,7 @@
 
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300")
+@import "nprogress/nprogress.css"
 
 *
   box-sizing border-box
@@ -28,6 +29,15 @@ body.neatline.show
   font-family "Roboto Condensed"
   background darken(white, 0.5%)
 
+  a, a:visited
+    color #006ebb
+
+    &:hover
+      color lighten(#006ebb, 30%)
+
+div.header
+  margin-bottom 1em
+
 div.exhibit
 
   float left
@@ -44,7 +54,7 @@ div.narrative
   float right
   overflow-y scroll
   padding 2em
-  width 300px
+  width 310px
 
   border-left 1px solid darken(white, 10%)
   background darken(white, 2%)

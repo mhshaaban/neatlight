@@ -23,7 +23,18 @@
 
 <!-- Narrative -->
 <div id="neatline-narrative" class="narrative">
+
+  <!-- Credits. -->
+  <div class="header">
+
+    By <a href="https://twitter.com/clured" target="_blank">@clured</a>, with
+    <a href="http://omeka.org/" target="_blank">Omeka</a> and
+    <a href="http://neatline.org/" target="_blank">Neatline</a>.
+
+  </div>
+
   <?php echo nl_getExhibitField('narrative'); ?>
+
 </div>
 
 <?php echo foot(); ?>
