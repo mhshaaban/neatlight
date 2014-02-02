@@ -3,5 +3,6 @@
   , "version": "0.0.1"
   , "dependencies": {
       "nprogress": ">= 0.1.2"
+    , "bootstrap": ">= 3.1.0"
   }
 }
