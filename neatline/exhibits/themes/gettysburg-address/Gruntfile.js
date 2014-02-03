@@ -21,8 +21,9 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'bower_components/nprogress/nprogress.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
+          'bower_components/nprogress/nprogress.js',
+          'bower_components/scrollspy/jquery-scrollspy.js',
           'assets/javascripts/*.js'
         ],
         dest: 'script.js'
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
     watch: {
       dist: {
         files: 'assets/**/*',
-        tasks: 'compile:min'
+        tasks: 'compile'
       }
     }
 
