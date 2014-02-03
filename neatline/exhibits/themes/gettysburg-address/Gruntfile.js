@@ -10,6 +10,7 @@
 
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-stylus');
@@ -17,6 +18,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
+
+    copy: {
+      boxer: {
+        files: [{
+          src: [
+            'bower_components/Boxer/*.png',
+            'bower_components/Boxer/*.gif'
+          ],
+          expand: true,
+          flatten: true,
+          dest: './'
+        }]
+      }
+    },
 
     concat: {
       dist: {
@@ -67,8 +82,8 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('compile', ['stylus', 'cssmin', 'concat']);
-  grunt.registerTask('compile:min', ['stylus', 'cssmin', 'uglify']);
+  grunt.registerTask('compile', ['copy', 'stylus', 'cssmin', 'concat']);
+  grunt.registerTask('compile:min', ['copy', 'stylus', 'cssmin', 'uglify']);
   grunt.registerTask('default', 'compile:min');
 
 };
