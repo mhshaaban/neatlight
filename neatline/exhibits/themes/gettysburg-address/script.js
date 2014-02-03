@@ -2396,24 +2396,28 @@ $(function() {
 
 $(function() {
 
+
   var narrative   = $('div.narrative');
   var navigation  = $('ul.nav');
   var sections    = $('h1.section');
 
+  var navOffset   = navigation.offset().top;
+  var navHeight   = navigation.height();
+
   var placeholder = null;
+  var isAffixed   = false;
 
-  var navOffset = navigation.offset().top;
-  var navHeight = navigation.height();
-
-  var affixed = false
 
   // Listen for scroll.
   narrative.scroll(function() {
 
     var scroll = $(this).scrollTop();
 
-    // (1) When scrolled below the menu.
-    if (!affixed && scroll >= navOffset) {
+    // (1) (Un-)affix the menu:
+    // ------------------------------------------------------------------------
+
+    // When scrolled below the menu.
+    if (!isAffixed && scroll >= navOffset) {
 
       // Add placeholder to preserve height 
       placeholder = navigation.clone().insertAfter(navigation);
@@ -2422,28 +2426,31 @@ $(function() {
       // Affix the menu.
       navigation.addClass('affix');
 
-      affixed = true;
+      isAffixed = true;
 
     }
 
-    // (2) When scrollde above the menu.
-    if (affixed && scroll < navOffset) {
+    // When scrolled above the menu.
+    else if (isAffixed && scroll < navOffset) {
 
       // De-affix the menu.
       navigation.removeClass('affix');
       placeholder.remove();
 
-      affixed = false;
+      isAffixed = false;
 
     }
 
-    // (3) Update the active tab.
-    var active = $(_.last(sections.map(function() {
+    // (2) Set the active tab:
+    // ------------------------------------------------------------------------
+
+    // Get the currently-active section.
+    var section = $(_.last(sections.map(function() {
       if ($(this).offset().top+scroll < scroll+navHeight+11) return this;
     })));
 
     // Get the active tab `href`.
-    var href = '#'+active.attr('id');
+    var href = '#'+section.attr('id');
 
     // Clear active tab.
     navigation.find('li').removeClass('active')
@@ -2452,6 +2459,7 @@ $(function() {
     navigation.find('li').has('a[href="'+href+'"]').addClass('active');
 
   });
+
 
   // Listen for tab clicks.
   navigation.find('a').click(function(e) {
@@ -2463,5 +2471,9 @@ $(function() {
     narrative.stop().animate({ scrollTop: offset-navHeight-10 });
 
   });
+
+
+  narrative.scroll(); // Trigget `scroll` on startup to activate first tab.
+
 
 });
