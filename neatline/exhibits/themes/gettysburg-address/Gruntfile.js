@@ -24,6 +24,7 @@ module.exports = function(grunt) {
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/nprogress/nprogress.js',
           'bower_components/scrollspy/jquery-scrollspy.js',
+          'bower_components/Boxer/jquery.fs.boxer.js',
           'assets/javascripts/*.js'
         ],
         dest: 'script.js'

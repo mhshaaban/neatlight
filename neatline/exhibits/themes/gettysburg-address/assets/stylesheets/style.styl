@@ -13,9 +13,11 @@
 
 @import "bootstrap/dist/css/bootstrap.css"
 @import "nprogress/nprogress.css"
+@import "Boxer/jquery.fs.boxer.css"
 
-$textWidth = 310px
-$border = 1px solid darken(white, 10%)
+$textWidth  = 310px
+$border     = 1px solid darken(white, 10%)
+$linkColor  = #1d5f86
 
 border(side)
   border-{side} $border
@@ -26,7 +28,7 @@ border(side)
   -moz-box-sizing border-box
 
   ::selection
-    background #006ebb
+    background $linkColor
     color white
 
 body
@@ -41,7 +43,7 @@ body
 
   a, a:visited
 
-    color #006ebb
+    color $linkColor
     font-weight 400
 
 div.container
@@ -103,7 +105,7 @@ div.narrative
     background lighten(#ffffa9, 20%)
 
   &.selected
-    background #0080bb
+    background $linkColor
 
 ul.nav.nav-pills
   padding 1em 0
@@ -111,6 +113,9 @@ ul.nav.nav-pills
   li a
     border-radius 3px
     padding 5px 7px
+
+  li.active a
+    background-color $linkColor
 
   &.affix
 
