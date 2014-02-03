@@ -16,7 +16,7 @@ $(function() {
   var sections    = $('h1.section');
 
   var navOffset   = navigation.offset().top;
-  var navHeight   = navigation.height();
+  var navHeight   = navigation.outerHeight();
 
   var placeholder = null;
   var isAffixed   = false;
