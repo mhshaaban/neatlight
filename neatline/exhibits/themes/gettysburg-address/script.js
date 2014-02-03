@@ -1,2 +1,3636 @@
-if("undefined"==typeof jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict";function b(){var a=document.createElement("bootstrap"),b={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"};for(var c in b)if(void 0!==a.style[c])return{end:b[c]};return!1}a.fn.emulateTransitionEnd=function(b){var c=!1,d=this;a(this).one(a.support.transition.end,function(){c=!0});var e=function(){c||a(d).trigger(a.support.transition.end)};return setTimeout(e,b),this},a(function(){a.support.transition=b()})}(jQuery),+function(a){"use strict";var b='[data-dismiss="alert"]',c=function(c){a(c).on("click",b,this.close)};c.prototype.close=function(b){function c(){f.trigger("closed.bs.alert").remove()}var d=a(this),e=d.attr("data-target");e||(e=d.attr("href"),e=e&&e.replace(/.*(?=#[^\s]*$)/,""));var f=a(e);b&&b.preventDefault(),f.length||(f=d.hasClass("alert")?d:d.parent()),f.trigger(b=a.Event("close.bs.alert")),b.isDefaultPrevented()||(f.removeClass("in"),a.support.transition&&f.hasClass("fade")?f.one(a.support.transition.end,c).emulateTransitionEnd(150):c())};var d=a.fn.alert;a.fn.alert=function(b){return this.each(function(){var d=a(this),e=d.data("bs.alert");e||d.data("bs.alert",e=new c(this)),"string"==typeof b&&e[b].call(d)})},a.fn.alert.Constructor=c,a.fn.alert.noConflict=function(){return a.fn.alert=d,this},a(document).on("click.bs.alert.data-api",b,c.prototype.close)}(jQuery),+function(a){"use strict";var b=function(c,d){this.$element=a(c),this.options=a.extend({},b.DEFAULTS,d),this.isLoading=!1};b.DEFAULTS={loadingText:"loading..."},b.prototype.setState=function(b){var c="disabled",d=this.$element,e=d.is("input")?"val":"html",f=d.data();b+="Text",f.resetText||d.data("resetText",d[e]()),d[e](f[b]||this.options[b]),setTimeout(a.proxy(function(){"loadingText"==b?(this.isLoading=!0,d.addClass(c).attr(c,c)):this.isLoading&&(this.isLoading=!1,d.removeClass(c).removeAttr(c))},this),0)},b.prototype.toggle=function(){var a=!0,b=this.$element.closest('[data-toggle="buttons"]');if(b.length){var c=this.$element.find("input");"radio"==c.prop("type")&&(c.prop("checked")&&this.$element.hasClass("active")?a=!1:b.find(".active").removeClass("active")),a&&c.prop("checked",!this.$element.hasClass("active")).trigger("change")}a&&this.$element.toggleClass("active")};var c=a.fn.button;a.fn.button=function(c){return this.each(function(){var d=a(this),e=d.data("bs.button"),f="object"==typeof c&&c;e||d.data("bs.button",e=new b(this,f)),"toggle"==c?e.toggle():c&&e.setState(c)})},a.fn.button.Constructor=b,a.fn.button.noConflict=function(){return a.fn.button=c,this},a(document).on("click.bs.button.data-api","[data-toggle^=button]",function(b){var c=a(b.target);c.hasClass("btn")||(c=c.closest(".btn")),c.button("toggle"),b.preventDefault()})}(jQuery),+function(a){"use strict";var b=function(b,c){this.$element=a(b),this.$indicators=this.$element.find(".carousel-indicators"),this.options=c,this.paused=this.sliding=this.interval=this.$active=this.$items=null,"hover"==this.options.pause&&this.$element.on("mouseenter",a.proxy(this.pause,this)).on("mouseleave",a.proxy(this.cycle,this))};b.DEFAULTS={interval:5e3,pause:"hover",wrap:!0},b.prototype.cycle=function(b){return b||(this.paused=!1),this.interval&&clearInterval(this.interval),this.options.interval&&!this.paused&&(this.interval=setInterval(a.proxy(this.next,this),this.options.interval)),this},b.prototype.getActiveIndex=function(){return this.$active=this.$element.find(".item.active"),this.$items=this.$active.parent().children(),this.$items.index(this.$active)},b.prototype.to=function(b){var c=this,d=this.getActiveIndex();return b>this.$items.length-1||0>b?void 0:this.sliding?this.$element.one("slid.bs.carousel",function(){c.to(b)}):d==b?this.pause().cycle():this.slide(b>d?"next":"prev",a(this.$items[b]))},b.prototype.pause=function(b){return b||(this.paused=!0),this.$element.find(".next, .prev").length&&a.support.transition&&(this.$element.trigger(a.support.transition.end),this.cycle(!0)),this.interval=clearInterval(this.interval),this},b.prototype.next=function(){return this.sliding?void 0:this.slide("next")},b.prototype.prev=function(){return this.sliding?void 0:this.slide("prev")},b.prototype.slide=function(b,c){var d=this.$element.find(".item.active"),e=c||d[b](),f=this.interval,g="next"==b?"left":"right",h="next"==b?"first":"last",i=this;if(!e.length){if(!this.options.wrap)return;e=this.$element.find(".item")[h]()}if(e.hasClass("active"))return this.sliding=!1;var j=a.Event("slide.bs.carousel",{relatedTarget:e[0],direction:g});return this.$element.trigger(j),j.isDefaultPrevented()?void 0:(this.sliding=!0,f&&this.pause(),this.$indicators.length&&(this.$indicators.find(".active").removeClass("active"),this.$element.one("slid.bs.carousel",function(){var b=a(i.$indicators.children()[i.getActiveIndex()]);b&&b.addClass("active")})),a.support.transition&&this.$element.hasClass("slide")?(e.addClass(b),e[0].offsetWidth,d.addClass(g),e.addClass(g),d.one(a.support.transition.end,function(){e.removeClass([b,g].join(" ")).addClass("active"),d.removeClass(["active",g].join(" ")),i.sliding=!1,setTimeout(function(){i.$element.trigger("slid.bs.carousel")},0)}).emulateTransitionEnd(1e3*d.css("transition-duration").slice(0,-1))):(d.removeClass("active"),e.addClass("active"),this.sliding=!1,this.$element.trigger("slid.bs.carousel")),f&&this.cycle(),this)};var c=a.fn.carousel;a.fn.carousel=function(c){return this.each(function(){var d=a(this),e=d.data("bs.carousel"),f=a.extend({},b.DEFAULTS,d.data(),"object"==typeof c&&c),g="string"==typeof c?c:f.slide;e||d.data("bs.carousel",e=new b(this,f)),"number"==typeof c?e.to(c):g?e[g]():f.interval&&e.pause().cycle()})},a.fn.carousel.Constructor=b,a.fn.carousel.noConflict=function(){return a.fn.carousel=c,this},a(document).on("click.bs.carousel.data-api","[data-slide], [data-slide-to]",function(b){var c,d=a(this),e=a(d.attr("data-target")||(c=d.attr("href"))&&c.replace(/.*(?=#[^\s]+$)/,"")),f=a.extend({},e.data(),d.data()),g=d.attr("data-slide-to");g&&(f.interval=!1),e.carousel(f),(g=d.attr("data-slide-to"))&&e.data("bs.carousel").to(g),b.preventDefault()}),a(window).on("load",function(){a('[data-ride="carousel"]').each(function(){var b=a(this);b.carousel(b.data())})})}(jQuery),+function(a){"use strict";var b=function(c,d){this.$element=a(c),this.options=a.extend({},b.DEFAULTS,d),this.transitioning=null,this.options.parent&&(this.$parent=a(this.options.parent)),this.options.toggle&&this.toggle()};b.DEFAULTS={toggle:!0},b.prototype.dimension=function(){var a=this.$element.hasClass("width");return a?"width":"height"},b.prototype.show=function(){if(!this.transitioning&&!this.$element.hasClass("in")){var b=a.Event("show.bs.collapse");if(this.$element.trigger(b),!b.isDefaultPrevented()){var c=this.$parent&&this.$parent.find("> .panel > .in");if(c&&c.length){var d=c.data("bs.collapse");if(d&&d.transitioning)return;c.collapse("hide"),d||c.data("bs.collapse",null)}var e=this.dimension();this.$element.removeClass("collapse").addClass("collapsing")[e](0),this.transitioning=1;var f=function(){this.$element.removeClass("collapsing").addClass("collapse in")[e]("auto"),this.transitioning=0,this.$element.trigger("shown.bs.collapse")};if(!a.support.transition)return f.call(this);var g=a.camelCase(["scroll",e].join("-"));this.$element.one(a.support.transition.end,a.proxy(f,this)).emulateTransitionEnd(350)[e](this.$element[0][g])}}},b.prototype.hide=function(){if(!this.transitioning&&this.$element.hasClass("in")){var b=a.Event("hide.bs.collapse");if(this.$element.trigger(b),!b.isDefaultPrevented()){var c=this.dimension();this.$element[c](this.$element[c]())[0].offsetHeight,this.$element.addClass("collapsing").removeClass("collapse").removeClass("in"),this.transitioning=1;var d=function(){this.transitioning=0,this.$element.trigger("hidden.bs.collapse").removeClass("collapsing").addClass("collapse")};return a.support.transition?void this.$element[c](0).one(a.support.transition.end,a.proxy(d,this)).emulateTransitionEnd(350):d.call(this)}}},b.prototype.toggle=function(){this[this.$element.hasClass("in")?"hide":"show"]()};var c=a.fn.collapse;a.fn.collapse=function(c){return this.each(function(){var d=a(this),e=d.data("bs.collapse"),f=a.extend({},b.DEFAULTS,d.data(),"object"==typeof c&&c);!e&&f.toggle&&"show"==c&&(c=!c),e||d.data("bs.collapse",e=new b(this,f)),"string"==typeof c&&e[c]()})},a.fn.collapse.Constructor=b,a.fn.collapse.noConflict=function(){return a.fn.collapse=c,this},a(document).on("click.bs.collapse.data-api","[data-toggle=collapse]",function(b){var c,d=a(this),e=d.attr("data-target")||b.preventDefault()||(c=d.attr("href"))&&c.replace(/.*(?=#[^\s]+$)/,""),f=a(e),g=f.data("bs.collapse"),h=g?"toggle":d.data(),i=d.attr("data-parent"),j=i&&a(i);g&&g.transitioning||(j&&j.find('[data-toggle=collapse][data-parent="'+i+'"]').not(d).addClass("collapsed"),d[f.hasClass("in")?"addClass":"removeClass"]("collapsed")),f.collapse(h)})}(jQuery),+function(a){"use strict";function b(b){a(d).remove(),a(e).each(function(){var d=c(a(this)),e={relatedTarget:this};d.hasClass("open")&&(d.trigger(b=a.Event("hide.bs.dropdown",e)),b.isDefaultPrevented()||d.removeClass("open").trigger("hidden.bs.dropdown",e))})}function c(b){var c=b.attr("data-target");c||(c=b.attr("href"),c=c&&/#[A-Za-z]/.test(c)&&c.replace(/.*(?=#[^\s]*$)/,""));var d=c&&a(c);return d&&d.length?d:b.parent()}var d=".dropdown-backdrop",e="[data-toggle=dropdown]",f=function(b){a(b).on("click.bs.dropdown",this.toggle)};f.prototype.toggle=function(d){var e=a(this);if(!e.is(".disabled, :disabled")){var f=c(e),g=f.hasClass("open");if(b(),!g){"ontouchstart"in document.documentElement&&!f.closest(".navbar-nav").length&&a('<div class="dropdown-backdrop"/>').insertAfter(a(this)).on("click",b);var h={relatedTarget:this};if(f.trigger(d=a.Event("show.bs.dropdown",h)),d.isDefaultPrevented())return;f.toggleClass("open").trigger("shown.bs.dropdown",h),e.focus()}return!1}},f.prototype.keydown=function(b){if(/(38|40|27)/.test(b.keyCode)){var d=a(this);if(b.preventDefault(),b.stopPropagation(),!d.is(".disabled, :disabled")){var f=c(d),g=f.hasClass("open");if(!g||g&&27==b.keyCode)return 27==b.which&&f.find(e).focus(),d.click();var h=" li:not(.divider):visible a",i=f.find("[role=menu]"+h+", [role=listbox]"+h);if(i.length){var j=i.index(i.filter(":focus"));38==b.keyCode&&j>0&&j--,40==b.keyCode&&j<i.length-1&&j++,~j||(j=0),i.eq(j).focus()}}}};var g=a.fn.dropdown;a.fn.dropdown=function(b){return this.each(function(){var c=a(this),d=c.data("bs.dropdown");d||c.data("bs.dropdown",d=new f(this)),"string"==typeof b&&d[b].call(c)})},a.fn.dropdown.Constructor=f,a.fn.dropdown.noConflict=function(){return a.fn.dropdown=g,this},a(document).on("click.bs.dropdown.data-api",b).on("click.bs.dropdown.data-api",".dropdown form",function(a){a.stopPropagation()}).on("click.bs.dropdown.data-api",e,f.prototype.toggle).on("keydown.bs.dropdown.data-api",e+", [role=menu], [role=listbox]",f.prototype.keydown)}(jQuery),+function(a){"use strict";var b=function(b,c){this.options=c,this.$element=a(b),this.$backdrop=this.isShown=null,this.options.remote&&this.$element.find(".modal-content").load(this.options.remote,a.proxy(function(){this.$element.trigger("loaded.bs.modal")},this))};b.DEFAULTS={backdrop:!0,keyboard:!0,show:!0},b.prototype.toggle=function(a){return this[this.isShown?"hide":"show"](a)},b.prototype.show=function(b){var c=this,d=a.Event("show.bs.modal",{relatedTarget:b});this.$element.trigger(d),this.isShown||d.isDefaultPrevented()||(this.isShown=!0,this.escape(),this.$element.on("click.dismiss.bs.modal",'[data-dismiss="modal"]',a.proxy(this.hide,this)),this.backdrop(function(){var d=a.support.transition&&c.$element.hasClass("fade");c.$element.parent().length||c.$element.appendTo(document.body),c.$element.show().scrollTop(0),d&&c.$element[0].offsetWidth,c.$element.addClass("in").attr("aria-hidden",!1),c.enforceFocus();var e=a.Event("shown.bs.modal",{relatedTarget:b});d?c.$element.find(".modal-dialog").one(a.support.transition.end,function(){c.$element.focus().trigger(e)}).emulateTransitionEnd(300):c.$element.focus().trigger(e)}))},b.prototype.hide=function(b){b&&b.preventDefault(),b=a.Event("hide.bs.modal"),this.$element.trigger(b),this.isShown&&!b.isDefaultPrevented()&&(this.isShown=!1,this.escape(),a(document).off("focusin.bs.modal"),this.$element.removeClass("in").attr("aria-hidden",!0).off("click.dismiss.bs.modal"),a.support.transition&&this.$element.hasClass("fade")?this.$element.one(a.support.transition.end,a.proxy(this.hideModal,this)).emulateTransitionEnd(300):this.hideModal())},b.prototype.enforceFocus=function(){a(document).off("focusin.bs.modal").on("focusin.bs.modal",a.proxy(function(a){this.$element[0]===a.target||this.$element.has(a.target).length||this.$element.focus()},this))},b.prototype.escape=function(){this.isShown&&this.options.keyboard?this.$element.on("keyup.dismiss.bs.modal",a.proxy(function(a){27==a.which&&this.hide()},this)):this.isShown||this.$element.off("keyup.dismiss.bs.modal")},b.prototype.hideModal=function(){var a=this;this.$element.hide(),this.backdrop(function(){a.removeBackdrop(),a.$element.trigger("hidden.bs.modal")})},b.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove(),this.$backdrop=null},b.prototype.backdrop=function(b){var c=this.$element.hasClass("fade")?"fade":"";if(this.isShown&&this.options.backdrop){var d=a.support.transition&&c;if(this.$backdrop=a('<div class="modal-backdrop '+c+'" />').appendTo(document.body),this.$element.on("click.dismiss.bs.modal",a.proxy(function(a){a.target===a.currentTarget&&("static"==this.options.backdrop?this.$element[0].focus.call(this.$element[0]):this.hide.call(this))},this)),d&&this.$backdrop[0].offsetWidth,this.$backdrop.addClass("in"),!b)return;d?this.$backdrop.one(a.support.transition.end,b).emulateTransitionEnd(150):b()}else!this.isShown&&this.$backdrop?(this.$backdrop.removeClass("in"),a.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one(a.support.transition.end,b).emulateTransitionEnd(150):b()):b&&b()};var c=a.fn.modal;a.fn.modal=function(c,d){return this.each(function(){var e=a(this),f=e.data("bs.modal"),g=a.extend({},b.DEFAULTS,e.data(),"object"==typeof c&&c);f||e.data("bs.modal",f=new b(this,g)),"string"==typeof c?f[c](d):g.show&&f.show(d)})},a.fn.modal.Constructor=b,a.fn.modal.noConflict=function(){return a.fn.modal=c,this},a(document).on("click.bs.modal.data-api",'[data-toggle="modal"]',function(b){var c=a(this),d=c.attr("href"),e=a(c.attr("data-target")||d&&d.replace(/.*(?=#[^\s]+$)/,"")),f=e.data("bs.modal")?"toggle":a.extend({remote:!/#/.test(d)&&d},e.data(),c.data());c.is("a")&&b.preventDefault(),e.modal(f,this).one("hide",function(){c.is(":visible")&&c.focus()})}),a(document).on("show.bs.modal",".modal",function(){a(document.body).addClass("modal-open")}).on("hidden.bs.modal",".modal",function(){a(document.body).removeClass("modal-open")})}(jQuery),+function(a){"use strict";var b=function(a,b){this.type=this.options=this.enabled=this.timeout=this.hoverState=this.$element=null,this.init("tooltip",a,b)};b.DEFAULTS={animation:!0,placement:"top",selector:!1,template:'<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',trigger:"hover focus",title:"",delay:0,html:!1,container:!1},b.prototype.init=function(b,c,d){this.enabled=!0,this.type=b,this.$element=a(c),this.options=this.getOptions(d);for(var e=this.options.trigger.split(" "),f=e.length;f--;){var g=e[f];if("click"==g)this.$element.on("click."+this.type,this.options.selector,a.proxy(this.toggle,this));else if("manual"!=g){var h="hover"==g?"mouseenter":"focusin",i="hover"==g?"mouseleave":"focusout";this.$element.on(h+"."+this.type,this.options.selector,a.proxy(this.enter,this)),this.$element.on(i+"."+this.type,this.options.selector,a.proxy(this.leave,this))}}this.options.selector?this._options=a.extend({},this.options,{trigger:"manual",selector:""}):this.fixTitle()},b.prototype.getDefaults=function(){return b.DEFAULTS},b.prototype.getOptions=function(b){return b=a.extend({},this.getDefaults(),this.$element.data(),b),b.delay&&"number"==typeof b.delay&&(b.delay={show:b.delay,hide:b.delay}),b},b.prototype.getDelegateOptions=function(){var b={},c=this.getDefaults();return this._options&&a.each(this._options,function(a,d){c[a]!=d&&(b[a]=d)}),b},b.prototype.enter=function(b){var c=b instanceof this.constructor?b:a(b.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type);return clearTimeout(c.timeout),c.hoverState="in",c.options.delay&&c.options.delay.show?void(c.timeout=setTimeout(function(){"in"==c.hoverState&&c.show()},c.options.delay.show)):c.show()},b.prototype.leave=function(b){var c=b instanceof this.constructor?b:a(b.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type);return clearTimeout(c.timeout),c.hoverState="out",c.options.delay&&c.options.delay.hide?void(c.timeout=setTimeout(function(){"out"==c.hoverState&&c.hide()},c.options.delay.hide)):c.hide()},b.prototype.show=function(){var b=a.Event("show.bs."+this.type);if(this.hasContent()&&this.enabled){if(this.$element.trigger(b),b.isDefaultPrevented())return;var c=this,d=this.tip();this.setContent(),this.options.animation&&d.addClass("fade");var e="function"==typeof this.options.placement?this.options.placement.call(this,d[0],this.$element[0]):this.options.placement,f=/\s?auto?\s?/i,g=f.test(e);g&&(e=e.replace(f,"")||"top"),d.detach().css({top:0,left:0,display:"block"}).addClass(e),this.options.container?d.appendTo(this.options.container):d.insertAfter(this.$element);var h=this.getPosition(),i=d[0].offsetWidth,j=d[0].offsetHeight;if(g){var k=this.$element.parent(),l=e,m=document.documentElement.scrollTop||document.body.scrollTop,n="body"==this.options.container?window.innerWidth:k.outerWidth(),o="body"==this.options.container?window.innerHeight:k.outerHeight(),p="body"==this.options.container?0:k.offset().left;e="bottom"==e&&h.top+h.height+j-m>o?"top":"top"==e&&h.top-m-j<0?"bottom":"right"==e&&h.right+i>n?"left":"left"==e&&h.left-i<p?"right":e,d.removeClass(l).addClass(e)}var q=this.getCalculatedOffset(e,h,i,j);this.applyPlacement(q,e),this.hoverState=null;var r=function(){c.$element.trigger("shown.bs."+c.type)};a.support.transition&&this.$tip.hasClass("fade")?d.one(a.support.transition.end,r).emulateTransitionEnd(150):r()}},b.prototype.applyPlacement=function(b,c){var d,e=this.tip(),f=e[0].offsetWidth,g=e[0].offsetHeight,h=parseInt(e.css("margin-top"),10),i=parseInt(e.css("margin-left"),10);isNaN(h)&&(h=0),isNaN(i)&&(i=0),b.top=b.top+h,b.left=b.left+i,a.offset.setOffset(e[0],a.extend({using:function(a){e.css({top:Math.round(a.top),left:Math.round(a.left)})}},b),0),e.addClass("in");var j=e[0].offsetWidth,k=e[0].offsetHeight;if("top"==c&&k!=g&&(d=!0,b.top=b.top+g-k),/bottom|top/.test(c)){var l=0;b.left<0&&(l=-2*b.left,b.left=0,e.offset(b),j=e[0].offsetWidth,k=e[0].offsetHeight),this.replaceArrow(l-f+j,j,"left")}else this.replaceArrow(k-g,k,"top");d&&e.offset(b)},b.prototype.replaceArrow=function(a,b,c){this.arrow().css(c,a?50*(1-a/b)+"%":"")},b.prototype.setContent=function(){var a=this.tip(),b=this.getTitle();a.find(".tooltip-inner")[this.options.html?"html":"text"](b),a.removeClass("fade in top bottom left right")},b.prototype.hide=function(){function b(){"in"!=c.hoverState&&d.detach(),c.$element.trigger("hidden.bs."+c.type)}var c=this,d=this.tip(),e=a.Event("hide.bs."+this.type);return this.$element.trigger(e),e.isDefaultPrevented()?void 0:(d.removeClass("in"),a.support.transition&&this.$tip.hasClass("fade")?d.one(a.support.transition.end,b).emulateTransitionEnd(150):b(),this.hoverState=null,this)},b.prototype.fixTitle=function(){var a=this.$element;(a.attr("title")||"string"!=typeof a.attr("data-original-title"))&&a.attr("data-original-title",a.attr("title")||"").attr("title","")},b.prototype.hasContent=function(){return this.getTitle()},b.prototype.getPosition=function(){var b=this.$element[0];return a.extend({},"function"==typeof b.getBoundingClientRect?b.getBoundingClientRect():{width:b.offsetWidth,height:b.offsetHeight},this.$element.offset())},b.prototype.getCalculatedOffset=function(a,b,c,d){return"bottom"==a?{top:b.top+b.height,left:b.left+b.width/2-c/2}:"top"==a?{top:b.top-d,left:b.left+b.width/2-c/2}:"left"==a?{top:b.top+b.height/2-d/2,left:b.left-c}:{top:b.top+b.height/2-d/2,left:b.left+b.width}},b.prototype.getTitle=function(){var a,b=this.$element,c=this.options;return a=b.attr("data-original-title")||("function"==typeof c.title?c.title.call(b[0]):c.title)},b.prototype.tip=function(){return this.$tip=this.$tip||a(this.options.template)},b.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".tooltip-arrow")},b.prototype.validate=function(){this.$element[0].parentNode||(this.hide(),this.$element=null,this.options=null)},b.prototype.enable=function(){this.enabled=!0},b.prototype.disable=function(){this.enabled=!1},b.prototype.toggleEnabled=function(){this.enabled=!this.enabled},b.prototype.toggle=function(b){var c=b?a(b.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type):this;c.tip().hasClass("in")?c.leave(c):c.enter(c)},b.prototype.destroy=function(){clearTimeout(this.timeout),this.hide().$element.off("."+this.type).removeData("bs."+this.type)};var c=a.fn.tooltip;a.fn.tooltip=function(c){return this.each(function(){var d=a(this),e=d.data("bs.tooltip"),f="object"==typeof c&&c;(e||"destroy"!=c)&&(e||d.data("bs.tooltip",e=new b(this,f)),"string"==typeof c&&e[c]())})},a.fn.tooltip.Constructor=b,a.fn.tooltip.noConflict=function(){return a.fn.tooltip=c,this}}(jQuery),+function(a){"use strict";var b=function(a,b){this.init("popover",a,b)};if(!a.fn.tooltip)throw new Error("Popover requires tooltip.js");b.DEFAULTS=a.extend({},a.fn.tooltip.Constructor.DEFAULTS,{placement:"right",trigger:"click",content:"",template:'<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'}),b.prototype=a.extend({},a.fn.tooltip.Constructor.prototype),b.prototype.constructor=b,b.prototype.getDefaults=function(){return b.DEFAULTS},b.prototype.setContent=function(){var a=this.tip(),b=this.getTitle(),c=this.getContent();a.find(".popover-title")[this.options.html?"html":"text"](b),a.find(".popover-content")[this.options.html?"string"==typeof c?"html":"append":"text"](c),a.removeClass("fade top bottom left right in"),a.find(".popover-title").html()||a.find(".popover-title").hide()},b.prototype.hasContent=function(){return this.getTitle()||this.getContent()},b.prototype.getContent=function(){var a=this.$element,b=this.options;return a.attr("data-content")||("function"==typeof b.content?b.content.call(a[0]):b.content)},b.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".arrow")},b.prototype.tip=function(){return this.$tip||(this.$tip=a(this.options.template)),this.$tip};var c=a.fn.popover;a.fn.popover=function(c){return this.each(function(){var d=a(this),e=d.data("bs.popover"),f="object"==typeof c&&c;(e||"destroy"!=c)&&(e||d.data("bs.popover",e=new b(this,f)),"string"==typeof c&&e[c]())})},a.fn.popover.Constructor=b,a.fn.popover.noConflict=function(){return a.fn.popover=c,this}}(jQuery),+function(a){"use strict";function b(c,d){var e,f=a.proxy(this.process,this);this.$element=a(a(c).is("body")?window:c),this.$body=a("body"),this.$scrollElement=this.$element.on("scroll.bs.scroll-spy.data-api",f),this.options=a.extend({},b.DEFAULTS,d),this.selector=(this.options.target||(e=a(c).attr("href"))&&e.replace(/.*(?=#[^\s]+$)/,"")||"")+" .nav li > a",this.offsets=a([]),this.targets=a([]),this.activeTarget=null,this.refresh(),this.process()}b.DEFAULTS={offset:10},b.prototype.refresh=function(){var b=this.$element[0]==window?"offset":"position";this.offsets=a([]),this.targets=a([]);{var c=this;this.$body.find(this.selector).map(function(){var d=a(this),e=d.data("target")||d.attr("href"),f=/^#./.test(e)&&a(e);return f&&f.length&&f.is(":visible")&&[[f[b]().top+(!a.isWindow(c.$scrollElement.get(0))&&c.$scrollElement.scrollTop()),e]]||null}).sort(function(a,b){return a[0]-b[0]}).each(function(){c.offsets.push(this[0]),c.targets.push(this[1])})}},b.prototype.process=function(){var a,b=this.$scrollElement.scrollTop()+this.options.offset,c=this.$scrollElement[0].scrollHeight||this.$body[0].scrollHeight,d=c-this.$scrollElement.height(),e=this.offsets,f=this.targets,g=this.activeTarget;if(b>=d)return g!=(a=f.last()[0])&&this.activate(a);if(g&&b<=e[0])return g!=(a=f[0])&&this.activate(a);for(a=e.length;a--;)g!=f[a]&&b>=e[a]&&(!e[a+1]||b<=e[a+1])&&this.activate(f[a])},b.prototype.activate=function(b){this.activeTarget=b,a(this.selector).parentsUntil(this.options.target,".active").removeClass("active");var c=this.selector+'[data-target="'+b+'"],'+this.selector+'[href="'+b+'"]',d=a(c).parents("li").addClass("active");d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active")),d.trigger("activate.bs.scrollspy")};var c=a.fn.scrollspy;a.fn.scrollspy=function(c){return this.each(function(){var d=a(this),e=d.data("bs.scrollspy"),f="object"==typeof c&&c;e||d.data("bs.scrollspy",e=new b(this,f)),"string"==typeof c&&e[c]()})},a.fn.scrollspy.Constructor=b,a.fn.scrollspy.noConflict=function(){return a.fn.scrollspy=c,this},a(window).on("load",function(){a('[data-spy="scroll"]').each(function(){var b=a(this);b.scrollspy(b.data())})})}(jQuery),+function(a){"use strict";var b=function(b){this.element=a(b)};b.prototype.show=function(){var b=this.element,c=b.closest("ul:not(.dropdown-menu)"),d=b.data("target");if(d||(d=b.attr("href"),d=d&&d.replace(/.*(?=#[^\s]*$)/,"")),!b.parent("li").hasClass("active")){var e=c.find(".active:last a")[0],f=a.Event("show.bs.tab",{relatedTarget:e});if(b.trigger(f),!f.isDefaultPrevented()){var g=a(d);this.activate(b.parent("li"),c),this.activate(g,g.parent(),function(){b.trigger({type:"shown.bs.tab",relatedTarget:e})})}}},b.prototype.activate=function(b,c,d){function e(){f.removeClass("active").find("> .dropdown-menu > .active").removeClass("active"),b.addClass("active"),g?(b[0].offsetWidth,b.addClass("in")):b.removeClass("fade"),b.parent(".dropdown-menu")&&b.closest("li.dropdown").addClass("active"),d&&d()}var f=c.find("> .active"),g=d&&a.support.transition&&f.hasClass("fade");g?f.one(a.support.transition.end,e).emulateTransitionEnd(150):e(),f.removeClass("in")};var c=a.fn.tab;a.fn.tab=function(c){return this.each(function(){var d=a(this),e=d.data("bs.tab");e||d.data("bs.tab",e=new b(this)),"string"==typeof c&&e[c]()})},a.fn.tab.Constructor=b,a.fn.tab.noConflict=function(){return a.fn.tab=c,this},a(document).on("click.bs.tab.data-api",'[data-toggle="tab"], [data-toggle="pill"]',function(b){b.preventDefault(),a(this).tab("show")})}(jQuery),+function(a){"use strict";var b=function(c,d){this.options=a.extend({},b.DEFAULTS,d),this.$window=a(window).on("scroll.bs.affix.data-api",a.proxy(this.checkPosition,this)).on("click.bs.affix.data-api",a.proxy(this.checkPositionWithEventLoop,this)),this.$element=a(c),this.affixed=this.unpin=this.pinnedOffset=null,this.checkPosition()};b.RESET="affix affix-top affix-bottom",b.DEFAULTS={offset:0},b.prototype.getPinnedOffset=function(){if(this.pinnedOffset)return this.pinnedOffset;this.$element.removeClass(b.RESET).addClass("affix");var a=this.$window.scrollTop(),c=this.$element.offset();return this.pinnedOffset=c.top-a},b.prototype.checkPositionWithEventLoop=function(){setTimeout(a.proxy(this.checkPosition,this),1)},b.prototype.checkPosition=function(){if(this.$element.is(":visible")){var c=a(document).height(),d=this.$window.scrollTop(),e=this.$element.offset(),f=this.options.offset,g=f.top,h=f.bottom;"top"==this.affixed&&(e.top+=d),"object"!=typeof f&&(h=g=f),"function"==typeof g&&(g=f.top(this.$element)),"function"==typeof h&&(h=f.bottom(this.$element));var i=null!=this.unpin&&d+this.unpin<=e.top?!1:null!=h&&e.top+this.$element.height()>=c-h?"bottom":null!=g&&g>=d?"top":!1;if(this.affixed!==i){this.unpin&&this.$element.css("top","");var j="affix"+(i?"-"+i:""),k=a.Event(j+".bs.affix");this.$element.trigger(k),k.isDefaultPrevented()||(this.affixed=i,this.unpin="bottom"==i?this.getPinnedOffset():null,this.$element.removeClass(b.RESET).addClass(j).trigger(a.Event(j.replace("affix","affixed"))),"bottom"==i&&this.$element.offset({top:c-h-this.$element.height()}))}}};var c=a.fn.affix;a.fn.affix=function(c){return this.each(function(){var d=a(this),e=d.data("bs.affix"),f="object"==typeof c&&c;e||d.data("bs.affix",e=new b(this,f)),"string"==typeof c&&e[c]()})},a.fn.affix.Constructor=b,a.fn.affix.noConflict=function(){return a.fn.affix=c,this},a(window).on("load",function(){a('[data-spy="affix"]').each(function(){var b=a(this),c=b.data();c.offset=c.offset||{},c.offsetBottom&&(c.offset.bottom=c.offsetBottom),c.offsetTop&&(c.offset.top=c.offsetTop),b.affix(c)})})}(jQuery),function(a){"function"==typeof module?module.exports=a(this.jQuery||require("jquery")):this.NProgress=a(this.jQuery)}(function(a){function b(a,b,c){return b>a?b:a>c?c:a}function c(a){return 100*(-1+a)}function d(a,b,d){var e;return e="translate3d"===f.positionUsing?{transform:"translate3d("+c(a)+"%,0,0)"}:"translate"===f.positionUsing?{transform:"translate("+c(a)+"%,0)"}:{"margin-left":c(a)+"%"},e.transition="all "+b+"ms "+d,e}var e={};e.version="0.1.2";var f=e.settings={minimum:.08,easing:"ease",positionUsing:"",speed:200,trickle:!0,trickleRate:.02,trickleSpeed:800,showSpinner:!0,template:'<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'};return e.configure=function(b){return a.extend(f,b),this},e.status=null,e.set=function(a){var c=e.isStarted();a=b(a,f.minimum,1),e.status=1===a?null:a;var g=e.render(!c),h=g.find('[role="bar"]'),i=f.speed,j=f.easing;return g[0].offsetWidth,g.queue(function(b){""===f.positionUsing&&(f.positionUsing=e.getPositioningCSS()),h.css(d(a,i,j)),1===a?(g.css({transition:"none",opacity:1}),g[0].offsetWidth,setTimeout(function(){g.css({transition:"all "+i+"ms linear",opacity:0}),setTimeout(function(){e.remove(),b()},i)},i)):setTimeout(b,i)}),this},e.isStarted=function(){return"number"==typeof e.status},e.start=function(){e.status||e.set(0);var a=function(){setTimeout(function(){e.status&&(e.trickle(),a())},f.trickleSpeed)};return f.trickle&&a(),this},e.done=function(a){return a||e.status?e.inc(.3+.5*Math.random()).set(1):this},e.inc=function(a){var c=e.status;return c?("number"!=typeof a&&(a=(1-c)*b(Math.random()*c,.1,.95)),c=b(c+a,0,.994),e.set(c)):e.start()},e.trickle=function(){return e.inc(Math.random()*f.trickleRate)},e.render=function(b){if(e.isRendered())return a("#nprogress");a("html").addClass("nprogress-busy");var d=a("<div id='nprogress'>").html(f.template),g=b?"-100":c(e.status||0);return d.find('[role="bar"]').css({transition:"all 0 linear",transform:"translate3d("+g+"%,0,0)"}),f.showSpinner||d.find('[role="spinner"]').remove(),d.appendTo(document.body),d},e.remove=function(){a("html").removeClass("nprogress-busy"),a("#nprogress").remove()},e.isRendered=function(){return a("#nprogress").length>0},e.getPositioningCSS=function(){var a=document.body.style,b="WebkitTransform"in a?"Webkit":"MozTransform"in a?"Moz":"msTransform"in a?"ms":"OTransform"in a?"O":"";return b+"Perspective"in a?"translate3d":b+"Transform"in a?"translate":"margin"},e}),function(a,b){a.fn.extend({scrollspy:function(c){var d={min:0,max:0,mode:"vertical",buffer:0,container:b,onEnter:c.onEnter?c.onEnter:[],onLeave:c.onLeave?c.onLeave:[],onTick:c.onTick?c.onTick:[]},c=a.extend({},d,c);return this.each(function(){var b=this,d=c,e=a(d.container),f=d.mode,g=d.buffer,h=leaves=0,i=!1;e.bind("scroll",function(){var c={top:a(this).scrollTop(),left:a(this).scrollLeft()},j="vertical"==f?c.top+g:c.left+g,k=d.max,l=d.min;a.isFunction(d.max)&&(k=d.max()),a.isFunction(d.min)&&(l=d.min()),0==k&&(k="vertical"==f?e.height():e.outerWidth()+a(b).outerWidth()),j>=l&&k>=j?(i||(i=!0,h++,a(b).trigger("scrollEnter",{position:c}),a.isFunction(d.onEnter)&&d.onEnter(b,c)),a(b).trigger("scrollTick",{position:c,inside:i,enters:h,leaves:leaves}),a.isFunction(d.onTick)&&d.onTick(b,c,i,h,leaves)):i&&(i=!1,leaves++,a(b).trigger("scrollLeave",{position:c,leaves:leaves}),a.isFunction(d.onLeave)&&d.onLeave(b,c))
-})})}})}(jQuery,window),function(a,b){"use strict";function c(b){return H.formatter=j,a(this).on("click.boxer",a.extend({},H,b||{}),d)}function d(c){var d=a(this),f=c.data.$object,g=d[0].attributes?d.attr("href")||"":"",i=g.toLowerCase().split("."),j=i[i.length-1],l="",m="image"===l||"jpeg"===j||"jpg"===j||"gif"===j||"png"===j||"data:image"===g.substr(0,10),o=g.indexOf("youtube.com/embed")>-1||g.indexOf("player.vimeo.com/video")>-1,p="url"===l||!m&&!o&&"http"===g.substr(0,4),w="element"===l||!m&&!o&&!p&&"#"===g.substr(0,1),x="undefined"!=typeof f;if(!(a("#boxer").length>1)&&(m||o||p||w||x)){if(C(c),F=a.extend({},{$window:a(b),$body:a("body"),$target:d,$object:f,visible:!1,resizeTimer:null,touchTimer:null,gallery:{active:!1},isMobile:G||c.data.mobile},c.data),F.margin*=2,F.containerHeight=F.height,F.containerWidth=F.width,F.type=m?"image":o?"video":"element",m||o){var y=F.$target.attr("rel");"undefined"!=typeof y&&y!==!1&&(F.gallery.active=!0,F.gallery.rel=y,F.gallery.$items=a("a[rel= "+F.gallery.rel+"]"),F.gallery.index=F.gallery.$items.index(F.$target),F.gallery.total=F.gallery.$items.length-1)}var z="";return F.isMobile||(z+='<div id="boxer-overlay" class="'+F.customClass+'" style="opacity: 0"></div>'),z+='<div id="boxer" class="loading '+F.customClass,F.isMobile&&(z+=" mobile"),p&&(z+=" iframe"),(w||x)&&(z+=" inline"),z+='" style="opacity: 0;',F.fixed===!0&&(z+=" position: fixed;"),z+='">',z+='<span class="boxer-close">'+F.labels.close+"</span>",z+='<div class="boxer-container" style="',z+=F.isMobile?"height: 100%; width: 100%":"height: "+F.height+"px; width: "+F.width+"px",z+='">',z+='<div class="boxer-content" style="opacity: 0;">',(m||o)&&(z+='<div class="boxer-meta">',F.gallery.active?(z+='<div class="boxer-arrow previous">'+F.labels.previous+"</div>",z+='<div class="boxer-arrow next">'+F.labels.next+"</div>",z+='<p class="boxer-position"',F.gallery.total<1&&(z+=' style="display: none;"'),z+=">",z+='<span class="current">'+(F.gallery.index+1)+"</span> "+F.labels.count+' <span class="total">'+(F.gallery.total+1)+"</span>",z+="</p>",z+='<div class="boxer-caption gallery">'):z+='<div class="boxer-caption">',z+=F.formatter.apply(F.$body,[F.$target]),z+="</div></div>"),z+="</div></div></div>",F.$body.append(z),F.$overlay=a("#boxer-overlay"),F.$boxer=a("#boxer"),F.$container=F.$boxer.find(".boxer-container"),F.$content=F.$boxer.find(".boxer-content"),F.$meta=F.$boxer.find(".boxer-meta"),F.$position=F.$boxer.find(".boxer-position"),F.$caption=F.$boxer.find(".boxer-caption"),F.$arrows=F.$boxer.find(".boxer-arrow"),F.$animatables=a("#boxer-overlay, #boxer, .boxer-container"),F.paddingVertical=parseInt(F.$boxer.css("paddingTop"),10)+parseInt(F.$boxer.css("paddingBottom"),10),F.paddingHorizontal=parseInt(F.$boxer.css("paddingLeft"),10)+parseInt(F.$boxer.css("paddingRight"),10),h(),F.gallery.active&&r(),F.$window.on("resize.boxer",I.resize).on("keydown.boxer",s),F.$body.on("touchstart.boxer click.boxer","#boxer-overlay, #boxer .boxer-close",e).on("touchmove.boxer",C),F.gallery.active&&F.$boxer.on("touchstart.boxer click.boxer",".boxer-arrow",q),F.$overlay.stop().animate({opacity:F.opacity},F.duration),F.$boxer.stop().animate({opacity:1},F.duration,function(){m?k(g):o?n(g):p?u(g):w?t(g):x?v(F.$object):a.error("BOXER: '"+g+"' is not valid.")}),x?F.$boxer:void 0}}function e(b){C(b),"undefined"!=typeof F.$animatables&&(F.$animatables.stop().animate({opacity:0},F.duration,function(){a(this).remove()}),E(F.resizeTimer),F.$window.off(".boxer"),F.$body.off(".boxer").removeClass("boxer-open"),F.gallery.active&&F.$boxer.off(".boxer"),F.isMobile&&"image"===F.type&&F.gallery.active&&F.$container.off(".boxer"),F.$window.trigger("close.boxer"),F={})}function f(){var a=i(),b=0,c=F.isMobile?0:F.duration;F.isMobile||(b=F.$arrows.outerHeight(),F.$arrows.css({marginTop:(F.contentHeight-b)/2})),!F.visible&&F.isMobile&&F.gallery.active&&F.$content.on("touchstart.boxer",".boxer-image",y),(F.isMobile||F.fixed)&&F.$body.addClass("boxer-open"),F.$boxer.stop().animate({left:a.left,top:a.top},c),F.$container.show().stop().animate({height:F.containerHeight,width:F.containerWidth},c,function(){F.$content.stop().animate({opacity:1},F.duration),F.$boxer.removeClass("loading").find(".boxer-close").stop().animate({opacity:1},F.duration),F.visible=!0,F.callback.apply(F.$boxer),F.$window.trigger("open.boxer"),F.gallery.active&&p()})}function g(a){if(a=a||!1,F.visible){var b=i(),c=0;F.isMobile||(c=F.$arrows.outerHeight(),F.$arrows.css({marginTop:(F.contentHeight-c)/2})),a?(F.$boxer.stop().animate({left:b.left,top:b.top},F.duration),F.$container.show().stop().animate({height:F.containerHeight,width:F.containerWidth})):(F.$boxer.css({left:b.left,top:b.top}),F.$container.css({height:F.containerHeight,width:F.containerWidth}))}}function h(){var a=i();F.$boxer.css({left:a.left,top:a.top})}function i(){if(F.isMobile)return{left:0,top:0};var a={left:(F.$window.width()-F.containerWidth-F.paddingHorizontal)/2,top:F.top<=0?(F.$window.height()-F.containerHeight-F.paddingVertical)/2:F.top};return F.fixed!==!0&&(a.top+=F.$window.scrollTop()),a}function j(a){var b=a.attr("title");return""!==b&&void 0!==b?'<p class="caption">'+b+"</p>":""}function k(b){F.$image=a("<img />"),F.$image.one("load.boxer",function(){var a=B(F.$image);F.naturalHeight=a.naturalHeight,F.naturalWidth=a.naturalWidth,F.retina&&(F.naturalHeight/=2,F.naturalWidth/=2),F.$content.prepend(F.$image),""===F.$caption.html()?F.$caption.hide():F.$caption.show(),l(),f()}).attr("src",b).addClass("boxer-image"),(F.$image[0].complete||4===F.$image[0].readyState)&&F.$image.trigger("load")}function l(){var a=0;for(F.windowHeight=F.viewportHeight=F.$window.height(),F.windowWidth=F.viewportWidth=F.$window.width(),F.containerHeight=1/0,F.contentHeight=0,F.containerWidth=1/0,F.contentWidth=0,F.imageMarginTop=0,F.imageMarginLeft=0;F.containerHeight>F.viewportHeight&&2>a;)F.imageHeight=0===a?F.naturalHeight:F.$image.outerHeight(),F.imageWidth=0===a?F.naturalWidth:F.$image.outerWidth(),F.metaHeight=0===a?0:F.metaHeight,0===a&&(F.ratioHorizontal=F.imageHeight/F.imageWidth,F.ratioVertical=F.imageWidth/F.imageHeight,F.isWide=F.imageWidth>F.imageHeight),F.imageHeight<F.minHeight&&(F.minHeight=F.imageHeight),F.imageWidth<F.minWidth&&(F.minWidth=F.imageWidth),F.isMobile?(F.$meta.css({width:F.windowWidth}),F.metaHeight=F.$meta.outerHeight(!0),F.contentHeight=F.viewportHeight,F.contentWidth=F.viewportWidth,F.containerHeight=F.viewportHeight-F.paddingVertical,F.containerWidth=F.viewportWidth-F.paddingHorizontal,m(),F.imageMarginTop=(F.containerHeight-F.targetImageHeight-F.metaHeight)/2,F.imageMarginLeft=(F.containerWidth-F.targetImageWidth)/2):(0===a&&(F.viewportHeight-=F.margin+F.paddingVertical,F.viewportWidth-=F.margin+F.paddingHorizontal),F.viewportHeight-=F.metaHeight,m(),F.containerHeight=F.contentHeight=F.targetImageHeight,F.containerWidth=F.contentWidth=F.targetImageWidth),F.$content.css({height:F.isMobile?F.contentHeight:"auto",width:F.contentWidth}),F.$meta.css({width:F.contentWidth}),F.$image.css({height:F.targetImageHeight,width:F.targetImageWidth,marginTop:F.imageMarginTop,marginLeft:F.imageMarginLeft}),F.isMobile||(F.metaHeight=F.$meta.outerHeight(!0),F.containerHeight+=F.metaHeight),a++}function m(){var a=F.isMobile?F.containerHeight-F.metaHeight:F.viewportHeight,b=F.isMobile?F.containerWidth:F.viewportWidth;F.isWide?(F.targetImageWidth=b,F.targetImageHeight=F.targetImageWidth*F.ratioHorizontal,F.targetImageHeight>a&&(F.targetImageHeight=a,F.targetImageWidth=F.targetImageHeight*F.ratioVertical)):(F.targetImageHeight=a,F.targetImageWidth=F.targetImageHeight*F.ratioVertical,F.targetImageWidth>b&&(F.targetImageWidth=b,F.targetImageHeight=F.targetImageWidth*F.ratioHorizontal)),(F.targetImageWidth>F.imageWidth||F.targetImageHeight>F.imageHeight)&&(F.targetImageHeight=F.imageHeight,F.targetImageWidth=F.imageWidth),(F.targetImageWidth<F.minWidth||F.targetImageHeight<F.minHeight)&&(F.targetImageWidth<F.minWidth?(F.targetImageWidth=F.minWidth,F.targetImageHeight=F.targetImageWidth*F.ratioHorizontal):(F.targetImageHeight=F.minHeight,F.targetImageWidth=F.targetImageHeight*F.ratioVertical))}function n(b){F.$videoWrapper=a('<div class="boxer-video-wrapper" />'),F.$video=a('<iframe class="boxer-video" />'),F.$video.attr("src",b).addClass("boxer-video").prependTo(F.$videoWrapper),F.$content.prepend(F.$videoWrapper),o(),f()}function o(){F.windowHeight=F.viewportHeight=F.contentHeight=F.$window.height()-F.paddingVertical,F.windowWidth=F.viewportWidth=F.contentWidth=F.$window.width()-F.paddingHorizontal,F.videoMarginTop=0,F.videoMarginLeft=0,F.isMobile?(F.$meta.css({width:F.windowWidth}),F.metaHeight=F.$meta.outerHeight(!0),F.viewportHeight-=F.metaHeight,F.targetVideoWidth=F.viewportWidth,F.targetVideoHeight=F.targetVideoWidth*F.videoRatio,F.targetVideoHeight>F.viewportHeight&&(F.targetVideoHeight=F.viewportHeight,F.targetVideoWidth=F.targetVideoHeight/F.videoRatio),F.videoMarginTop=(F.viewportHeight-F.targetVideoHeight)/2,F.videoMarginLeft=(F.viewportWidth-F.targetVideoWidth)/2):(F.viewportHeight=F.windowHeight-F.margin,F.viewportWidth=F.windowWidth-F.margin,F.targetVideoWidth=F.videoWidth>F.viewportWidth?F.viewportWidth:F.videoWidth,F.targetVideoWidth<F.minWidth&&(F.targetVideoWidth=F.minWidth),F.targetVideoHeight=F.targetVideoWidth*F.videoRatio,F.contentHeight=F.targetVideoHeight,F.contentWidth=F.targetVideoWidth),F.$content.css({height:F.isMobile?F.contentHeight:"auto",width:F.contentWidth}),F.$meta.css({width:F.contentWidth}),F.$videoWrapper.css({height:F.targetVideoHeight,width:F.targetVideoWidth,marginTop:F.videoMarginTop,marginLeft:F.videoMarginLeft}),F.isMobile||(F.metaHeight=F.$meta.outerHeight(!0),F.contentHeight=F.targetVideoHeight+F.metaHeight),F.containerHeight=F.contentHeight,F.containerWidth=F.contentWidth}function p(){var b="";F.gallery.index>0&&(b=F.gallery.$items.eq(F.gallery.index-1).attr("href"),b.indexOf("youtube.com/embed")<0&&b.indexOf("player.vimeo.com/video")<0&&a('<img src="'+b+'">')),F.gallery.index<F.gallery.total&&(b=F.gallery.$items.eq(F.gallery.index+1).attr("href"),b.indexOf("youtube.com/embed")<0&&b.indexOf("player.vimeo.com/video")<0&&a('<img src="'+b+'">'))}function q(b){C(b);var c=a(this);c.hasClass("disabled")||(F.$boxer.addClass("loading"),F.gallery.index+=c.hasClass("next")?1:-1,F.gallery.index>F.gallery.total&&(F.gallery.index=F.gallery.total),F.gallery.index<0&&(F.gallery.index=0),F.$content.stop().animate({opacity:0},F.duration,function(){"undefined"!=typeof F.$image&&F.$image.remove(),"undefined"!=typeof F.$videoWrapper&&F.$videoWrapper.remove(),F.$target=F.gallery.$items.eq(F.gallery.index),F.$caption.html(F.formatter.apply(F.$body,[F.$target])),F.$position.find(".current").html(F.gallery.index+1);var a=F.$target.attr("href"),b=a.indexOf("youtube.com/embed")>-1||a.indexOf("player.vimeo.com/video")>-1;b?n(a):k(a),r()}))}function r(){F.$arrows.removeClass("disabled"),0===F.gallery.index&&F.$arrows.filter(".previous").addClass("disabled"),F.gallery.index===F.gallery.total&&F.$arrows.filter(".next").addClass("disabled")}function s(a){!F.gallery.active||37!==a.keyCode&&39!==a.keyCode?27===a.keyCode&&F.$boxer.find(".boxer-close").trigger("click"):(C(a),F.$arrows.filter(37===a.keyCode?".previous":".next").trigger("click"))}function t(b){var c=a(b).find(">:first-child").clone();v(c)}function u(b){b+=b.indexOf("?")>-1?"&"+H.requestKey+"=true":"?"+H.requestKey+"=true";var c=a('<iframe class="boxer-iframe" src="'+b+'" />');v(c)}function v(a){F.$content.append(a),w(a),f()}function w(a){F.windowHeight=F.$window.height()-F.paddingVertical,F.windowWidth=F.$window.width()-F.paddingHorizontal,F.objectHeight=a.outerHeight(!0),F.objectWidth=a.outerWidth(!0),F.targetHeight=F.targetHeight||F.$target.data("boxer-height"),F.targetWidth=F.targetWidth||F.$target.data("boxer-width"),F.maxHeight=F.windowHeight<0?H.minHeight:F.windowHeight,F.isIframe=a.is("iframe"),F.objectMarginTop=0,F.objectMarginLeft=0,F.isMobile||(F.windowHeight-=F.margin,F.windowWidth-=F.margin),F.contentHeight=void 0!==F.targetHeight?F.targetHeight:F.isIframe?F.windowHeight:F.objectHeight,F.contentWidth=void 0!==F.targetWidth?F.targetWidth:F.isIframe?F.windowWidth:F.objectWidth,F.isIframe&&F.isMobile&&(F.contentHeight=F.windowHeight,F.contentWidth=F.windowWidth),x(F)}function x(a){a.containerHeight=a.contentHeight,a.containerWidth=a.contentWidth,a.$content.css({height:a.contentHeight,width:a.contentWidth})}function y(a){if(C(a),E(F.touchTimer),!F.isAnimating){var b="undefined"!=typeof a.originalEvent.targetTouches?a.originalEvent.targetTouches[0]:null;F.xStart=b?b.pageX:a.clientX,F.leftPosition=0,F.touchMax=1/0,F.touchMin=-1/0,F.edge=.25*F.contentWidth,0===F.gallery.index&&(F.touchMax=0),F.gallery.index===F.gallery.total&&(F.touchMin=0),F.$boxer.on("touchmove.boxer",z).one("touchend.boxer",A)}}function z(a){var b="undefined"!=typeof a.originalEvent.targetTouches?a.originalEvent.targetTouches[0]:null;F.delta=F.xStart-(b?b.pageX:a.clientX),F.delta>20&&C(a),F.canSwipe=!0;var c=-F.delta;c<F.touchMin&&(c=F.touchMin,F.canSwipe=!1),c>F.touchMax&&(c=F.touchMax,F.canSwipe=!1),F.$image.css({transform:"translate3D("+c+"px,0,0)"}),F.touchTimer=D(F.touchTimer,300,function(){A(a)})}function A(a){C(a),E(F.touchTimer),F.$boxer.off("touchmove.boxer touchend.boxer"),F.delta&&(F.$boxer.addClass("animated"),F.swipe=!1,F.canSwipe&&(F.delta>F.edge||F.delta<-F.edge)?(F.swipe=!0,F.$image.css(F.delta<=F.leftPosition?{transform:"translate3D("+F.contentWidth+"px,0,0)"}:{transform:"translate3D("+-F.contentWidth+"px,0,0)"})):F.$image.css({transform:"translate3D(0,0,0)"}),F.swipe&&F.$arrows.filter(F.delta<=F.leftPosition?".previous":".next").trigger("click"),D(F.resetTimer,F.duration,function(){F.$boxer.removeClass("animated")}))}function B(a){var b=a[0],c=new Image;return"undefined"!=typeof b.naturalHeight?{naturalHeight:b.naturalHeight,naturalWidth:b.naturalWidth}:"img"===b.tagName.toLowerCase()?(c.src=b.src,{naturalHeight:c.height,naturalWidth:c.width}):!1}function C(a){a.preventDefault&&(a.stopPropagation(),a.preventDefault())}function D(a,b,c){return E(a),setTimeout(c,b)}function E(a){a&&(clearTimeout(a),a=null)}var F={},G=/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(b.navigator.userAgent||b.navigator.vendor||b.opera),H={callback:a.noop,customClass:"",duration:250,fixed:!1,formatter:a.noop,height:100,labels:{close:"Close",count:"of",next:"Next",previous:"Previous"},margin:50,minHeight:100,minWidth:100,mobile:!1,opacity:.75,retina:!1,requestKey:"boxer",top:0,videoRatio:.5625,videoWidth:600,width:100},I={close:function(){"undefined"!=typeof F.$boxer&&(F.$boxer.off(".boxer"),F.$overlay.trigger("click"))},defaults:function(b){return H=a.extend(H,b||{}),a(this)},destroy:function(){return a(this).off(".boxer")},resize:function(b){return"undefined"!=typeof F.$boxer&&("object"!=typeof b&&(F.targetHeight=arguments[0],F.targetWidth=arguments[1]),"element"===F.type?w(F.$content.find(">:first-child")):"image"===F.type?l():"video"===F.type&&o(),g()),a(this)}};a.fn.boxer=function(a){return I[a]?I[a].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof a&&a?this:c.apply(this,arguments)},a.boxer=function(c,e){return I[c]?I[c].apply(b,Array.prototype.slice.call(arguments,1)):c instanceof a?d.apply(b,[{data:a.extend({$object:c},H,e||{})}]):void 0}}(jQuery,window),$(function(){$(".boxer").boxer()}),$(function(){var a=$("div.narrative, div.exhibit"),b=$("div.narrative"),c=$("div.exhibit"),d=b.outerWidth(),e=function(){c.outerWidth($(window).width()-d),a.outerHeight($(window).height()),Neatline.execute("MAP:updateSize")};$(window).resize(e),e()}),$(function(){NProgress.configure({showSpinner:!1}),NProgress.start(),Neatline.vent.on("MAP:ingest",function(){NProgress.done()})}),$(function(){var a=$("div.narrative"),b=$("ul.nav"),c=$("h1.section"),d=b.offset().top,e=b.height(),f=null,g=!1;a.scroll(function(){var a=$(this).scrollTop();!g&&a>=d?(f=b.clone().insertAfter(b),f.css("visibility","hidden"),b.addClass("affix"),g=!0):g&&d>a&&(b.removeClass("affix"),f.remove(),g=!1);var h=$(_.last(c.map(function(){return $(this).offset().top+a<a+e+11?this:void 0}))),i="#"+h.attr("id");b.find("li").removeClass("active"),b.find("li").has('a[href="'+i+'"]').addClass("active")}),b.find("a").click(function(b){b.preventDefault();var c=$($(this).attr("href")).offset().top+a.scrollTop();a.stop().animate({scrollTop:c-e-10})}),a.scroll()});
+/*!
+ * Bootstrap v3.1.0 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery') }
+
+/* ========================================================================
+ * Bootstrap: transition.js v3.1.0
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      'WebkitTransition' : 'webkitTransitionEnd',
+      'MozTransition'    : 'transitionend',
+      'OTransition'      : 'oTransitionEnd otransitionend',
+      'transition'       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false, $el = this
+    $(this).one($.support.transition.end, function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: alert.js v3.1.0
+ * http://getbootstrap.com/javascript/#alerts
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // ALERT CLASS DEFINITION
+  // ======================
+
+  var dismiss = '[data-dismiss="alert"]'
+  var Alert   = function (el) {
+    $(el).on('click', dismiss, this.close)
+  }
+
+  Alert.prototype.close = function (e) {
+    var $this    = $(this)
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = $(selector)
+
+    if (e) e.preventDefault()
+
+    if (!$parent.length) {
+      $parent = $this.hasClass('alert') ? $this : $this.parent()
+    }
+
+    $parent.trigger(e = $.Event('close.bs.alert'))
+
+    if (e.isDefaultPrevented()) return
+
+    $parent.removeClass('in')
+
+    function removeElement() {
+      $parent.trigger('closed.bs.alert').remove()
+    }
+
+    $.support.transition && $parent.hasClass('fade') ?
+      $parent
+        .one($.support.transition.end, removeElement)
+        .emulateTransitionEnd(150) :
+      removeElement()
+  }
+
+
+  // ALERT PLUGIN DEFINITION
+  // =======================
+
+  var old = $.fn.alert
+
+  $.fn.alert = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.alert')
+
+      if (!data) $this.data('bs.alert', (data = new Alert(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  $.fn.alert.Constructor = Alert
+
+
+  // ALERT NO CONFLICT
+  // =================
+
+  $.fn.alert.noConflict = function () {
+    $.fn.alert = old
+    return this
+  }
+
+
+  // ALERT DATA-API
+  // ==============
+
+  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: button.js v3.1.0
+ * http://getbootstrap.com/javascript/#buttons
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // BUTTON PUBLIC CLASS DEFINITION
+  // ==============================
+
+  var Button = function (element, options) {
+    this.$element  = $(element)
+    this.options   = $.extend({}, Button.DEFAULTS, options)
+    this.isLoading = false
+  }
+
+  Button.DEFAULTS = {
+    loadingText: 'loading...'
+  }
+
+  Button.prototype.setState = function (state) {
+    var d    = 'disabled'
+    var $el  = this.$element
+    var val  = $el.is('input') ? 'val' : 'html'
+    var data = $el.data()
+
+    state = state + 'Text'
+
+    if (!data.resetText) $el.data('resetText', $el[val]())
+
+    $el[val](data[state] || this.options[state])
+
+    // push to event loop to allow forms to submit
+    setTimeout($.proxy(function () {
+      if (state == 'loadingText') {
+        this.isLoading = true
+        $el.addClass(d).attr(d, d)
+      } else if (this.isLoading) {
+        this.isLoading = false
+        $el.removeClass(d).removeAttr(d)
+      }
+    }, this), 0)
+  }
+
+  Button.prototype.toggle = function () {
+    var changed = true
+    var $parent = this.$element.closest('[data-toggle="buttons"]')
+
+    if ($parent.length) {
+      var $input = this.$element.find('input')
+      if ($input.prop('type') == 'radio') {
+        if ($input.prop('checked') && this.$element.hasClass('active')) changed = false
+        else $parent.find('.active').removeClass('active')
+      }
+      if (changed) $input.prop('checked', !this.$element.hasClass('active')).trigger('change')
+    }
+
+    if (changed) this.$element.toggleClass('active')
+  }
+
+
+  // BUTTON PLUGIN DEFINITION
+  // ========================
+
+  var old = $.fn.button
+
+  $.fn.button = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.button')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.button', (data = new Button(this, options)))
+
+      if (option == 'toggle') data.toggle()
+      else if (option) data.setState(option)
+    })
+  }
+
+  $.fn.button.Constructor = Button
+
+
+  // BUTTON NO CONFLICT
+  // ==================
+
+  $.fn.button.noConflict = function () {
+    $.fn.button = old
+    return this
+  }
+
+
+  // BUTTON DATA-API
+  // ===============
+
+  $(document).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
+    var $btn = $(e.target)
+    if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
+    $btn.button('toggle')
+    e.preventDefault()
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: carousel.js v3.1.0
+ * http://getbootstrap.com/javascript/#carousel
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CAROUSEL CLASS DEFINITION
+  // =========================
+
+  var Carousel = function (element, options) {
+    this.$element    = $(element)
+    this.$indicators = this.$element.find('.carousel-indicators')
+    this.options     = options
+    this.paused      =
+    this.sliding     =
+    this.interval    =
+    this.$active     =
+    this.$items      = null
+
+    this.options.pause == 'hover' && this.$element
+      .on('mouseenter', $.proxy(this.pause, this))
+      .on('mouseleave', $.proxy(this.cycle, this))
+  }
+
+  Carousel.DEFAULTS = {
+    interval: 5000,
+    pause: 'hover',
+    wrap: true
+  }
+
+  Carousel.prototype.cycle =  function (e) {
+    e || (this.paused = false)
+
+    this.interval && clearInterval(this.interval)
+
+    this.options.interval
+      && !this.paused
+      && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
+
+    return this
+  }
+
+  Carousel.prototype.getActiveIndex = function () {
+    this.$active = this.$element.find('.item.active')
+    this.$items  = this.$active.parent().children()
+
+    return this.$items.index(this.$active)
+  }
+
+  Carousel.prototype.to = function (pos) {
+    var that        = this
+    var activeIndex = this.getActiveIndex()
+
+    if (pos > (this.$items.length - 1) || pos < 0) return
+
+    if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) })
+    if (activeIndex == pos) return this.pause().cycle()
+
+    return this.slide(pos > activeIndex ? 'next' : 'prev', $(this.$items[pos]))
+  }
+
+  Carousel.prototype.pause = function (e) {
+    e || (this.paused = true)
+
+    if (this.$element.find('.next, .prev').length && $.support.transition) {
+      this.$element.trigger($.support.transition.end)
+      this.cycle(true)
+    }
+
+    this.interval = clearInterval(this.interval)
+
+    return this
+  }
+
+  Carousel.prototype.next = function () {
+    if (this.sliding) return
+    return this.slide('next')
+  }
+
+  Carousel.prototype.prev = function () {
+    if (this.sliding) return
+    return this.slide('prev')
+  }
+
+  Carousel.prototype.slide = function (type, next) {
+    var $active   = this.$element.find('.item.active')
+    var $next     = next || $active[type]()
+    var isCycling = this.interval
+    var direction = type == 'next' ? 'left' : 'right'
+    var fallback  = type == 'next' ? 'first' : 'last'
+    var that      = this
+
+    if (!$next.length) {
+      if (!this.options.wrap) return
+      $next = this.$element.find('.item')[fallback]()
+    }
+
+    if ($next.hasClass('active')) return this.sliding = false
+
+    var e = $.Event('slide.bs.carousel', { relatedTarget: $next[0], direction: direction })
+    this.$element.trigger(e)
+    if (e.isDefaultPrevented()) return
+
+    this.sliding = true
+
+    isCycling && this.pause()
+
+    if (this.$indicators.length) {
+      this.$indicators.find('.active').removeClass('active')
+      this.$element.one('slid.bs.carousel', function () {
+        var $nextIndicator = $(that.$indicators.children()[that.getActiveIndex()])
+        $nextIndicator && $nextIndicator.addClass('active')
+      })
+    }
+
+    if ($.support.transition && this.$element.hasClass('slide')) {
+      $next.addClass(type)
+      $next[0].offsetWidth // force reflow
+      $active.addClass(direction)
+      $next.addClass(direction)
+      $active
+        .one($.support.transition.end, function () {
+          $next.removeClass([type, direction].join(' ')).addClass('active')
+          $active.removeClass(['active', direction].join(' '))
+          that.sliding = false
+          setTimeout(function () { that.$element.trigger('slid.bs.carousel') }, 0)
+        })
+        .emulateTransitionEnd($active.css('transition-duration').slice(0, -1) * 1000)
+    } else {
+      $active.removeClass('active')
+      $next.addClass('active')
+      this.sliding = false
+      this.$element.trigger('slid.bs.carousel')
+    }
+
+    isCycling && this.cycle()
+
+    return this
+  }
+
+
+  // CAROUSEL PLUGIN DEFINITION
+  // ==========================
+
+  var old = $.fn.carousel
+
+  $.fn.carousel = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.carousel')
+      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var action  = typeof option == 'string' ? option : options.slide
+
+      if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
+      if (typeof option == 'number') data.to(option)
+      else if (action) data[action]()
+      else if (options.interval) data.pause().cycle()
+    })
+  }
+
+  $.fn.carousel.Constructor = Carousel
+
+
+  // CAROUSEL NO CONFLICT
+  // ====================
+
+  $.fn.carousel.noConflict = function () {
+    $.fn.carousel = old
+    return this
+  }
+
+
+  // CAROUSEL DATA-API
+  // =================
+
+  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+    var $this   = $(this), href
+    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+    var options = $.extend({}, $target.data(), $this.data())
+    var slideIndex = $this.attr('data-slide-to')
+    if (slideIndex) options.interval = false
+
+    $target.carousel(options)
+
+    if (slideIndex = $this.attr('data-slide-to')) {
+      $target.data('bs.carousel').to(slideIndex)
+    }
+
+    e.preventDefault()
+  })
+
+  $(window).on('load', function () {
+    $('[data-ride="carousel"]').each(function () {
+      var $carousel = $(this)
+      $carousel.carousel($carousel.data())
+    })
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: collapse.js v3.1.0
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.transitioning = null
+
+    if (this.options.parent) this.$parent = $(this.options.parent)
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var actives = this.$parent && this.$parent.find('> .panel > .in')
+
+    if (actives && actives.length) {
+      var hasData = actives.data('bs.collapse')
+      if (hasData && hasData.transitioning) return
+      actives.collapse('hide')
+      hasData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')
+      [dimension](0)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')
+        [dimension]('auto')
+      this.transitioning = 0
+      this.$element.trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one($.support.transition.end, $.proxy(complete, this))
+      .emulateTransitionEnd(350)
+      [dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element
+      [dimension](this.$element[dimension]())
+      [0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse')
+      .removeClass('in')
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .trigger('hidden.bs.collapse')
+        .removeClass('collapsing')
+        .addClass('collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one($.support.transition.end, $.proxy(complete, this))
+      .emulateTransitionEnd(350)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  var old = $.fn.collapse
+
+  $.fn.collapse = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && option == 'show') option = !option
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
+    var $this   = $(this), href
+    var target  = $this.attr('data-target')
+        || e.preventDefault()
+        || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
+    var $target = $(target)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+    var parent  = $this.attr('data-parent')
+    var $parent = parent && $(parent)
+
+    if (!data || !data.transitioning) {
+      if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
+      $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
+    }
+
+    $target.collapse(option)
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.1.0
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle=dropdown]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $parent
+        .toggleClass('open')
+        .trigger('shown.bs.dropdown', relatedTarget)
+
+      $this.focus()
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27)/.test(e.keyCode)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive || (isActive && e.keyCode == 27)) {
+      if (e.which == 27) $parent.find(toggle).focus()
+      return $this.click()
+    }
+
+    var desc = ' li:not(.divider):visible a'
+    var $items = $parent.find('[role=menu]' + desc + ', [role=listbox]' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index($items.filter(':focus'))
+
+    if (e.keyCode == 38 && index > 0)                 index--                        // up
+    if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
+    if (!~index)                                      index = 0
+
+    $items.eq(index).focus()
+  }
+
+  function clearMenus(e) {
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $parent = getParent($(this))
+      var relatedTarget = { relatedTarget: this }
+      if (!$parent.hasClass('open')) return
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+      if (e.isDefaultPrevented()) return
+      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+    })
+  }
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu], [role=listbox]', Dropdown.prototype.keydown)
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: modal.js v3.1.0
+ * http://getbootstrap.com/javascript/#modals
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // MODAL CLASS DEFINITION
+  // ======================
+
+  var Modal = function (element, options) {
+    this.options   = options
+    this.$element  = $(element)
+    this.$backdrop =
+    this.isShown   = null
+
+    if (this.options.remote) {
+      this.$element
+        .find('.modal-content')
+        .load(this.options.remote, $.proxy(function () {
+          this.$element.trigger('loaded.bs.modal')
+        }, this))
+    }
+  }
+
+  Modal.DEFAULTS = {
+    backdrop: true,
+    keyboard: true,
+    show: true
+  }
+
+  Modal.prototype.toggle = function (_relatedTarget) {
+    return this[!this.isShown ? 'show' : 'hide'](_relatedTarget)
+  }
+
+  Modal.prototype.show = function (_relatedTarget) {
+    var that = this
+    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+
+    this.$element.trigger(e)
+
+    if (this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = true
+
+    this.escape()
+
+    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
+
+    this.backdrop(function () {
+      var transition = $.support.transition && that.$element.hasClass('fade')
+
+      if (!that.$element.parent().length) {
+        that.$element.appendTo(document.body) // don't move modals dom position
+      }
+
+      that.$element
+        .show()
+        .scrollTop(0)
+
+      if (transition) {
+        that.$element[0].offsetWidth // force reflow
+      }
+
+      that.$element
+        .addClass('in')
+        .attr('aria-hidden', false)
+
+      that.enforceFocus()
+
+      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+
+      transition ?
+        that.$element.find('.modal-dialog') // wait for modal to slide in
+          .one($.support.transition.end, function () {
+            that.$element.focus().trigger(e)
+          })
+          .emulateTransitionEnd(300) :
+        that.$element.focus().trigger(e)
+    })
+  }
+
+  Modal.prototype.hide = function (e) {
+    if (e) e.preventDefault()
+
+    e = $.Event('hide.bs.modal')
+
+    this.$element.trigger(e)
+
+    if (!this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = false
+
+    this.escape()
+
+    $(document).off('focusin.bs.modal')
+
+    this.$element
+      .removeClass('in')
+      .attr('aria-hidden', true)
+      .off('click.dismiss.bs.modal')
+
+    $.support.transition && this.$element.hasClass('fade') ?
+      this.$element
+        .one($.support.transition.end, $.proxy(this.hideModal, this))
+        .emulateTransitionEnd(300) :
+      this.hideModal()
+  }
+
+  Modal.prototype.enforceFocus = function () {
+    $(document)
+      .off('focusin.bs.modal') // guard against infinite focus loop
+      .on('focusin.bs.modal', $.proxy(function (e) {
+        if (this.$element[0] !== e.target && !this.$element.has(e.target).length) {
+          this.$element.focus()
+        }
+      }, this))
+  }
+
+  Modal.prototype.escape = function () {
+    if (this.isShown && this.options.keyboard) {
+      this.$element.on('keyup.dismiss.bs.modal', $.proxy(function (e) {
+        e.which == 27 && this.hide()
+      }, this))
+    } else if (!this.isShown) {
+      this.$element.off('keyup.dismiss.bs.modal')
+    }
+  }
+
+  Modal.prototype.hideModal = function () {
+    var that = this
+    this.$element.hide()
+    this.backdrop(function () {
+      that.removeBackdrop()
+      that.$element.trigger('hidden.bs.modal')
+    })
+  }
+
+  Modal.prototype.removeBackdrop = function () {
+    this.$backdrop && this.$backdrop.remove()
+    this.$backdrop = null
+  }
+
+  Modal.prototype.backdrop = function (callback) {
+    var animate = this.$element.hasClass('fade') ? 'fade' : ''
+
+    if (this.isShown && this.options.backdrop) {
+      var doAnimate = $.support.transition && animate
+
+      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+        .appendTo(document.body)
+
+      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus.call(this.$element[0])
+          : this.hide.call(this)
+      }, this))
+
+      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+
+      this.$backdrop.addClass('in')
+
+      if (!callback) return
+
+      doAnimate ?
+        this.$backdrop
+          .one($.support.transition.end, callback)
+          .emulateTransitionEnd(150) :
+        callback()
+
+    } else if (!this.isShown && this.$backdrop) {
+      this.$backdrop.removeClass('in')
+
+      $.support.transition && this.$element.hasClass('fade') ?
+        this.$backdrop
+          .one($.support.transition.end, callback)
+          .emulateTransitionEnd(150) :
+        callback()
+
+    } else if (callback) {
+      callback()
+    }
+  }
+
+
+  // MODAL PLUGIN DEFINITION
+  // =======================
+
+  var old = $.fn.modal
+
+  $.fn.modal = function (option, _relatedTarget) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.modal')
+      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
+      if (typeof option == 'string') data[option](_relatedTarget)
+      else if (options.show) data.show(_relatedTarget)
+    })
+  }
+
+  $.fn.modal.Constructor = Modal
+
+
+  // MODAL NO CONFLICT
+  // =================
+
+  $.fn.modal.noConflict = function () {
+    $.fn.modal = old
+    return this
+  }
+
+
+  // MODAL DATA-API
+  // ==============
+
+  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+    var $this   = $(this)
+    var href    = $this.attr('href')
+    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
+    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+
+    if ($this.is('a')) e.preventDefault()
+
+    $target
+      .modal(option, this)
+      .one('hide', function () {
+        $this.is(':visible') && $this.focus()
+      })
+  })
+
+  $(document)
+    .on('show.bs.modal', '.modal', function () { $(document.body).addClass('modal-open') })
+    .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: tooltip.js v3.1.0
+ * http://getbootstrap.com/javascript/#tooltip
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // TOOLTIP PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Tooltip = function (element, options) {
+    this.type       =
+    this.options    =
+    this.enabled    =
+    this.timeout    =
+    this.hoverState =
+    this.$element   = null
+
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.DEFAULTS = {
+    animation: true,
+    placement: 'top',
+    selector: false,
+    template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+    trigger: 'hover focus',
+    title: '',
+    delay: 0,
+    html: false,
+    container: false
+  }
+
+  Tooltip.prototype.init = function (type, element, options) {
+    this.enabled  = true
+    this.type     = type
+    this.$element = $(element)
+    this.options  = this.getOptions(options)
+
+    var triggers = this.options.trigger.split(' ')
+
+    for (var i = triggers.length; i--;) {
+      var trigger = triggers[i]
+
+      if (trigger == 'click') {
+        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
+      } else if (trigger != 'manual') {
+        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
+        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
+
+        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
+        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
+      }
+    }
+
+    this.options.selector ?
+      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+      this.fixTitle()
+  }
+
+  Tooltip.prototype.getDefaults = function () {
+    return Tooltip.DEFAULTS
+  }
+
+  Tooltip.prototype.getOptions = function (options) {
+    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
+
+    if (options.delay && typeof options.delay == 'number') {
+      options.delay = {
+        show: options.delay,
+        hide: options.delay
+      }
+    }
+
+    return options
+  }
+
+  Tooltip.prototype.getDelegateOptions = function () {
+    var options  = {}
+    var defaults = this.getDefaults()
+
+    this._options && $.each(this._options, function (key, value) {
+      if (defaults[key] != value) options[key] = value
+    })
+
+    return options
+  }
+
+  Tooltip.prototype.enter = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'in'
+
+    if (!self.options.delay || !self.options.delay.show) return self.show()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'in') self.show()
+    }, self.options.delay.show)
+  }
+
+  Tooltip.prototype.leave = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'out'
+
+    if (!self.options.delay || !self.options.delay.hide) return self.hide()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'out') self.hide()
+    }, self.options.delay.hide)
+  }
+
+  Tooltip.prototype.show = function () {
+    var e = $.Event('show.bs.' + this.type)
+
+    if (this.hasContent() && this.enabled) {
+      this.$element.trigger(e)
+
+      if (e.isDefaultPrevented()) return
+      var that = this;
+
+      var $tip = this.tip()
+
+      this.setContent()
+
+      if (this.options.animation) $tip.addClass('fade')
+
+      var placement = typeof this.options.placement == 'function' ?
+        this.options.placement.call(this, $tip[0], this.$element[0]) :
+        this.options.placement
+
+      var autoToken = /\s?auto?\s?/i
+      var autoPlace = autoToken.test(placement)
+      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
+
+      $tip
+        .detach()
+        .css({ top: 0, left: 0, display: 'block' })
+        .addClass(placement)
+
+      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+
+      var pos          = this.getPosition()
+      var actualWidth  = $tip[0].offsetWidth
+      var actualHeight = $tip[0].offsetHeight
+
+      if (autoPlace) {
+        var $parent = this.$element.parent()
+
+        var orgPlacement = placement
+        var docScroll    = document.documentElement.scrollTop || document.body.scrollTop
+        var parentWidth  = this.options.container == 'body' ? window.innerWidth  : $parent.outerWidth()
+        var parentHeight = this.options.container == 'body' ? window.innerHeight : $parent.outerHeight()
+        var parentLeft   = this.options.container == 'body' ? 0 : $parent.offset().left
+
+        placement = placement == 'bottom' && pos.top   + pos.height  + actualHeight - docScroll > parentHeight  ? 'top'    :
+                    placement == 'top'    && pos.top   - docScroll   - actualHeight < 0                         ? 'bottom' :
+                    placement == 'right'  && pos.right + actualWidth > parentWidth                              ? 'left'   :
+                    placement == 'left'   && pos.left  - actualWidth < parentLeft                               ? 'right'  :
+                    placement
+
+        $tip
+          .removeClass(orgPlacement)
+          .addClass(placement)
+      }
+
+      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
+
+      this.applyPlacement(calculatedOffset, placement)
+      this.hoverState = null
+
+      var complete = function() {
+        that.$element.trigger('shown.bs.' + that.type)
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        $tip
+          .one($.support.transition.end, complete)
+          .emulateTransitionEnd(150) :
+        complete()
+    }
+  }
+
+  Tooltip.prototype.applyPlacement = function (offset, placement) {
+    var replace
+    var $tip   = this.tip()
+    var width  = $tip[0].offsetWidth
+    var height = $tip[0].offsetHeight
+
+    // manually read margins because getBoundingClientRect includes difference
+    var marginTop = parseInt($tip.css('margin-top'), 10)
+    var marginLeft = parseInt($tip.css('margin-left'), 10)
+
+    // we must check for NaN for ie 8/9
+    if (isNaN(marginTop))  marginTop  = 0
+    if (isNaN(marginLeft)) marginLeft = 0
+
+    offset.top  = offset.top  + marginTop
+    offset.left = offset.left + marginLeft
+
+    // $.fn.offset doesn't round pixel values
+    // so we use setOffset directly with our own function B-0
+    $.offset.setOffset($tip[0], $.extend({
+      using: function (props) {
+        $tip.css({
+          top: Math.round(props.top),
+          left: Math.round(props.left)
+        })
+      }
+    }, offset), 0)
+
+    $tip.addClass('in')
+
+    // check to see if placing tip in new offset caused the tip to resize itself
+    var actualWidth  = $tip[0].offsetWidth
+    var actualHeight = $tip[0].offsetHeight
+
+    if (placement == 'top' && actualHeight != height) {
+      replace = true
+      offset.top = offset.top + height - actualHeight
+    }
+
+    if (/bottom|top/.test(placement)) {
+      var delta = 0
+
+      if (offset.left < 0) {
+        delta       = offset.left * -2
+        offset.left = 0
+
+        $tip.offset(offset)
+
+        actualWidth  = $tip[0].offsetWidth
+        actualHeight = $tip[0].offsetHeight
+      }
+
+      this.replaceArrow(delta - width + actualWidth, actualWidth, 'left')
+    } else {
+      this.replaceArrow(actualHeight - height, actualHeight, 'top')
+    }
+
+    if (replace) $tip.offset(offset)
+  }
+
+  Tooltip.prototype.replaceArrow = function (delta, dimension, position) {
+    this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + '%') : '')
+  }
+
+  Tooltip.prototype.setContent = function () {
+    var $tip  = this.tip()
+    var title = this.getTitle()
+
+    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    $tip.removeClass('fade in top bottom left right')
+  }
+
+  Tooltip.prototype.hide = function () {
+    var that = this
+    var $tip = this.tip()
+    var e    = $.Event('hide.bs.' + this.type)
+
+    function complete() {
+      if (that.hoverState != 'in') $tip.detach()
+      that.$element.trigger('hidden.bs.' + that.type)
+    }
+
+    this.$element.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    $tip.removeClass('in')
+
+    $.support.transition && this.$tip.hasClass('fade') ?
+      $tip
+        .one($.support.transition.end, complete)
+        .emulateTransitionEnd(150) :
+      complete()
+
+    this.hoverState = null
+
+    return this
+  }
+
+  Tooltip.prototype.fixTitle = function () {
+    var $e = this.$element
+    if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
+      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+    }
+  }
+
+  Tooltip.prototype.hasContent = function () {
+    return this.getTitle()
+  }
+
+  Tooltip.prototype.getPosition = function () {
+    var el = this.$element[0]
+    return $.extend({}, (typeof el.getBoundingClientRect == 'function') ? el.getBoundingClientRect() : {
+      width: el.offsetWidth,
+      height: el.offsetHeight
+    }, this.$element.offset())
+  }
+
+  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2  } :
+           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
+           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
+        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width   }
+  }
+
+  Tooltip.prototype.getTitle = function () {
+    var title
+    var $e = this.$element
+    var o  = this.options
+
+    title = $e.attr('data-original-title')
+      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+    return title
+  }
+
+  Tooltip.prototype.tip = function () {
+    return this.$tip = this.$tip || $(this.options.template)
+  }
+
+  Tooltip.prototype.arrow = function () {
+    return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
+  }
+
+  Tooltip.prototype.validate = function () {
+    if (!this.$element[0].parentNode) {
+      this.hide()
+      this.$element = null
+      this.options  = null
+    }
+  }
+
+  Tooltip.prototype.enable = function () {
+    this.enabled = true
+  }
+
+  Tooltip.prototype.disable = function () {
+    this.enabled = false
+  }
+
+  Tooltip.prototype.toggleEnabled = function () {
+    this.enabled = !this.enabled
+  }
+
+  Tooltip.prototype.toggle = function (e) {
+    var self = e ? $(e.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type) : this
+    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+  }
+
+  Tooltip.prototype.destroy = function () {
+    clearTimeout(this.timeout)
+    this.hide().$element.off('.' + this.type).removeData('bs.' + this.type)
+  }
+
+
+  // TOOLTIP PLUGIN DEFINITION
+  // =========================
+
+  var old = $.fn.tooltip
+
+  $.fn.tooltip = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.tooltip')
+      var options = typeof option == 'object' && option
+
+      if (!data && option == 'destroy') return
+      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.tooltip.Constructor = Tooltip
+
+
+  // TOOLTIP NO CONFLICT
+  // ===================
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: popover.js v3.1.0
+ * http://getbootstrap.com/javascript/#popovers
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // POPOVER PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Popover = function (element, options) {
+    this.init('popover', element, options)
+  }
+
+  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
+
+  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
+    placement: 'right',
+    trigger: 'click',
+    content: '',
+    template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+  })
+
+
+  // NOTE: POPOVER EXTENDS tooltip.js
+  // ================================
+
+  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
+
+  Popover.prototype.constructor = Popover
+
+  Popover.prototype.getDefaults = function () {
+    return Popover.DEFAULTS
+  }
+
+  Popover.prototype.setContent = function () {
+    var $tip    = this.tip()
+    var title   = this.getTitle()
+    var content = this.getContent()
+
+    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.popover-content')[ // we use append for html objects to maintain js events
+      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
+    ](content)
+
+    $tip.removeClass('fade top bottom left right in')
+
+    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
+    // this manually by checking the contents.
+    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
+  }
+
+  Popover.prototype.hasContent = function () {
+    return this.getTitle() || this.getContent()
+  }
+
+  Popover.prototype.getContent = function () {
+    var $e = this.$element
+    var o  = this.options
+
+    return $e.attr('data-content')
+      || (typeof o.content == 'function' ?
+            o.content.call($e[0]) :
+            o.content)
+  }
+
+  Popover.prototype.arrow = function () {
+    return this.$arrow = this.$arrow || this.tip().find('.arrow')
+  }
+
+  Popover.prototype.tip = function () {
+    if (!this.$tip) this.$tip = $(this.options.template)
+    return this.$tip
+  }
+
+
+  // POPOVER PLUGIN DEFINITION
+  // =========================
+
+  var old = $.fn.popover
+
+  $.fn.popover = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.popover')
+      var options = typeof option == 'object' && option
+
+      if (!data && option == 'destroy') return
+      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.popover.Constructor = Popover
+
+
+  // POPOVER NO CONFLICT
+  // ===================
+
+  $.fn.popover.noConflict = function () {
+    $.fn.popover = old
+    return this
+  }
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: scrollspy.js v3.1.0
+ * http://getbootstrap.com/javascript/#scrollspy
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // SCROLLSPY CLASS DEFINITION
+  // ==========================
+
+  function ScrollSpy(element, options) {
+    var href
+    var process  = $.proxy(this.process, this)
+
+    this.$element       = $(element).is('body') ? $(window) : $(element)
+    this.$body          = $('body')
+    this.$scrollElement = this.$element.on('scroll.bs.scroll-spy.data-api', process)
+    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+    this.selector       = (this.options.target
+      || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+      || '') + ' .nav li > a'
+    this.offsets        = $([])
+    this.targets        = $([])
+    this.activeTarget   = null
+
+    this.refresh()
+    this.process()
+  }
+
+  ScrollSpy.DEFAULTS = {
+    offset: 10
+  }
+
+  ScrollSpy.prototype.refresh = function () {
+    var offsetMethod = this.$element[0] == window ? 'offset' : 'position'
+
+    this.offsets = $([])
+    this.targets = $([])
+
+    var self     = this
+    var $targets = this.$body
+      .find(this.selector)
+      .map(function () {
+        var $el   = $(this)
+        var href  = $el.data('target') || $el.attr('href')
+        var $href = /^#./.test(href) && $(href)
+
+        return ($href
+          && $href.length
+          && $href.is(':visible')
+          && [[ $href[offsetMethod]().top + (!$.isWindow(self.$scrollElement.get(0)) && self.$scrollElement.scrollTop()), href ]]) || null
+      })
+      .sort(function (a, b) { return a[0] - b[0] })
+      .each(function () {
+        self.offsets.push(this[0])
+        self.targets.push(this[1])
+      })
+  }
+
+  ScrollSpy.prototype.process = function () {
+    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+    var scrollHeight = this.$scrollElement[0].scrollHeight || this.$body[0].scrollHeight
+    var maxScroll    = scrollHeight - this.$scrollElement.height()
+    var offsets      = this.offsets
+    var targets      = this.targets
+    var activeTarget = this.activeTarget
+    var i
+
+    if (scrollTop >= maxScroll) {
+      return activeTarget != (i = targets.last()[0]) && this.activate(i)
+    }
+
+    if (activeTarget && scrollTop <= offsets[0]) {
+      return activeTarget != (i = targets[0]) && this.activate(i)
+    }
+
+    for (i = offsets.length; i--;) {
+      activeTarget != targets[i]
+        && scrollTop >= offsets[i]
+        && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+        && this.activate( targets[i] )
+    }
+  }
+
+  ScrollSpy.prototype.activate = function (target) {
+    this.activeTarget = target
+
+    $(this.selector)
+      .parentsUntil(this.options.target, '.active')
+      .removeClass('active')
+
+    var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+    var active = $(selector)
+      .parents('li')
+      .addClass('active')
+
+    if (active.parent('.dropdown-menu').length) {
+      active = active
+        .closest('li.dropdown')
+        .addClass('active')
+    }
+
+    active.trigger('activate.bs.scrollspy')
+  }
+
+
+  // SCROLLSPY PLUGIN DEFINITION
+  // ===========================
+
+  var old = $.fn.scrollspy
+
+  $.fn.scrollspy = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.scrollspy')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.scrollspy.Constructor = ScrollSpy
+
+
+  // SCROLLSPY NO CONFLICT
+  // =====================
+
+  $.fn.scrollspy.noConflict = function () {
+    $.fn.scrollspy = old
+    return this
+  }
+
+
+  // SCROLLSPY DATA-API
+  // ==================
+
+  $(window).on('load', function () {
+    $('[data-spy="scroll"]').each(function () {
+      var $spy = $(this)
+      $spy.scrollspy($spy.data())
+    })
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: tab.js v3.1.0
+ * http://getbootstrap.com/javascript/#tabs
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // TAB CLASS DEFINITION
+  // ====================
+
+  var Tab = function (element) {
+    this.element = $(element)
+  }
+
+  Tab.prototype.show = function () {
+    var $this    = this.element
+    var $ul      = $this.closest('ul:not(.dropdown-menu)')
+    var selector = $this.data('target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+    }
+
+    if ($this.parent('li').hasClass('active')) return
+
+    var previous = $ul.find('.active:last a')[0]
+    var e        = $.Event('show.bs.tab', {
+      relatedTarget: previous
+    })
+
+    $this.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    var $target = $(selector)
+
+    this.activate($this.parent('li'), $ul)
+    this.activate($target, $target.parent(), function () {
+      $this.trigger({
+        type: 'shown.bs.tab',
+        relatedTarget: previous
+      })
+    })
+  }
+
+  Tab.prototype.activate = function (element, container, callback) {
+    var $active    = container.find('> .active')
+    var transition = callback
+      && $.support.transition
+      && $active.hasClass('fade')
+
+    function next() {
+      $active
+        .removeClass('active')
+        .find('> .dropdown-menu > .active')
+        .removeClass('active')
+
+      element.addClass('active')
+
+      if (transition) {
+        element[0].offsetWidth // reflow for transition
+        element.addClass('in')
+      } else {
+        element.removeClass('fade')
+      }
+
+      if (element.parent('.dropdown-menu')) {
+        element.closest('li.dropdown').addClass('active')
+      }
+
+      callback && callback()
+    }
+
+    transition ?
+      $active
+        .one($.support.transition.end, next)
+        .emulateTransitionEnd(150) :
+      next()
+
+    $active.removeClass('in')
+  }
+
+
+  // TAB PLUGIN DEFINITION
+  // =====================
+
+  var old = $.fn.tab
+
+  $.fn.tab = function ( option ) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.tab')
+
+      if (!data) $this.data('bs.tab', (data = new Tab(this)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.tab.Constructor = Tab
+
+
+  // TAB NO CONFLICT
+  // ===============
+
+  $.fn.tab.noConflict = function () {
+    $.fn.tab = old
+    return this
+  }
+
+
+  // TAB DATA-API
+  // ============
+
+  $(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: affix.js v3.1.0
+ * http://getbootstrap.com/javascript/#affix
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // AFFIX CLASS DEFINITION
+  // ======================
+
+  var Affix = function (element, options) {
+    this.options = $.extend({}, Affix.DEFAULTS, options)
+    this.$window = $(window)
+      .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
+      .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
+
+    this.$element     = $(element)
+    this.affixed      =
+    this.unpin        =
+    this.pinnedOffset = null
+
+    this.checkPosition()
+  }
+
+  Affix.RESET = 'affix affix-top affix-bottom'
+
+  Affix.DEFAULTS = {
+    offset: 0
+  }
+
+  Affix.prototype.getPinnedOffset = function () {
+    if (this.pinnedOffset) return this.pinnedOffset
+    this.$element.removeClass(Affix.RESET).addClass('affix')
+    var scrollTop = this.$window.scrollTop()
+    var position  = this.$element.offset()
+    return (this.pinnedOffset = position.top - scrollTop)
+  }
+
+  Affix.prototype.checkPositionWithEventLoop = function () {
+    setTimeout($.proxy(this.checkPosition, this), 1)
+  }
+
+  Affix.prototype.checkPosition = function () {
+    if (!this.$element.is(':visible')) return
+
+    var scrollHeight = $(document).height()
+    var scrollTop    = this.$window.scrollTop()
+    var position     = this.$element.offset()
+    var offset       = this.options.offset
+    var offsetTop    = offset.top
+    var offsetBottom = offset.bottom
+
+    if (this.affixed == 'top') position.top += scrollTop
+
+    if (typeof offset != 'object')         offsetBottom = offsetTop = offset
+    if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
+    if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
+
+    var affix = this.unpin   != null && (scrollTop + this.unpin <= position.top) ? false :
+                offsetBottom != null && (position.top + this.$element.height() >= scrollHeight - offsetBottom) ? 'bottom' :
+                offsetTop    != null && (scrollTop <= offsetTop) ? 'top' : false
+
+    if (this.affixed === affix) return
+    if (this.unpin) this.$element.css('top', '')
+
+    var affixType = 'affix' + (affix ? '-' + affix : '')
+    var e         = $.Event(affixType + '.bs.affix')
+
+    this.$element.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    this.affixed = affix
+    this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
+
+    this.$element
+      .removeClass(Affix.RESET)
+      .addClass(affixType)
+      .trigger($.Event(affixType.replace('affix', 'affixed')))
+
+    if (affix == 'bottom') {
+      this.$element.offset({ top: scrollHeight - offsetBottom - this.$element.height() })
+    }
+  }
+
+
+  // AFFIX PLUGIN DEFINITION
+  // =======================
+
+  var old = $.fn.affix
+
+  $.fn.affix = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.affix')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.affix', (data = new Affix(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.affix.Constructor = Affix
+
+
+  // AFFIX NO CONFLICT
+  // =================
+
+  $.fn.affix.noConflict = function () {
+    $.fn.affix = old
+    return this
+  }
+
+
+  // AFFIX DATA-API
+  // ==============
+
+  $(window).on('load', function () {
+    $('[data-spy="affix"]').each(function () {
+      var $spy = $(this)
+      var data = $spy.data()
+
+      data.offset = data.offset || {}
+
+      if (data.offsetBottom) data.offset.bottom = data.offsetBottom
+      if (data.offsetTop)    data.offset.top    = data.offsetTop
+
+      $spy.affix(data)
+    })
+  })
+
+}(jQuery);
+
+/*! NProgress (c) 2013, Rico Sta. Cruz
+ *  http://ricostacruz.com/nprogress */
+
+;(function(factory) {
+
+  if (typeof module === 'function') {
+    module.exports = factory(this.jQuery || require('jquery'));
+  } else {
+    this.NProgress = factory(this.jQuery);
+  }
+
+})(function($) {
+  var NProgress = {};
+
+  NProgress.version = '0.1.2';
+
+  var Settings = NProgress.settings = {
+    minimum: 0.08,
+    easing: 'ease',
+    positionUsing: '',
+    speed: 200,
+    trickle: true,
+    trickleRate: 0.02,
+    trickleSpeed: 800,
+    showSpinner: true,
+    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+  };
+
+  /**
+   * Updates configuration.
+   *
+   *     NProgress.configure({
+   *       minimum: 0.1
+   *     });
+   */
+  NProgress.configure = function(options) {
+    $.extend(Settings, options);
+    return this;
+  };
+
+  /**
+   * Last number.
+   */
+
+  NProgress.status = null;
+
+  /**
+   * Sets the progress bar status, where `n` is a number from `0.0` to `1.0`.
+   *
+   *     NProgress.set(0.4);
+   *     NProgress.set(1.0);
+   */
+
+  NProgress.set = function(n) {
+    var started = NProgress.isStarted();
+
+    n = clamp(n, Settings.minimum, 1);
+    NProgress.status = (n === 1 ? null : n);
+
+    var $progress = NProgress.render(!started),
+        $bar      = $progress.find('[role="bar"]'),
+        speed     = Settings.speed,
+        ease      = Settings.easing;
+
+    $progress[0].offsetWidth; /* Repaint */
+
+    $progress.queue(function(next) {
+      // Set positionUsing if it hasn't already been set
+      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+      
+      // Add transition
+      $bar.css(barPositionCSS(n, speed, ease));
+
+      if (n === 1) {
+        // Fade out
+        $progress.css({ transition: 'none', opacity: 1 });
+        $progress[0].offsetWidth; /* Repaint */
+
+        setTimeout(function() {
+          $progress.css({ transition: 'all '+speed+'ms linear', opacity: 0 });
+          setTimeout(function() {
+            NProgress.remove();
+            next();
+          }, speed);
+        }, speed);
+      } else {
+        setTimeout(next, speed);
+      }
+    });
+
+    return this;
+  };
+
+  NProgress.isStarted = function() {
+    return typeof NProgress.status === 'number';
+  };
+
+  /**
+   * Shows the progress bar.
+   * This is the same as setting the status to 0%, except that it doesn't go backwards.
+   *
+   *     NProgress.start();
+   *
+   */
+  NProgress.start = function() {
+    if (!NProgress.status) NProgress.set(0);
+
+    var work = function() {
+      setTimeout(function() {
+        if (!NProgress.status) return;
+        NProgress.trickle();
+        work();
+      }, Settings.trickleSpeed);
+    };
+
+    if (Settings.trickle) work();
+
+    return this;
+  };
+
+  /**
+   * Hides the progress bar.
+   * This is the *sort of* the same as setting the status to 100%, with the
+   * difference being `done()` makes some placebo effect of some realistic motion.
+   *
+   *     NProgress.done();
+   *
+   * If `true` is passed, it will show the progress bar even if its hidden.
+   *
+   *     NProgress.done(true);
+   */
+
+  NProgress.done = function(force) {
+    if (!force && !NProgress.status) return this;
+
+    return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
+  };
+
+  /**
+   * Increments by a random amount.
+   */
+
+  NProgress.inc = function(amount) {
+    var n = NProgress.status;
+
+    if (!n) {
+      return NProgress.start();
+    } else {
+      if (typeof amount !== 'number') {
+        amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
+      }
+
+      n = clamp(n + amount, 0, 0.994);
+      return NProgress.set(n);
+    }
+  };
+
+  NProgress.trickle = function() {
+    return NProgress.inc(Math.random() * Settings.trickleRate);
+  };
+
+  /**
+   * (Internal) renders the progress bar markup based on the `template`
+   * setting.
+   */
+
+  NProgress.render = function(fromStart) {
+    if (NProgress.isRendered()) return $("#nprogress");
+    $('html').addClass('nprogress-busy');
+
+    var $el = $("<div id='nprogress'>")
+      .html(Settings.template);
+
+    var perc = fromStart ? '-100' : toBarPerc(NProgress.status || 0);
+
+    $el.find('[role="bar"]').css({
+      transition: 'all 0 linear',
+      transform: 'translate3d('+perc+'%,0,0)'
+    });
+
+    if (!Settings.showSpinner)
+      $el.find('[role="spinner"]').remove();
+
+    $el.appendTo(document.body);
+
+    return $el;
+  };
+
+  /**
+   * Removes the element. Opposite of render().
+   */
+
+  NProgress.remove = function() {
+    $('html').removeClass('nprogress-busy');
+    $('#nprogress').remove();
+  };
+
+  /**
+   * Checks if the progress bar is rendered.
+   */
+
+  NProgress.isRendered = function() {
+    return ($("#nprogress").length > 0);
+  };
+
+  /**
+   * Determine which positioning CSS rule to use.
+   */
+
+  NProgress.getPositioningCSS = function() {
+    // Sniff on document.body.style
+    var bodyStyle = document.body.style;
+
+    // Sniff prefixes
+    var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
+                       ('MozTransform' in bodyStyle) ? 'Moz' :
+                       ('msTransform' in bodyStyle) ? 'ms' :
+                       ('OTransform' in bodyStyle) ? 'O' : '';
+
+    if (vendorPrefix + 'Perspective' in bodyStyle) {
+      // Modern browsers with 3D support, e.g. Webkit, IE10
+      return 'translate3d';
+    } else if (vendorPrefix + 'Transform' in bodyStyle) {
+      // Browsers without 3D support, e.g. IE9
+      return 'translate';
+    } else {
+      // Browsers without translate() support, e.g. IE7-8
+      return 'margin';
+    }
+  };
+
+  /**
+   * Helpers
+   */
+
+  function clamp(n, min, max) {
+    if (n < min) return min;
+    if (n > max) return max;
+    return n;
+  }
+
+  /**
+   * (Internal) converts a percentage (`0..1`) to a bar translateX
+   * percentage (`-100%..0%`).
+   */
+
+  function toBarPerc(n) {
+    return (-1 + n) * 100;
+  }
+
+
+  /**
+   * (Internal) returns the correct CSS for changing the bar's
+   * position given an n percentage, and speed and ease from Settings
+   */
+
+  function barPositionCSS(n, speed, ease) {
+    var barCSS;
+
+    if (Settings.positionUsing === 'translate3d') {
+      barCSS = { transform: 'translate3d('+toBarPerc(n)+'%,0,0)' };
+    } else if (Settings.positionUsing === 'translate') {
+      barCSS = { transform: 'translate('+toBarPerc(n)+'%,0)' };
+    } else {
+      barCSS = { 'margin-left': toBarPerc(n)+'%' };
+    }
+
+    barCSS.transition = 'all '+speed+'ms '+ease;
+
+    return barCSS;
+  }
+
+  return NProgress;
+});
+
+
+/*!
+ * jQuery Scrollspy Plugin
+ * Author: @sxalexander
+ * Licensed under the MIT license
+ */
+
+
+;(function ( $, window, document, undefined ) {
+
+    $.fn.extend({
+      scrollspy: function ( options ) {
+        
+          var defaults = {
+            min: 0,
+            max: 0,
+            mode: 'vertical',
+            buffer: 0,
+            container: window,
+            onEnter: options.onEnter ? options.onEnter : [],
+            onLeave: options.onLeave ? options.onLeave : [],
+            onTick: options.onTick ? options.onTick : []
+          }
+          
+          var options = $.extend( {}, defaults, options );
+
+          return this.each(function (i) {
+
+              var element = this;
+              var o = options;
+              var $container = $(o.container);
+              var mode = o.mode;
+              var buffer = o.buffer;
+              var enters = leaves = 0;
+              var inside = false;
+                            
+              /* add listener to container */
+              $container.bind('scroll', function(e){
+                  var position = {top: $(this).scrollTop(), left: $(this).scrollLeft()};
+                  var xy = (mode == 'vertical') ? position.top + buffer : position.left + buffer;
+                  var max = o.max;
+                  var min = o.min;
+                  
+                  /* fix max */
+                  if($.isFunction(o.max)){
+                    max = o.max();
+                  }
+
+                  /* fix max */
+                  if($.isFunction(o.min)){
+                    min = o.min();
+                  }
+
+                  if(max == 0){
+                      max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $(element).outerWidth();
+                  }
+                  
+                  /* if we have reached the minimum bound but are below the max ... */
+                  if(xy >= min && xy <= max){
+                    /* trigger enter event */
+                    if(!inside){
+                       inside = true;
+                       enters++;
+                       
+                       /* fire enter event */
+                       $(element).trigger('scrollEnter', {position: position})
+                       if($.isFunction(o.onEnter)){
+                         o.onEnter(element, position);
+                       }
+                      
+                     }
+                     
+                     /* triger tick event */
+                     $(element).trigger('scrollTick', {position: position, inside: inside, enters: enters, leaves: leaves})
+                     if($.isFunction(o.onTick)){
+                       o.onTick(element, position, inside, enters, leaves);
+                     }
+                  }else{
+                    
+                    if(inside){
+                      inside = false;
+                      leaves++;
+                      /* trigger leave event */
+                      $(element).trigger('scrollLeave', {position: position, leaves:leaves})
+
+                      if($.isFunction(o.onLeave)){
+                        o.onLeave(element, position);
+                      }
+                    }
+                  }
+              }); 
+
+          });
+      }
+
+    })
+
+    
+})( jQuery, window );
+
+/* 
+ * Boxer v3.0.7 - 2014-01-29 
+ * A jQuery plugin for displaying images, videos or content in a modal overlay. Part of the Formstone Library. 
+ * http://formstone.it/boxer/ 
+ * 
+ * Copyright 2014 Ben Plum; MIT Licensed 
+ */ 
+
+;(function ($, window) {
+	"use strict";
+
+	var data = {},
+		trueMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test((window.navigator.userAgent||window.navigator.vendor||window.opera));
+
+	/**
+	 * @options
+	 * @param callback [function] <$.noop> "Funciton called after opening instance"
+	 * @param customClass [string] <''> "Class applied to instance"
+	 * @param duration [int] <250> "Animation duration"
+	 * @param fixed [boolean] <false> "Flag for fixed positioning"
+	 * @param formatter [function] <$.noop> "Caption format function"
+	 * @param height [int] <100> "Initial height (while loading)"
+	 * @param labels.close [string] <'Close'> "Close button text"
+	 * @param labels.count [string] <'of'> "Gallery count separator text"
+	 * @param labels.next [string] <'Next'> "Gallery control text"
+	 * @param labels.previous [string] <'Previous'> "Gallery control text"
+	 * @param margin [int] <50> "Margin used when sizing (single side)"
+	 * @param minHeight [int] <100> "Minimum height of modal"
+	 * @param minWidth [int] <100> "Minimum width of modal"
+	 * @param mobile [boolean] <false> "Flag to force 'mobile' rendering"
+	 * @param opacity [number] <0.75> "Overlay target opacity"
+	 * @param retina [boolean] <false> "Use 'retina' sizing (half's natural sizes)"
+	 * @param requestKey [string] <'boxer'> "GET variable for ajax / iframe requests"
+	 * @param top [int] <0> "Target top position; over-rides centering"
+	 * @param videoRadio [number] <0.5625> "Video height / width ratio (9 / 16 = 0.5625)"
+	 * @param videoWidth [int] <600> "Video target width"
+	 * @param width [int] <100> "Initial height (while loading)"
+	 */
+	var options = {
+		callback: $.noop,
+		customClass: "",
+		duration: 250,
+		fixed: false,
+		formatter: $.noop,
+		height: 100,
+		labels: {
+			close: "Close",
+			count: "of",
+			next: "Next",
+			previous: "Previous"
+		},
+		margin: 50,
+		minHeight: 100,
+		minWidth: 100,
+		mobile: false,
+		opacity: 0.75,
+		retina: false,
+		requestKey: "boxer",
+		top: 0,
+		videoRatio: 0.5625,
+		videoWidth: 600,
+		width: 100
+	};
+
+	/**
+	 * @events
+	 * @event open.boxer "Modal opened; triggered on window"
+	 * @event close.boxer "Modal closed; triggered on window"
+	 */
+
+	var pub = {
+
+		/**
+		 * @method
+		 * @name close
+		 * @description Closes active instance of plugin
+		 * @example $.boxer("close");
+		 */
+		close: function() {
+			if (typeof data.$boxer !== "undefined") {
+				data.$boxer.off(".boxer");
+				data.$overlay.trigger("click");
+			}
+		},
+
+		/**
+		 * @method
+		 * @name defaults
+		 * @description Sets default plugin options
+		 * @param opts [object] <{}> "Options object"
+		 * @example $.boxer("defaults", opts);
+		 */
+		defaults: function(opts) {
+			options = $.extend(options, opts || {});
+			return $(this);
+		},
+
+		/**
+		 * @method
+		 * @name destroy
+		 * @description Removes plugin bindings
+		 * @example $(".target").boxer("destroy");
+		 */
+		destroy: function() {
+			return $(this).off(".boxer");
+		},
+
+		/**
+		 * @method
+		 * @name resize
+		 * @description Triggers resize of instance
+		 * @example $.boxer("resize");
+		 * @param height [int | false] "Target height or false to auto size"
+		 * @param width [int | false] "Target width or false to auto size"
+		 */
+		resize: function(e) {
+			if (typeof data.$boxer !== "undefined") {
+				if (typeof e !== "object") {
+					data.targetHeight = arguments[0];
+					data.targetWidth  = arguments[1];
+				}
+
+				if (data.type === "element") {
+					_sizeContent(data.$content.find(">:first-child"));
+				} else if (data.type === "image") {
+					_sizeImage();
+				} else if (data.type === "video") {
+					_sizeVideo();
+				}
+				_size();
+			}
+
+			return $(this);
+		}
+	};
+
+	/**
+	 * @method private
+	 * @name _init
+	 * @description Initializes plugin
+	 * @param opts [object] "Initialization options"
+	 */
+	function _init(opts) {
+		options.formatter = _formatCaption;
+		return $(this).on("click.boxer", $.extend({}, options, opts || {}), _build);
+	}
+
+	/**
+	 * @method private
+	 * @name _build
+	 * @description Builds target instance
+	 * @param e [object] "Event data"
+	 */
+	function _build(e) {
+		// Check target type
+		var $target = $(this),
+			$object = e.data.$object,
+			source = ($target[0].attributes) ? $target.attr("href") || "" : "",
+			checkExt = source.toLowerCase().split("."),
+			extension = checkExt[ checkExt.length - 1 ],
+			type = '', // $target.data("type") || "";
+			isImage	= ( (type === "image") || (extension === "jpeg" || extension === "jpg" || extension === "gif" || extension === "png" || source.substr(0, 10) === "data:image") ),
+			isVideo	= ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 ),
+			isUrl	  = ( (type === "url") || (!isImage && !isVideo && source.substr(0, 4) === "http") ),
+			isElement  = ( (type === "element") || (!isImage && !isVideo && !isUrl && source.substr(0, 1) === "#") ),
+			isObject   = ( (typeof $object !== "undefined") );
+
+		// Check if boxer is already active, retain default click
+		if ($("#boxer").length > 1 || !(isImage || isVideo || isUrl || isElement || isObject)) {
+			return;
+		}
+
+		// Kill event
+		_killEvent(e);
+
+		// Cache internal data
+		data = $.extend({}, {
+			$window: $(window),
+			$body: $("body"),
+			$target: $target,
+			$object: $object,
+			visible: false,
+			resizeTimer: null,
+			touchTimer: null,
+			gallery: {
+				active: false
+			},
+			isMobile: (trueMobile || e.data.mobile)
+		}, e.data);
+
+		// Double the margin
+		data.margin *= 2;
+		data.containerHeight = data.height;
+		data.containerWidth  = data.width;
+
+		if (isImage) {
+			data.type = "image";
+		} else if (isVideo) {
+			data.type = "video";
+		} else {
+			data.type = "element";
+		}
+
+		if (isImage || isVideo) {
+			// Check for gallery
+			var rel = data.$target.attr("rel");
+			if (typeof rel !== "undefined" && rel !== false) {
+				data.gallery.active = true;
+				data.gallery.rel = rel;
+				data.gallery.$items = $("a[rel= " + data.gallery.rel + "]");
+				data.gallery.index = data.gallery.$items.index(data.$target);
+				data.gallery.total = data.gallery.$items.length - 1;
+			}
+		}
+
+		// Assemble HTML
+		var html = '';
+		if (!data.isMobile) {
+			html += '<div id="boxer-overlay" class="' + data.customClass + '" style="opacity: 0"></div>';
+		}
+		html += '<div id="boxer" class="loading ' + data.customClass;
+		if (data.isMobile) {
+			html += ' mobile';
+		}
+		if (isUrl) {
+			html += ' iframe';
+		}
+		if (isElement || isObject) {
+			html += ' inline';
+		}
+		html += '" style="opacity: 0;';
+		if (data.fixed === true) {
+			html += ' position: fixed;';
+		}
+		html += '">';
+		html += '<span class="boxer-close">' + data.labels.close + '</span>';
+		html += '<div class="boxer-container" style="';
+		if (data.isMobile) {
+			html += 'height: 100%; width: 100%';
+		} else {
+			html += 'height: ' + data.height + 'px; width: ' + data.width + 'px';
+		}
+		html += '">';
+		html += '<div class="boxer-content" style="opacity: 0;">';
+		if (isImage || isVideo) {
+			html += '<div class="boxer-meta">';
+
+			if (data.gallery.active) {
+				html += '<div class="boxer-arrow previous">' + data.labels.previous + '</div>';
+				html += '<div class="boxer-arrow next">' + data.labels.next + '</div>';
+				html += '<p class="boxer-position"';
+				if (data.gallery.total < 1) {
+					html += ' style="display: none;"';
+				}
+				html += '>';
+				html += '<span class="current">' + (data.gallery.index + 1) + '</span> ' + data.labels.count + ' <span class="total">' + (data.gallery.total + 1) + '</span>';
+				html += '</p>';
+				html += '<div class="boxer-caption gallery">';
+			} else {
+				html += '<div class="boxer-caption">';
+			}
+
+			html += data.formatter.apply(data.$body, [data.$target]);
+			html += '</div></div>'; // caption, meta
+		}
+		html += '</div></div></div>'; //container, content, boxer
+
+		// Modify Dom
+		data.$body.append(html);
+
+		// Cache jquery objects
+		data.$overlay = $("#boxer-overlay");
+		data.$boxer = $("#boxer");
+		data.$container = data.$boxer.find(".boxer-container");
+		data.$content = data.$boxer.find(".boxer-content");
+		data.$meta = data.$boxer.find(".boxer-meta");
+		data.$position = data.$boxer.find(".boxer-position");
+		data.$caption = data.$boxer.find(".boxer-caption");
+		data.$arrows = data.$boxer.find(".boxer-arrow");
+		data.$animatables = $("#boxer-overlay, #boxer, .boxer-container");
+		data.paddingVertical = parseInt(data.$boxer.css("paddingTop"), 10) + parseInt(data.$boxer.css("paddingBottom"), 10);
+		data.paddingHorizontal = parseInt(data.$boxer.css("paddingLeft"), 10) + parseInt(data.$boxer.css("paddingRight"), 10);
+
+		// Center / update gallery
+		_center();
+		if (data.gallery.active) {
+			_updateControls();
+		}
+
+		// Bind events
+		data.$window.on("resize.boxer", pub.resize)
+					.on("keydown.boxer", _onKeypress);
+		data.$body.on("touchstart.boxer click.boxer", "#boxer-overlay, #boxer .boxer-close", _onClose)
+				  .on("touchmove.boxer", _killEvent);
+
+		if (data.gallery.active) {
+			data.$boxer.on("touchstart.boxer click.boxer", ".boxer-arrow", _advanceGallery);
+		}
+
+		data.$overlay.stop().animate({ opacity: data.opacity }, data.duration);
+		data.$boxer.stop().animate({ opacity: 1 }, data.duration, function() {
+			if (isImage) {
+				_loadImage(source);
+			} else if (isVideo) {
+				_loadVideo(source);
+			} else if (isUrl) {
+				_loadURL(source);
+			} else if (isElement) {
+				_cloneElement(source);
+			} else if (isObject) {
+				_appendObject(data.$object);
+			} else {
+				$.error("BOXER: '" +  source + "' is not valid.");
+			}
+		});
+
+		if (isObject) {
+			return data.$boxer;
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _onClose
+	 * @description Closes active instance
+	 * @param e [object] "Event data"
+	 */
+	function _onClose(e) {
+		_killEvent(e);
+
+		if (typeof data.$animatables !== "undefined") {
+			data.$animatables.stop().animate({ opacity: 0 }, data.duration, function() {
+				$(this).remove();
+			});
+
+			_clearTimer(data.resizeTimer);
+
+			// Clean up
+			data.$window.off(".boxer");
+			data.$body.off(".boxer")
+					  .removeClass("boxer-open");
+
+			if (data.gallery.active) {
+				data.$boxer.off(".boxer");
+			}
+
+			if (data.isMobile) {
+				if (data.type === "image" && data.gallery.active) {
+					data.$container.off(".boxer");
+				}
+			}
+
+			data.$window.trigger("close.boxer");
+
+			data = {};
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _open
+	 * @description Opens active instance
+	 */
+	function _open() {
+		var position = _position(),
+			arrowHeight = 0,
+			durration = data.isMobile ? 0 : data.duration;
+
+		if (!data.isMobile) {
+			arrowHeight = data.$arrows.outerHeight();
+			data.$arrows.css({
+				marginTop: ((data.contentHeight - arrowHeight) / 2)
+			});
+		}
+
+		if (!data.visible && data.isMobile && data.gallery.active) {
+			data.$content.on("touchstart.boxer", ".boxer-image", _onTouchStart);
+		}
+
+		if (data.isMobile || data.fixed) {
+			data.$body.addClass("boxer-open");
+		}
+
+		data.$boxer.stop().animate({
+			left: position.left,
+			top:  position.top
+		}, durration);
+		data.$container.show().stop().animate({
+			height: data.containerHeight,
+			width:  data.containerWidth
+		}, durration, function(e) {
+			data.$content.stop().animate({
+				opacity: 1
+			}, data.duration);
+			data.$boxer.removeClass("loading")
+					   .find(".boxer-close").stop().animate({
+						   opacity: 1
+					   }, data.duration);
+
+			data.visible = true;
+
+			// Fire callback + event
+			data.callback.apply(data.$boxer);
+			data.$window.trigger("open.boxer");
+
+			// Start preloading
+			if (data.gallery.active) {
+				_preloadGallery();
+			}
+		});
+	}
+
+	/**
+	 * @method private
+	 * @name _size
+	 * @description Sizes active instance
+	 * @param animate [boolean] <false> "Flag to animate sizing"
+	 */
+	function _size(animate) {
+		animate = animate || false;
+
+		if (data.visible) {
+			var position = _position(),
+				arrowHeight = 0;
+
+			if (!data.isMobile) {
+				arrowHeight = data.$arrows.outerHeight();
+				data.$arrows.css({
+					marginTop: ((data.contentHeight - arrowHeight) / 2)
+				});
+			}
+
+			if (animate) {
+				data.$boxer.stop().animate({
+					left: position.left,
+					top:  position.top
+				}, data.duration);
+				data.$container.show().stop().animate({
+					height: data.containerHeight,
+					width:  data.containerWidth
+				});
+			} else {
+				data.$boxer.css({
+					left: position.left,
+					top:  position.top
+				});
+				data.$container.css({
+					height: data.containerHeight,
+					width:  data.containerWidth
+				});
+			}
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _center
+	 * @description Centers instance
+	 */
+	function _center() {
+		var position = _position();
+		data.$boxer.css({
+			left: position.left,
+			top:  position.top
+		});
+	}
+
+	/**
+	 * @method private
+	 * @name _position
+	 * @description Calculates positions
+	 * @return [object] "Object containing top and left positions"
+	 */
+	function _position() {
+		if (data.isMobile) {
+			return { left: 0, top: 0 };
+		}
+
+		var pos = {
+			left: (data.$window.width() - data.containerWidth - data.paddingHorizontal) / 2,
+			top: (data.top <= 0) ? ((data.$window.height() - data.containerHeight - data.paddingVertical) / 2) : data.top
+		};
+
+		if (data.fixed !== true) {
+			pos.top += data.$window.scrollTop();
+		}
+
+		return pos;
+	}
+
+	/**
+	 * @method private
+	 * @name _formatCaption
+	 * @description Formats caption
+	 * @param $target [jQuery object] "Target element"
+	 */
+	function _formatCaption($target) {
+		var title = $target.attr("title");
+		return (title !== "" && title !== undefined) ? '<p class="caption">' + title + '</p>' : "";
+	}
+
+	/**
+	 * @method private
+	 * @name _loadImage
+	 * @description Loads source image
+	 * @param source [string] "Source image URL"
+	 */
+	function _loadImage(source) {
+		// Cache current image
+		data.$image = $("<img />");
+
+		data.$image.one("load.boxer", function() {
+			var naturalSize = _naturalSize(data.$image);
+
+			data.naturalHeight = naturalSize.naturalHeight;
+			data.naturalWidth  = naturalSize.naturalWidth;
+
+			if (data.retina) {
+				data.naturalHeight /= 2;
+				data.naturalWidth  /= 2;
+			}
+
+			data.$content.prepend(data.$image);
+			if (data.$caption.html() === "") {
+				data.$caption.hide();
+			} else {
+				data.$caption.show();
+			}
+
+			// Size content to be sure it fits the viewport
+			_sizeImage();
+			_open();
+		}).attr("src", source)
+		  .addClass("boxer-image");
+
+		// If image has already loaded into cache, trigger load event
+		if (data.$image[0].complete || data.$image[0].readyState === 4) {
+			data.$image.trigger("load");
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _sizeImage
+	 * @description Sizes image to fit in viewport
+	 * @param count [int] "Number of resize attempts"
+	 */
+	function _sizeImage() {
+		var count = 0;
+
+		data.windowHeight = data.viewportHeight = data.$window.height();
+		data.windowWidth  = data.viewportWidth  = data.$window.width();
+
+		data.containerHeight = Infinity;
+		data.contentHeight = 0;
+		data.containerWidth  = Infinity;
+		data.contentWidth = 0;
+
+		data.imageMarginTop  = 0;
+		data.imageMarginLeft = 0;
+
+		while (data.containerHeight > data.viewportHeight && count < 2) {
+			data.imageHeight = (count === 0) ? data.naturalHeight : data.$image.outerHeight();
+			data.imageWidth  = (count === 0) ? data.naturalWidth  : data.$image.outerWidth();
+			data.metaHeight  = (count === 0) ? 0 : data.metaHeight;
+
+			if (count === 0) {
+				data.ratioHorizontal = data.imageHeight / data.imageWidth;
+				data.ratioVertical   = data.imageWidth  / data.imageHeight;
+
+				data.isWide = (data.imageWidth > data.imageHeight);
+			}
+
+			// Double check min and max
+			if (data.imageHeight < data.minHeight) {
+				data.minHeight = data.imageHeight;
+			}
+			if (data.imageWidth < data.minWidth) {
+				data.minWidth = data.imageWidth;
+			}
+
+			if (data.isMobile) {
+				// Get meta height before sizing
+				data.$meta.css({
+					width: data.windowWidth
+				});
+				data.metaHeight = data.$meta.outerHeight(true);
+
+				// Content match viewport
+				data.contentHeight = data.viewportHeight;
+				data.contentWidth  = data.viewportWidth;
+
+				// Container match viewport, less padding
+				data.containerHeight = data.viewportHeight - data.paddingVertical;
+				data.containerWidth  = data.viewportWidth  - data.paddingHorizontal;
+
+				_fitImage();
+
+				data.imageMarginTop  = (data.containerHeight - data.targetImageHeight - data.metaHeight) / 2;
+				data.imageMarginLeft = (data.containerWidth  - data.targetImageWidth) / 2;
+			} else {
+				// Viewport match window, less margin, padding and meta
+				if (count === 0) {
+					data.viewportHeight -= (data.margin + data.paddingVertical);
+					data.viewportWidth  -= (data.margin + data.paddingHorizontal);
+				}
+				data.viewportHeight -= data.metaHeight;
+
+				_fitImage();
+
+				data.containerHeight = data.contentHeight = data.targetImageHeight;
+				data.containerWidth  = data.contentWidth  = data.targetImageWidth;
+			}
+
+			// Modify DOM
+			data.$content.css({
+				height: (data.isMobile) ? data.contentHeight : "auto",
+				width: data.contentWidth
+			});
+			data.$meta.css({
+				width: data.contentWidth
+			});
+			data.$image.css({
+				height: data.targetImageHeight,
+				width:  data.targetImageWidth,
+				marginTop:  data.imageMarginTop,
+				marginLeft: data.imageMarginLeft
+			});
+
+			if (!data.isMobile) {
+				data.metaHeight = data.$meta.outerHeight(true);
+				data.containerHeight += data.metaHeight;
+			}
+
+			count ++;
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _fitImage
+	 * @description Calculates target image size
+	 */
+	function _fitImage() {
+		var height = (!data.isMobile) ? data.viewportHeight : data.containerHeight - data.metaHeight,
+			width  = (!data.isMobile) ? data.viewportWidth  : data.containerWidth;
+
+		if (data.isWide) {
+			//WIDE
+			data.targetImageWidth  = width;
+			data.targetImageHeight = data.targetImageWidth * data.ratioHorizontal;
+
+			if (data.targetImageHeight > height) {
+				data.targetImageHeight = height;
+				data.targetImageWidth  = data.targetImageHeight * data.ratioVertical;
+			}
+		} else {
+			//TALL
+			data.targetImageHeight = height;
+			data.targetImageWidth  = data.targetImageHeight * data.ratioVertical;
+
+			if (data.targetImageWidth > width) {
+				data.targetImageWidth  = width;
+				data.targetImageHeight = data.targetImageWidth * data.ratioHorizontal;
+			}
+		}
+
+		// MAX
+		if (data.targetImageWidth > data.imageWidth || data.targetImageHeight > data.imageHeight) {
+			data.targetImageHeight = data.imageHeight;
+			data.targetImageWidth  = data.imageWidth;
+		}
+
+		// MIN
+		if (data.targetImageWidth < data.minWidth || data.targetImageHeight < data.minHeight) {
+			if (data.targetImageWidth < data.minWidth) {
+				data.targetImageWidth  = data.minWidth;
+				data.targetImageHeight = data.targetImageWidth * data.ratioHorizontal;
+			} else {
+				data.targetImageHeight = data.minHeight;
+				data.targetImageWidth  = data.targetImageHeight * data.ratioVertical;
+			}
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _loadVideo
+	 * @description Loads source video
+	 * @param source [string] "Source video URL"
+	 */
+	function _loadVideo(source) {
+		data.$videoWrapper = $('<div class="boxer-video-wrapper" />');
+		data.$video = $('<iframe class="boxer-video" />');
+
+		data.$video.attr("src", source)
+				   .addClass("boxer-video")
+				   .prependTo(data.$videoWrapper);
+
+		data.$content.prepend(data.$videoWrapper);
+
+		_sizeVideo();
+		_open();
+	}
+
+	/**
+	 * @method private
+	 * @name _sizeVideo
+	 * @description Sizes video to fit in viewport
+	 */
+	function _sizeVideo() {
+		// Set initial vars
+		data.windowHeight = data.viewportHeight = data.contentHeight = data.$window.height() - data.paddingVertical;
+		data.windowWidth  = data.viewportWidth  = data.contentWidth  = data.$window.width()  - data.paddingHorizontal;
+		data.videoMarginTop = 0;
+		data.videoMarginLeft = 0;
+
+		if (data.isMobile) {
+			data.$meta.css({
+				width: data.windowWidth
+			});
+			data.metaHeight = data.$meta.outerHeight(true);
+			data.viewportHeight -= data.metaHeight;
+
+			data.targetVideoWidth  = data.viewportWidth;
+			data.targetVideoHeight = data.targetVideoWidth * data.videoRatio;
+
+			if (data.targetVideoHeight > data.viewportHeight) {
+				data.targetVideoHeight = data.viewportHeight;
+				data.targetVideoWidth  = data.targetVideoHeight / data.videoRatio;
+			}
+
+			data.videoMarginTop = (data.viewportHeight - data.targetVideoHeight) / 2;
+			data.videoMarginLeft = (data.viewportWidth - data.targetVideoWidth) / 2;
+		} else {
+			data.viewportHeight = data.windowHeight - data.margin;
+			data.viewportWidth  = data.windowWidth - data.margin;
+
+			data.targetVideoWidth  = (data.videoWidth > data.viewportWidth) ? data.viewportWidth : data.videoWidth;
+			if (data.targetVideoWidth < data.minWidth) {
+				data.targetVideoWidth = data.minWidth;
+			}
+			data.targetVideoHeight = data.targetVideoWidth * data.videoRatio;
+
+			data.contentHeight = data.targetVideoHeight;
+			data.contentWidth  = data.targetVideoWidth;
+		}
+
+		data.$content.css({
+			height: (data.isMobile) ? data.contentHeight : "auto",
+			width: data.contentWidth
+		});
+		data.$meta.css({
+			width: data.contentWidth
+		});
+		data.$videoWrapper.css({
+			height: data.targetVideoHeight,
+			width: data.targetVideoWidth,
+			marginTop: data.videoMarginTop,
+			marginLeft: data.videoMarginLeft
+		});
+
+		if (!data.isMobile) {
+			data.metaHeight = data.$meta.outerHeight(true);
+			data.contentHeight = data.targetVideoHeight + data.metaHeight;
+		}
+
+		data.containerHeight = data.contentHeight;
+		data.containerWidth  = data.contentWidth;
+	}
+
+	/**
+	 * @method private
+	 * @name _preloadGallery
+	 * @description Preloads previous and next images in gallery for faster rendering
+	 * @param e [object] "Event Data"
+	 */
+	function _preloadGallery(e) {
+		var source = '';
+
+		if (data.gallery.index > 0) {
+			source = data.gallery.$items.eq(data.gallery.index - 1).attr("href");
+			if (source.indexOf("youtube.com/embed") < 0 && source.indexOf("player.vimeo.com/video") < 0) {
+				$('<img src="' + source + '">');
+			}
+		}
+		if (data.gallery.index < data.gallery.total) {
+			source = data.gallery.$items.eq(data.gallery.index + 1).attr("href");
+			if (source.indexOf("youtube.com/embed") < 0 && source.indexOf("player.vimeo.com/video") < 0) {
+				$('<img src="' + source + '">');
+			}
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _advanceGallery
+	 * @description Advances gallery base on direction
+	 * @param e [object] "Event Data"
+	 */
+	function _advanceGallery(e) {
+		_killEvent(e);
+
+		// Click target
+		var $arrow = $(this);
+
+		if (!$arrow.hasClass("disabled")) {
+			data.$boxer.addClass("loading");
+
+			data.gallery.index += ($arrow.hasClass("next")) ? 1 : -1;
+			if (data.gallery.index > data.gallery.total) {
+				data.gallery.index = data.gallery.total;
+			}
+			if (data.gallery.index < 0) {
+				data.gallery.index = 0;
+			}
+
+			data.$content.stop().animate({ opacity: 0 }, data.duration, function() {
+				if (typeof data.$image !== 'undefined') {
+					data.$image.remove();
+				}
+				if (typeof data.$videoWrapper !== 'undefined') {
+					data.$videoWrapper.remove();
+				}
+				data.$target = data.gallery.$items.eq(data.gallery.index);
+
+				data.$caption.html(data.formatter.apply(data.$body, [data.$target]));
+				data.$position.find(".current").html(data.gallery.index + 1);
+
+				var source = data.$target.attr("href"),
+					isVideo = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 );
+
+				if (isVideo) {
+					_loadVideo(source);
+				} else {
+					_loadImage(source);
+				}
+				_updateControls();
+			});
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _updateControls
+	 * @description Updates gallery control states
+	 */
+	function _updateControls() {
+		data.$arrows.removeClass("disabled");
+		if (data.gallery.index === 0) {
+			data.$arrows.filter(".previous").addClass("disabled");
+		}
+		if (data.gallery.index === data.gallery.total) {
+			data.$arrows.filter(".next").addClass("disabled");
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _onKeypress
+	 * @description Handles keypress in gallery
+	 * @param e [object] "Event data"
+	 */
+	function _onKeypress(e) {
+		if (data.gallery.active && (e.keyCode === 37 || e.keyCode === 39)) {
+			_killEvent(e);
+
+			data.$arrows.filter((e.keyCode === 37) ? ".previous" : ".next").trigger("click");
+		} else if (e.keyCode === 27) {
+			data.$boxer.find(".boxer-close").trigger("click");
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _cloneElement
+	 * @description Clones target inline element
+	 * @param id [string] "Target element id"
+	 */
+	function _cloneElement(id) {
+		var $clone = $(id).find(">:first-child").clone();
+		_appendObject($clone);
+	}
+
+	/**
+	 * @method private
+	 * @name _loadURL
+	 * @description Load URL into iframe
+	 * @param source [string] "Target URL"
+	 */
+	function _loadURL(source) {
+		source = source + ((source.indexOf("?") > -1) ? "&"+options.requestKey+"=true" : "?"+options.requestKey+"=true");
+		var $iframe = $('<iframe class="boxer-iframe" src="' + source + '" />');
+		_appendObject($iframe);
+	}
+
+	/**
+	 * @method private
+	 * @name _appendObject
+	 * @description Appends and sizes object
+	 * @param $object [jQuery Object] "Object to append"
+	 */
+	function _appendObject($object) {
+		data.$content.append($object);
+		_sizeContent($object);
+		_open();
+	}
+
+	/**
+	 * @method private
+	 * @name _sizeContent
+	 * @description Sizes jQuery object to fir in viewport
+	 * @param $object [jQuery Object] "Object to size"
+	 */
+	function _sizeContent($object) {
+		data.windowHeight	 = data.$window.height() - data.paddingVertical;
+		data.windowWidth	  = data.$window.width() - data.paddingHorizontal;
+		data.objectHeight	 = $object.outerHeight(true);
+		data.objectWidth	  = $object.outerWidth(true);
+		data.targetHeight	 = data.targetHeight || data.$target.data("boxer-height");
+		data.targetWidth	  = data.targetWidth  || data.$target.data("boxer-width");
+		data.maxHeight		= (data.windowHeight < 0) ? options.minHeight : data.windowHeight;
+		data.isIframe		 = $object.is("iframe");
+		data.objectMarginTop  = 0;
+		data.objectMarginLeft = 0;
+
+		if (!data.isMobile) {
+			data.windowHeight -= data.margin;
+			data.windowWidth  -= data.margin;
+		}
+
+		data.contentHeight = (data.targetHeight !== undefined) ? data.targetHeight : (data.isIframe) ? data.windowHeight : data.objectHeight;
+		data.contentWidth  = (data.targetWidth !== undefined)  ? data.targetWidth  : (data.isIframe) ? data.windowWidth  : data.objectWidth;
+
+		if (data.isIframe && data.isMobile) {
+			data.contentHeight = data.windowHeight;
+			data.contentWidth  = data.windowWidth;
+		}
+
+		_setContentSize(data);
+	}
+
+	function _setContentSize(data) {
+		data.containerHeight = data.contentHeight;
+		data.containerWidth  = data.contentWidth;
+
+		data.$content.css({
+			height: data.contentHeight,
+			width:  data.contentWidth
+		});
+	}
+
+	/**
+	 * @method private
+	 * @name _onTouchStart
+	 * @description Handle touch start event
+	 * @param e [object] "Event data"
+	 */
+	function _onTouchStart(e) {
+		_killEvent(e);
+		_clearTimer(data.touchTimer);
+
+		if (!data.isAnimating) {
+			var touch = (typeof e.originalEvent.targetTouches !== "undefined") ? e.originalEvent.targetTouches[0] : null;
+			data.xStart = (touch) ? touch.pageX : e.clientX;
+			data.leftPosition = 0;
+
+			data.touchMax = Infinity;
+			data.touchMin = -Infinity;
+			data.edge = data.contentWidth * 0.25;
+
+			if (data.gallery.index === 0) {
+				data.touchMax = 0;
+			}
+			if (data.gallery.index === data.gallery.total) {
+				data.touchMin = 0;
+			}
+
+			data.$boxer.on("touchmove.boxer", _onTouchMove)
+					   .one("touchend.boxer", _onTouchEnd);
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _onTouchMove
+	 * @description Handles touchmove event
+	 * @param e [object] "Event data"
+	 */
+	function _onTouchMove(e) {
+		var touch = (typeof e.originalEvent.targetTouches !== "undefined") ? e.originalEvent.targetTouches[0] : null;
+
+		data.delta = data.xStart - ((touch) ? touch.pageX : e.clientX);
+
+		// Only prevent event if trying to swipe
+		if (data.delta > 20) {
+			_killEvent(e);
+		}
+
+		data.canSwipe = true;
+
+		var newLeft = -data.delta;
+		if (newLeft < data.touchMin) {
+			newLeft = data.touchMin;
+			data.canSwipe = false;
+		}
+		if (newLeft > data.touchMax) {
+			newLeft = data.touchMax;
+			data.canSwipe = false;
+		}
+
+		data.$image.css({ transform: "translate3D("+newLeft+"px,0,0)" });
+
+		data.touchTimer = _startTimer(data.touchTimer, 300, function() { _onTouchEnd(e); });
+	}
+
+	/**
+	 * @method private
+	 * @name _onTouchEnd
+	 * @description Handles touchend event
+	 * @param e [object] "Event data"
+	 */
+	function _onTouchEnd(e) {
+		_killEvent(e);
+
+		_clearTimer(data.touchTimer);
+
+		data.$boxer.off("touchmove.boxer touchend.boxer");
+
+		if (data.delta) {
+			data.$boxer.addClass("animated");
+			data.swipe = false;
+
+			if (data.canSwipe && (data.delta > data.edge || data.delta < -data.edge)) {
+				data.swipe = true;
+				if (data.delta <= data.leftPosition) {
+					data.$image.css({ transform: "translate3D("+(data.contentWidth)+"px,0,0)" });
+				} else {
+					data.$image.css({ transform: "translate3D("+(-data.contentWidth)+"px,0,0)" });
+				}
+			} else {
+				data.$image.css({ transform: "translate3D(0,0,0)" });
+			}
+
+			if (data.swipe) {
+				data.$arrows.filter( (data.delta <= data.leftPosition) ? ".previous" : ".next" ).trigger("click");
+			}
+			_startTimer(data.resetTimer, data.duration, function() {
+				data.$boxer.removeClass("animated");
+			});
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _naturalSize
+	 * @description Determines natural size of target image
+	 * @param $img [jQuery object] "Source image object"
+	 * @return [object | boolean] "Object containing natural height and width values or false"
+	 */
+	function _naturalSize($img) {
+		var node = $img[0],
+			img = new Image();
+
+		if (typeof node.naturalHeight !== "undefined") {
+			return {
+				naturalHeight: node.naturalHeight,
+				naturalWidth:  node.naturalWidth
+			};
+		} else {
+			if (node.tagName.toLowerCase() === 'img') {
+				img.src = node.src;
+				return {
+					naturalHeight: img.height,
+					naturalWidth:  img.width
+				};
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @method private
+	 * @name _killEvent
+	 * @description Prevents default and stops propagation on event
+	 * @param e [object] "Event data"
+	 */
+	function _killEvent(e) {
+		if (e.preventDefault) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _startTimer
+	 * @description Starts an internal timer
+	 * @param timer [int] "Timer ID"
+	 * @param time [int] "Time until execution"
+	 * @param callback [int] "Function to execute"
+	 */
+	function _startTimer(timer, time, callback) {
+		_clearTimer(timer);
+		return setTimeout(callback, time);
+	}
+
+	/**
+	 * @method private
+	 * @name _clearTimer
+	 * @description Clears an internal timer
+	 * @param timer [int] "Timer ID"
+	 */
+	function _clearTimer(timer) {
+		if (timer) {
+			clearTimeout(timer);
+			timer = null;
+		}
+	}
+
+	$.fn.boxer = function(method) {
+		if (pub[method]) {
+			return pub[method].apply(this, Array.prototype.slice.call(arguments, 1));
+		} else if (typeof method === 'object' || !method) {
+			return _init.apply(this, arguments);
+		}
+		return this;
+	};
+
+	$.boxer = function($target, opts) {
+		if (pub[$target]) {
+			return pub[$target].apply(window, Array.prototype.slice.call(arguments, 1));
+		} else {
+			if ($target instanceof $) {
+				return _build.apply(window, [{ data: $.extend({
+					$object: $target
+				}, options, opts || {}) }]);
+			}
+		}
+	};
+})(jQuery, window);
+
+
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+$(function() {
+  $('.boxer').boxer();
+});
+
+
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+$(function() {
+
+  // Cache exhibit and text selections.
+  var content   = $('div.narrative, div.exhibit');
+  var narrative = $('div.narrative');
+  var exhibit   = $('div.exhibit');
+
+  // Cache the width of the text.
+  var textWidth = narrative.outerWidth();
+
+  var position = function() {
+
+    // Fill horizontal width with exhibit.
+    exhibit.outerWidth($(window).width() - textWidth);
+
+    // Fill vertical height with content.
+    content.outerHeight($(window).height());
+
+    // Refresh OpenLayers.
+    Neatline.execute('MAP:updateSize');
+
+  };
+
+  $(window).resize(position);
+  position();
+
+});
+
+
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+$(function() {
+
+  NProgress.configure({ showSpinner: false });
+  NProgress.start();
+
+  Neatline.vent.on('MAP:ingest', function() {
+    NProgress.done();
+  });
+
+});
+
+
+/* vim: set expandtab navigationtop=2 shiftwidth=2 softnavigationtop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+$(function() {
+
+
+  var narrative   = $('div.narrative');
+  var navigation  = $('ul.nav');
+  var sections    = $('h1.section');
+
+  var navOffset   = navigation.offset().top;
+  var navHeight   = navigation.height();
+
+  var placeholder = null;
+  var isAffixed   = false;
+
+
+  // Listen for scroll.
+  narrative.scroll(function() {
+
+    var scroll = $(this).scrollTop();
+
+    // (1) (Un-)affix the menu:
+    // ------------------------------------------------------------------------
+
+    // When scrolled below the menu.
+    if (!isAffixed && scroll >= navOffset) {
+
+      // Add placeholder to preserve height 
+      placeholder = navigation.clone().insertAfter(navigation);
+      placeholder.css('visibility', 'hidden');
+
+      // Affix the menu.
+      navigation.addClass('affix');
+
+      isAffixed = true;
+
+    }
+
+    // When scrolled above the menu.
+    else if (isAffixed && scroll < navOffset) {
+
+      // De-affix the menu.
+      navigation.removeClass('affix');
+      placeholder.remove();
+
+      isAffixed = false;
+
+    }
+
+    // (2) Set the active tab:
+    // ------------------------------------------------------------------------
+
+    // Get the currently-active section.
+    var section = $(_.last(sections.map(function() {
+      if ($(this).offset().top+scroll < scroll+navHeight+11) return this;
+    })));
+
+    // Get the active tab `href`.
+    var href = '#'+section.attr('id');
+
+    // Clear active tab.
+    navigation.find('li').removeClass('active')
+
+    // Apply the new active tab.
+    navigation.find('li').has('a[href="'+href+'"]').addClass('active');
+
+  });
+
+
+  // Listen for tab clicks.
+  navigation.find('a').click(function(e) {
+
+    e.preventDefault();
+
+    // Smooth animate to the section (10px padding above the headings).
+    var offset = $($(this).attr('href')).offset().top + narrative.scrollTop();
+    narrative.stop().animate({ scrollTop: offset-navHeight-10 });
+
+  });
+
+
+  narrative.scroll(); // Trigget `scroll` on startup to activate first tab.
+
+
+});
