@@ -16,14 +16,14 @@
   'bodyclass' => 'neatline show'
 )); ?>
 
-<!-- Exhibit -->
-<div class="exhibit">
-  <?php echo nl_getExhibitMarkup(); ?>
-</div>
-
 <!-- Narrative -->
 <div id="neatline-narrative" class="narrative">
   <?php echo nl_getExhibitField('narrative'); ?>
+</div>
+
+<!-- Exhibit -->
+<div class="exhibit">
+  <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
 <?php echo foot(); ?>
