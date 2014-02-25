@@ -1,0 +1,55 @@
+
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+@import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
+@import "nprogress/nprogress.css"
+
+$link-color = #06799f
+$text-width = 400px
+
+*
+
+  box-sizing border-box
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+
+  ::selection
+    background $link-color
+    color white
+
+body
+
+  font-size 14px
+  margin 0
+
+  background darken(white, 0.5%)
+  font-family "Roboto Condensed"
+  font-weight 300
+
+  a, a:visited
+
+    color $link-color
+    font-weight 400
+
+div.exhibit
+
+  float right
+
+  #neatline, #neatline-map
+    height 100%
+    width 100%
+
+div.narrative
+
+  float left
+  overflow-y scroll
+  width $text-width
+  padding 1em
