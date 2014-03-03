@@ -17,6 +17,11 @@ $background-color = rgba(0, 111, 156, 0.8)
 $text-color = darken(white, 5%)
 $text-width = 400px
 
+blue-container()
+
+  background-color $background-color
+  color $text-color
+
 *
 
   box-sizing border-box
@@ -59,8 +64,7 @@ div.narrative
   padding 0em 2em
   z-index 1
 
-  background-color $background-color
-  color $text-color
+  blue-container()
 
   h1
     font-family Oswald
@@ -74,10 +78,10 @@ header
 
 div.bubble.static
 
-  background-color $background-color
-  color $text-color
   font-family Oswald
   opacity 1
+
+  blue-container();
 
   &.selected
     opacity 1
@@ -90,3 +94,12 @@ div.bubble.static
 
   .peg
     box-shadow 0 0 10px white, 0 0 5px white
+
+#wms-loader
+
+  position fixed
+  padding 1em
+  right 1em
+  bottom 1em
+
+  blue-container()

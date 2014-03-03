@@ -40,4 +40,6 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
+<div id="wms-loader">Loading tiles...</div>
+
 <?php echo foot(); ?>

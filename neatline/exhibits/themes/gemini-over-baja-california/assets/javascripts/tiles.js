@@ -12,12 +12,13 @@ $(function() {
   Neatline.vent.on('MAP:ingest', function() {
 
     var layers = Neatline.request('MAP:getWmsLayers');
+    var loader = $('#wms-loader');
 
     _.each(layers, function(layer) {
 
       // When loading starts.
       layer.events.register('loadstart', layer, function() {
-        console.log('start');
+        loader.show();
       });
 
       // When loading finishes.
@@ -28,7 +29,7 @@ $(function() {
           return memo || layer.loading;
         }, false);
 
-        if (!loading) console.log('stop');
+        if (!loading) loader.hide();
 
       });
 
