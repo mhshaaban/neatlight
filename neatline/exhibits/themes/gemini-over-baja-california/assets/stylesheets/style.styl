@@ -13,6 +13,8 @@
 @import "nprogress/nprogress.css"
 
 $link-color = #06799f
+$background-color = rgba(26, 117, 154, 0.8)
+$text-color = darken(white, 5%)
 $text-width = 400px
 
 *
@@ -41,8 +43,9 @@ body
 
 div.exhibit
 
-  float right
+  float left
   width 1px // OL needs width on container at startup...
+  z-index 0
 
   #neatline, #neatline-map
     height 100%
@@ -50,7 +53,26 @@ div.exhibit
 
 div.narrative
 
-  float left
+  position absolute
   overflow-y scroll
   width $text-width
-  padding 1em
+  padding 0em 2em
+  z-index 1
+
+  background-color $background-color
+  color $text-color
+
+  h1
+    font-family Oswald
+    font-size 3em
+    font-weight normal
+
+div.bubble.static
+
+  background-color $background-color
+  color $text-color
+  font-family Oswald
+  opacity 1
+
+  &.selected
+    opacity 1

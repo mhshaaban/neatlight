@@ -18,6 +18,7 @@
 
 <!-- Narrative -->
 <div id="neatline-narrative" class="narrative">
+  <h1>Project Gemini over Baja California</h1>
   <?php echo nl_getExhibitField('narrative'); ?>
 </div>
 

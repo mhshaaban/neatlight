@@ -286,21 +286,33 @@
 
 $(function() {
 
-  // Cache exhibit and text selections.
-  var content   = $('div.narrative, div.exhibit');
   var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
+  var zoom      = $('div.olControlPanZoom');
+  var layers    = $('div.olControlLayerSwitcher');
+  var bubble    = $('div.bubble');
 
-  // Cache the width of the text.
+  // Cache the width of the narrative.
   var textWidth = narrative.outerWidth();
 
   var position = function() {
 
-    // Fill horizontal width with exhibit.
-    exhibit.outerWidth($(window).width() - textWidth);
+    var width = $(window).width();
 
-    // Fill vertical height with content.
-    content.outerHeight($(window).height());
+    // Fill width with exhibit.
+    exhibit.outerWidth(width + textWidth);
+
+    // Fill height with content.
+    exhibit.add(narrative).outerHeight($(window).height());
+
+    // Position the zoom controls.
+    zoom.css('left', textWidth + 10);
+
+    // Position the layer switcher.
+    layers.css('left', width);
+
+    // Position the static bubble.
+    bubble.css('left', textWidth + 80);
 
     // Refresh OpenLayers.
     Neatline.execute('MAP:updateSize');
