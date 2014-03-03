@@ -12,8 +12,8 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
 @import "nprogress/nprogress.css"
 
-$link-color = #06799f
-$background-color = rgba(26, 117, 154, 0.8)
+$link-color = #fff4bc
+$background-color = rgba(0, 111, 156, 0.8)
 $text-color = darken(white, 5%)
 $text-width = 400px
 
@@ -66,6 +66,11 @@ div.narrative
     font-family Oswald
     font-size 3em
     font-weight normal
+    margin-top 0.4em
+
+header
+  margin-top 2em
+  font-size 12px
 
 div.bubble.static
 
@@ -76,3 +81,12 @@ div.bubble.static
 
   &.selected
     opacity 1
+
+#nprogress
+
+  .bar
+    background white
+    height 4px
+
+  .peg
+    box-shadow 0 0 10px white, 0 0 5px white
