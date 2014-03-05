@@ -36,11 +36,12 @@
 
 </div>
 
-<!-- Exhibit -->
+<!-- Exhibit. -->
 <div class="exhibit">
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
+<!-- WMS spinner. -->
 <div id="wms-loader">
   <div class="three-quarters"></div>
   <span>Loading imagery...</span>

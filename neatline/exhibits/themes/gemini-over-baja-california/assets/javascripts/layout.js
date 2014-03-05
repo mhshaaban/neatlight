@@ -12,8 +12,6 @@ $(function() {
 
   var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
-  var zoom      = $('div.olControlPanZoom');
-  var layers    = $('div.olControlLayerSwitcher');
   var bubble    = $('div.bubble');
 
   // Cache the width of the narrative.
@@ -28,12 +26,6 @@ $(function() {
 
     // Fill height with content.
     exhibit.add(narrative).outerHeight($(window).height());
-
-    // Position the zoom controls.
-    zoom.css('left', textWidth + 10);
-
-    // Position the layer switcher.
-    layers.css('left', width);
 
     // Position the static bubble.
     bubble.css('left', textWidth + 80);

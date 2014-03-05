@@ -11,6 +11,7 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
 
+@import "bootstrap/dist/css/bootstrap.css"
 @import "css-spinners/css/spinner/three-quarters.css"
 @import "nprogress/nprogress.css"
 
@@ -48,6 +49,11 @@ body
     color $link-color
     font-weight 400
 
+div.container
+
+  padding 0
+  width auto
+
 div.exhibit
 
   float left
@@ -72,7 +78,8 @@ div.narrative
     font-family Oswald
     font-size 3em
     font-weight normal
-    margin-top 0.4em
+    line-height 1.2em
+    margin 0.4em 0
 
 header
   margin-top 2em
@@ -114,3 +121,10 @@ div.bubble.static
     margin-right 0.4em
     width 10px
     height 10px
+
+.olControlLayerSwitcher
+  position fixed !important
+  right 0
+
+.olControlPanZoom
+  display none
