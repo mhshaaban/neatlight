@@ -41,6 +41,9 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
-<div id="wms-loader">Loading imagery...</div>
+<div id="wms-loader">
+  <div class="three-quarters"></div>
+  <span>Loading imagery...</span>
+</div>
 
 <?php echo foot(); ?>
