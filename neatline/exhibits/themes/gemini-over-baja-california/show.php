@@ -22,10 +22,11 @@
   <header>
 
     <!-- Credits. -->
-    <span><a href="<?php echo WEB_ROOT; ?>">&larr; View all</a></span> |
+    <span><a href="<?php echo WEB_ROOT; ?>">&larr; View all</a></span> &bull;
     <span>By <a href="https://twitter.com/clured">@clured</a></span>,
-    <span>with <a href="http://omeka.org/">Omeka</a></span>
-    <span>and <a href="http://neatline.org/">Neatline</a></span>
+    <span>with <a href="http://omeka.org">Omeka</a></span>
+    <span>and <a href="http://neatline.org">Neatline</a></span> &bull;
+    <span><a href="http://dclure.org">dclure.org</a></span>
 
   </header>
 
@@ -40,6 +41,6 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
-<div id="wms-loader">Loading tiles...</div>
+<div id="wms-loader">Loading imagery...</div>
 
 <?php echo foot(); ?>
