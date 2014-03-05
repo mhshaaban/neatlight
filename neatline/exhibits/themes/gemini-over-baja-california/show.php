@@ -47,4 +47,10 @@
   <span>Loading imagery...</span>
 </div>
 
+<!-- Zoom buttons. -->
+<div id="zoom">
+  <div class="btn in">+</div>
+  <div class="btn out">-</div>
+</div>
+
 <?php echo foot(); ?>

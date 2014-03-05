@@ -28,7 +28,7 @@ $(function() {
     exhibit.add(narrative).outerHeight($(window).height());
 
     // Position the static bubble.
-    bubble.css('left', textWidth + 80);
+    //bubble.css('left', textWidth + 80);
 
     // Refresh OpenLayers.
     Neatline.execute('MAP:updateSize');

@@ -10,12 +10,13 @@
 
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
+@import url("http://fonts.googleapis.com/css?family=Gafata")
 
 @import "bootstrap/dist/css/bootstrap.css"
 @import "css-spinners/css/spinner/three-quarters.css"
 @import "nprogress/nprogress.css"
 
-$link-color = #fff4bc
+$link-color = #ffe146
 $background-color = rgba(0, 87, 156, 0.8)
 $text-color = darken(white, 5%)
 $text-width = 400px
@@ -87,6 +88,9 @@ header
 
 div.bubble.static
 
+  position fixed
+  right 20px
+  left auto
   font-family Oswald
   opacity 1
 
@@ -116,15 +120,34 @@ div.bubble.static
 
   .three-quarters
 
-    border 2px solid white
+    border 2px solid $link-color
     border-right-color transparent
     margin-right 0.4em
     width 10px
     height 10px
 
-.olControlLayerSwitcher
-  position fixed !important
-  right 0
+#zoom
 
-.olControlPanZoom
+  position fixed
+  left $text-width + 20
+  top 20px
+
+  .btn
+
+    display block
+    height 40px
+    width 40px
+    margin-bottom 20px
+    line-height 40px
+    padding 0
+
+    blue-container()
+    font-family Consolas
+    font-size 40px
+    text-align center
+
+    &:hover
+      color $link-color
+
+.olControlLayerSwitcher, .olControlPanZoom
   display none
