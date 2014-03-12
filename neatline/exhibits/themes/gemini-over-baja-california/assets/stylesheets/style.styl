@@ -8,158 +8,42 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
+// FONTS
+// ----------------------------------------------------------------------------
+
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
 @import url("http://fonts.googleapis.com/css?family=Gafata")
 
+// VENDOR
+// ----------------------------------------------------------------------------
+
 @import "bootstrap/dist/css/bootstrap.css"
 @import "css-spinners/css/spinner/three-quarters.css"
 @import "nprogress/nprogress.css"
+
+// VARIABLES
+// ----------------------------------------------------------------------------
 
 $link-color = #ffe146
 $background-color = rgba(0, 87, 156, 0.8)
 $text-color = darken(white, 5%)
 $text-width = 400px
 
+// MIXINS
+// ----------------------------------------------------------------------------
+
 blue-container()
 
   background-color $background-color
   color $text-color
 
-*
+// STYLES
+// ----------------------------------------------------------------------------
 
-  box-sizing border-box
-  -webkit-box-sizing border-box
-  -moz-box-sizing border-box
-
-  ::selection
-    background $link-color
-    color white
-
-body
-
-  font-size 14px
-  margin 0
-
-  background darken(white, 0.5%)
-  font-family "Roboto Condensed"
-  font-weight 300
-
-  a, a:visited
-
-    color $link-color
-    font-weight 400
-
-div.container
-
-  padding 0
-  width auto
-
-div.exhibit
-
-  float left
-  width 1px // OL needs width on container at startup...
-  z-index 0
-
-  #neatline, #neatline-map
-    height 100%
-    width 100%
-
-div.narrative
-
-  position absolute
-  overflow-y scroll
-  width $text-width
-  padding 0em 2em
-  z-index 1
-
-  blue-container()
-
-  h1
-    font-family Oswald
-    font-size 3em
-    font-weight normal
-    line-height 1.2em
-    margin 0.4em 0
-
-header
-  margin-top 2em
-  font-size 12px
-
-div.bubble.static
-
-  position fixed
-  right 20px
-  left auto
-  font-family Oswald
-  opacity 1
-
-  blue-container();
-
-  &.selected
-    opacity 1
-
-  a.close
-
-    text-shadow none
-    color $link-color
-    font-size 3em
-    font-weight 200
-    line-height 0
-    opacity 0.9
-
-    &:hover
-      opacity 1
-
-#nprogress
-
-  .bar
-    background white
-    height 4px
-
-  .peg
-    box-shadow 0 0 10px white, 0 0 5px white
-
-#wms-loader
-
-  position fixed
-  padding 1em
-  right 1em
-  bottom 1em
-
-  blue-container()
-  border-radius 3px
-
-  .three-quarters
-
-    border 2px solid $link-color
-    border-right-color transparent
-    margin-right 0.4em
-    width 10px
-    height 10px
-
-#zoom
-
-  position fixed
-  left $text-width + 20
-  top 20px
-
-  .btn
-
-    display block
-    height 40px
-    width 40px
-    margin-bottom 20px
-    line-height 40px
-    padding 0
-
-    blue-container()
-    font-family Consolas
-    font-size 40px
-    text-align center
-
-    &:hover
-      color $link-color
-
-.olControlLayerSwitcher, .olControlPanZoom
-  display none
+@import "layout"
+@import "openlayers"
+@import "nprogress"
+@import "bubble"
+@import "zoom"
+@import "loader"

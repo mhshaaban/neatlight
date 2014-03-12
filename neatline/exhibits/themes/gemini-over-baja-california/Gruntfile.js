@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
+          'bower_components/d3/d3.js',
           'bower_components/nprogress/nprogress.js',
           'assets/javascripts/*.js'
         ],
@@ -38,10 +39,7 @@ module.exports = function(grunt) {
     stylus: {
       dist: {
         files: {
-          'style.css': [
-            'assets/stylesheets/style.styl',
-            'assets/stylesheets/loader.styl'
-          ]
+          'style.css': 'assets/stylesheets/style.styl'
         }
       },
       options: {
