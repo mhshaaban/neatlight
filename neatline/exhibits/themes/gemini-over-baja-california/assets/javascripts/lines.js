@@ -78,7 +78,7 @@ Neatline.module('Lines', function(Lines) {
     events: [
 
       'highlight',
-      'unhighlight',
+      //'unhighlight',
 
       { 'select':   'unhighlight' },
       { 'MAP:move': 'unhighlight' }
