@@ -8,7 +8,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+Neatline.on('start', function() {
   Neatline.vent.on('MAP:ingest', function() {
 
     var layers = Neatline.request('MAP:getWmsLayers');

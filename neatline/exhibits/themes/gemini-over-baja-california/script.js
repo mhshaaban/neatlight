@@ -284,7 +284,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+Neatline.on('start', function() {
 
   var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
@@ -326,7 +326,7 @@ $(function() {
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+Neatline.on('start', function() {
 
   NProgress.configure({ showSpinner: false });
   NProgress.start();
@@ -347,7 +347,7 @@ $(function() {
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+Neatline.on('start', function() {
   Neatline.vent.on('MAP:ingest', function() {
 
     var layers = Neatline.request('MAP:getWmsLayers');
@@ -387,7 +387,7 @@ $(function() {
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-$(function() {
+Neatline.on('start', function() {
 
   var map = Neatline.request('MAP:getMap');
 
