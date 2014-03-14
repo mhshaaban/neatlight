@@ -9641,8 +9641,18 @@ Neatline.module('Lines', function(Lines) {
 
       // Render the line.
       this.line = this.svg.append('svg:line').attr({
-        x1: x1, y1: y1, x2: x2, y2: y2
+        x1: x1, y1: y1, x2: x1, y2: y1
       });
+
+      // Animate the line length.
+      this.line
+        .transition()
+        .attr('x2', x2)
+        .attr('y2', y2)
+        .each('end', _.bind(function() {
+          // Place the dot at the end of the line.
+          this.svg.append('svg:circle').attr({ cx: x2, cy: y2, r: 5 });
+        }, this));
 
     },
 
@@ -9651,7 +9661,7 @@ Neatline.module('Lines', function(Lines) {
      * Hide the line.
      */
     hide: function() {
-      this.svg.selectAll('line').remove();
+      this.svg.selectAll('line, circle').remove();
       this.$el.detach();
     }
 
@@ -9671,7 +9681,7 @@ Neatline.module('Lines', function(Lines) {
     events: [
 
       'highlight',
-      //'unhighlight',
+      'unhighlight',
 
       { 'select':   'unhighlight' },
       { 'MAP:move': 'unhighlight' }
