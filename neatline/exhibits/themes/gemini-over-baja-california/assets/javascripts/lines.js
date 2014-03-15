@@ -110,36 +110,7 @@ Neatline.module('Lines', function(Lines) {
      * @param {Object} args: Event arguments.
      */
     highlight: function(args) {
-
-      if (args.source == 'TEXT') {
-
-        // Get the vector layer and map focus.
-        var layer = Neatline.request('MAP:getVectorLayer', args.model);
-        var focus = args.model.get('map_focus');
-
-        // Break if no geometry or focus.
-        if (layer.features.length == 0 && !focus) return;
-
-        // Get the lon/lat of the map target.
-        if (focus) var lonlat = new OpenLayers.LonLat(focus.split(','));
-        else var lonlat = layer.getDataExtent().getCenterLonLat();
-
-        // Get the viewport pixel of the target.
-        var center = layer.getViewPortPxFromLonLat(lonlat);
-
-        // Get the span position.
-        var span = $(args.event.target);
-        var offset = span.offset();
-
-        // Compute the top left corner.
-        var x = offset.left + span.outerWidth() + 5;
-        var y = offset.top + 5;
-
-        // Render the line.
-        this.view.show(x, y, center.x, center.y);
-
-      }
-
+      // TODO
     },
 
 
