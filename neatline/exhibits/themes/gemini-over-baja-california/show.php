@@ -31,7 +31,7 @@
   </header>
 
   <!-- Content. -->
-  <h1>Project Gemini over Baja California</h1>
+  <h1>Project Gemini over Baja California Sur</h1>
   <?php echo nl_getExhibitField('narrative'); ?>
 
 </div>
