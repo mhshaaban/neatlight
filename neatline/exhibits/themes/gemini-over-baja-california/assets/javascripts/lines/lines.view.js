@@ -38,6 +38,9 @@ Neatline.module('Lines', function(Lines) {
       var h = $(window).height();
       var w = $(window).width();
 
+      // Clear the SVG container.
+      this.svg.selectAll('line, circle').remove();
+
       // Inject/fit the containers.
       this.$el.appendTo($('body')).css({ width: w, height: h });
       this.svg.attr('width', w).attr('height', h);
@@ -61,10 +64,9 @@ Neatline.module('Lines', function(Lines) {
 
 
     /**
-     * Hide the line.
+     * Hide the container.
      */
     hide: function() {
-      this.svg.selectAll('line, circle').remove();
       this.$el.detach();
     }
 
