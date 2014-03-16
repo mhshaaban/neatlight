@@ -11,10 +11,6 @@
 Neatline.module('Lines', function(Lines) {
 
 
-  // VIEW
-  // --------------------------------------------------------------------------
-
-
   Lines.View = Backbone.View.extend({
 
 
@@ -73,66 +69,6 @@ Neatline.module('Lines', function(Lines) {
     }
 
 
-  });
-
-
-  // CONTROLLER
-  // --------------------------------------------------------------------------
-
-
-  Lines.Controller = Neatline.Shared.Controller.extend({
-
-
-    slug: 'WORDLINES',
-
-    events: [
-
-      'highlight',
-      'unhighlight',
-
-      { 'select':   'unhighlight' },
-      { 'MAP:move': 'unhighlight' }
-
-    ],
-
-
-    /**
-     * Create the view.
-     */
-    init: function() {
-      this.view = new Neatline.Lines.View();
-    },
-
-
-    /**
-     * Render line on `highlight`.
-     *
-     * @param {Object} args: Event arguments.
-     */
-    highlight: function(args) {
-      // TODO
-    },
-
-
-    /**
-     * Render line on `highlight`.
-     *
-     * @param {Object} args: Event arguments.
-     */
-    unhighlight: function(args) {
-      this.view.hide();
-    }
-
-
-  });
-
-
-  // INITIALIZER
-  // --------------------------------------------------------------------------
-
-
-  Lines.addInitializer(function() {
-    Lines.__controller = new Neatline.Lines.Controller();
   });
 
 

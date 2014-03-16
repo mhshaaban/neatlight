@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         src: [
           'bower_components/d3/d3.js',
           'bower_components/nprogress/nprogress.js',
-          'assets/javascripts/*.js'
+          'assets/javascripts/**/*.js'
         ],
         dest: 'script.js'
       }
