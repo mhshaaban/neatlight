@@ -31,8 +31,9 @@ module.exports = function(grunt) {
 
     uglify: {
       dist: {
-        src: '<%= concat.dist.src %>',
-        dest: '<%= concat.dist.dest %>'
+        files: {
+          'script.js': 'script.js'
+        }
       }
     },
 
@@ -65,8 +66,8 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('compile', ['stylus', 'cssmin', 'concat']);
-  grunt.registerTask('compile:min', ['concat', 'uglify']);
+  grunt.registerTask('compile', ['stylus', 'concat']);
+  grunt.registerTask('compile:min', ['compile', 'cssmin', 'uglify']);
   grunt.registerTask('default', 'compile:min');
 
 };
