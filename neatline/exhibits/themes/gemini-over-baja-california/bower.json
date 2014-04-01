@@ -1,5 +1,5 @@
 {
-    "name": "gettysburg-address"
+    "name": "gemini-over-baja-california"
   , "version": "0.0.1"
   , "dependencies": {
       "nprogress":    ">= 0.1.2"
