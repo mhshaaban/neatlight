@@ -1,5 +1,5 @@
 
-/* vim: set expandtab navigationtop=2 shiftwidth=2 softnavigationtop=2 cc=80; */
+/* vim: set expandtab navigationtop=2 shiftwidth=2 softnavigationtop=2 cc=80: */
 
 /**
  * @package     omeka

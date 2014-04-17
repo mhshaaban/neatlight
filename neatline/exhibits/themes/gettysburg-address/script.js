@@ -3469,7 +3469,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
 })(jQuery, window);
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -3483,7 +3483,7 @@ $(function() {
 });
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -3521,7 +3521,7 @@ $(function() {
 });
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -3542,7 +3542,7 @@ $(function() {
 });
 
 
-/* vim: set expandtab navigationtop=2 shiftwidth=2 softnavigationtop=2 cc=80; */
+/* vim: set expandtab navigationtop=2 shiftwidth=2 softnavigationtop=2 cc=80: */
 
 /**
  * @package     omeka
