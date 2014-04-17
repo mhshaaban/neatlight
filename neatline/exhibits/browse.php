@@ -11,8 +11,11 @@
 
 ?>
 
-<?php queue_css_file('payloads/style'); ?>
-<?php echo head(array('bodyclass' => 'neatline browse')); ?>
+<?php queue_css_file('style'); ?>
+
+<?php echo head(array(
+  'bodyclass' => 'neatline browse'
+)); ?>
 
 <!-- Site Title -->
 <p class="title"><?php echo get_option('site_title'); ?></p>
