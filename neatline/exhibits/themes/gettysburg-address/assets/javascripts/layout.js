@@ -10,8 +10,6 @@
 
 $(function() {
 
-  // Cache exhibit and text selections.
-  var content   = $('div.narrative, div.exhibit');
   var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
 
@@ -24,7 +22,7 @@ $(function() {
     exhibit.outerWidth($(window).width() - textWidth);
 
     // Fill vertical height with content.
-    content.outerHeight($(window).height());
+    exhibit.add(narrative).outerHeight($(window).height());
 
     // Refresh OpenLayers.
     Neatline.execute('MAP:updateSize');

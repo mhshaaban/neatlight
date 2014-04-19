@@ -10,8 +10,8 @@
 
 Neatline.on('start', function() {
 
-  var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
+  var narrative = $('div.narrative');
   var bubble    = $('div.bubble');
 
   // Cache the width of the narrative.
@@ -19,10 +19,8 @@ Neatline.on('start', function() {
 
   var position = function() {
 
-    var width = $(window).width();
-
     // Fill width with exhibit.
-    exhibit.outerWidth(width + textWidth);
+    exhibit.outerWidth($(window).width() + textWidth);
 
     // Fill height with content.
     exhibit.add(narrative).outerHeight($(window).height());

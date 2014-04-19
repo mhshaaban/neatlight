@@ -77,7 +77,7 @@ module.exports = function(grunt) {
     watch: {
       dist: {
         files: 'assets/**/*',
-        tasks: 'compile'
+        tasks: 'compile:min'
       }
     }
 
