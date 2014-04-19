@@ -36,11 +36,12 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
+          'bower_components/d3/d3.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/nprogress/nprogress.js',
           'bower_components/scrollspy/jquery-scrollspy.js',
           'bower_components/Boxer/jquery.fs.boxer.js',
-          'assets/javascripts/*.js'
+          'assets/javascripts/**/*.js'
         ],
         dest: 'script.js'
       }
