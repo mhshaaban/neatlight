@@ -59,9 +59,10 @@ Neatline.module('Lines', function(Lines) {
 
         // Get the span position.
         var span = Neatline.request('TEXT:getSpansByModel', args.model);
-        var offset = span.offset();
+        if (span.length == 0) return;
 
         // Compute the span center.
+        var offset = span.offset();
         var x = offset.left + span.width() / 2;
         var y = offset.top + span.height() / 2;
 
