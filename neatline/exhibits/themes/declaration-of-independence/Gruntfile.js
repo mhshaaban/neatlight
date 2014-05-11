@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     stylus: {
       dist: {
         files: {
-          'style.css': 'style.styl'
+          'style.css': 'assets/stylesheets/style.styl'
         }
       },
       options: {
