@@ -30,7 +30,7 @@
           $e, 'show', nl_getExhibitField('title'),
           array('class' => 'neatline'), true
         );?>
-      </span>
+      </span> &bull;
 
       <span class="date">
         <?php echo date('F d Y', strtotime($e->added)); ?>
