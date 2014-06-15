@@ -52,6 +52,9 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        livereload: true
+      },
       dist: {
         files: 'assets/**/*',
         tasks: 'compile:min'

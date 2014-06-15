@@ -12,35 +12,53 @@ div.narrative
   overflow-y scroll
   padding 2em 3em
   width $text-width
+  left 40px
   z-index 1
 
   overlay-container()
-
-  h2, h3
-    text-align center
-
-  .title
-    font-size 36px
-
-  .subtitle
-    font-size 20px
-
-    span
-      display block
-      margin-bottom 8px
-      font-size 16px
-
-      &.big
-        font-size 34px
-
-  .divider
-    text-align center
 
   p, li
     font-size 18px
 
   ul
     padding-left 2em
+
+  hr
+    border-top 1px solid lighten(black, 80%)
+
+  [data-neatline-slug]
+    padding 2px 0
+    background transparent
+    cursor pointer
+
+    &.highlighted
+      background darken(white, 10%)
+
+    &.selected
+      background darken(white, 15%)
+      color $text-color
+
+  .text // The declaration.
+
+    h2, h3
+      text-align center
+
+    .title
+      font-size 36px
+
+    .subtitle
+      font-size 20px
+
+      span
+        display block
+        margin-bottom 8px
+        font-size 16px
+
+        &.big
+          font-size 34px
+
+    .divider
+      text-align center
 
     li
       margin-bottom 0.5em
