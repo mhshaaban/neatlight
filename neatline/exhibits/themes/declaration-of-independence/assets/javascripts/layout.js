@@ -8,12 +8,20 @@
 
 Neatline.on('start', function() {
 
-  var exhibit = $('div.exhibit');
+  var narrative = $('div.narrative');
+  var exhibit   = $('div.exhibit');
 
   var position = function() {
+
+    // Set exhibit width.
     exhibit.outerWidth($(window).width());
-    exhibit.outerHeight($(window).height());
+
+    // Set exhibit and narrative height.
+    exhibit.add(narrative).outerHeight($(window).height());
+
+    // Rerender the map.
     Neatline.execute('MAP:updateSize');
+
   };
 
   $(window).resize(position);

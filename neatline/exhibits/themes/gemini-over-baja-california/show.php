@@ -14,7 +14,7 @@
   'bodyclass' => 'neatline show'
 )); ?>
 
-<!-- Narrative -->
+<!-- Narrative. -->
 <div id="neatline-narrative" class="narrative">
 
   <header>
