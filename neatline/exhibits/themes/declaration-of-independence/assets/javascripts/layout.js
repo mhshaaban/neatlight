@@ -8,18 +8,21 @@
 
 Neatline.on('start', function() {
 
-  var narrative = $('div.narrative');
   var exhibit   = $('div.exhibit');
+  var narrative = $('div.narrative');
+
+  // Cache the width of the narrative.
+  var textWidth = narrative.outerWidth() + narrative.offset().left;
 
   var position = function() {
 
-    // Set exhibit width.
-    exhibit.outerWidth($(window).width());
+    // Fill width with exhibit.
+    exhibit.outerWidth($(window).width() + textWidth);
 
-    // Set exhibit and narrative height.
+    // Fill height with content.
     exhibit.add(narrative).outerHeight($(window).height());
 
-    // Rerender the map.
+    // Refresh OpenLayers.
     Neatline.execute('MAP:updateSize');
 
   };
