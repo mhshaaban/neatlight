@@ -1,0 +1,12 @@
+
+compile:
+  - stylus
+  - concat
+
+compile:min:
+  - compile
+  - cssmin
+  - uglify
+
+default:
+  - compile:min
