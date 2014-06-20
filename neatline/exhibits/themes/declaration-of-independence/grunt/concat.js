@@ -10,6 +10,7 @@ module.exports = {
 
   dist: {
     src: [
+      'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/d3/d3.js',
       'bower_components/nprogress/nprogress.js',
       'assets/javascripts/**/*.js'

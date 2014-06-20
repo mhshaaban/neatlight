@@ -13,7 +13,7 @@ module.exports = {
   },
 
   dist: {
-    files: 'assets/**/*',
+    files: ['assets/**/*', '*.php'],
     tasks: 'compile:min'
   }
 

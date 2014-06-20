@@ -1,5 +1,5 @@
 
-<!-- vim: set linebreak wrap nolist: -->
+<!-- vim: set linebreak wrap nolist tabstop=2 shiftwidth=2 softtabstop=2: -->
 
 <div class="declaration">
 
@@ -89,16 +89,41 @@
 
 <hr />
 
-<div class="signers">
+<div id="signers" class="signers">
 
   <h2>Column 1</h2>
 
   <h3>Georgia</h3>
 
   <ul>
-    <li><span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span></li>
-    <li><span data-neatline-slug="lyman-hall-signature">Lyman Hall</span></li>
-    <li><span data-neatline-slug="george-walton-signature">George Walton</span></li>
+
+    <li>
+      <span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span>
+      <ul class="links">
+        <li><a data-neatline-slug="st-catherines-island" class="btn btn-xs line">Map</a></li>
+        <li><a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">Painting</a></li>
+        <li><a class="btn btn-xs line">Bio</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <span data-neatline-slug="lyman-hall-signature">Lyman Hall</span>
+      <ul class="links">
+        <li><a data-neatline-slug="sunbury" class="btn btn-xs line">Map</a></li>
+        <li><a class="btn btn-xs line">Painting</a></li>
+        <li><a class="btn btn-xs line">Bio</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <span data-neatline-slug="george-walton-signature">George Walton</span>
+      <ul class="links">
+        <li><a data-neatline-slug="savannah" class="btn btn-xs line">Map</a></li>
+        <li><a data-neatline-slug="george-walton-face" class="btn btn-xs line">Painting</a></li>
+        <li><a class="btn btn-xs line">Bio</a></li>
+      </ul>
+    </li>
+
   </ul>
 
   <h2>Column 2</h2>
