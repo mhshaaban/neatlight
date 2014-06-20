@@ -16,7 +16,7 @@
 
 <!-- Transcription. -->
 <div id="neatline-narrative" class="narrative">
-  <?php echo nl_getExhibitField('narrative'); ?>
+  <?php include('declaration.php'); ?>
 </div>
 
 <!-- Exhibit. -->
