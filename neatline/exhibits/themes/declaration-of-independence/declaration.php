@@ -96,70 +96,9 @@
   <h3>Georgia</h3>
 
   <ul>
-
-    <li>
-      <span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span>
-      <ul class="links">
-        <li>
-          <a data-neatline-slug="st-catherines-island" class="btn btn-xs line">
-            <i class="fa fa-map-marker"></i> Map
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
-            <i class="fa fa-picture-o"></i> Painting
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-xs line">
-            <i class="fa fa-user"></i> Bio
-          </a>
-        </li>
-      </ul>
-    </li>
-
-    <li>
-      <span data-neatline-slug="lyman-hall-signature">Lyman Hall</span>
-      <ul class="links">
-        <li>
-          <a data-neatline-slug="sunbury" class="btn btn-xs line">
-            <i class="fa fa-map-marker"></i> Map
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
-            <i class="fa fa-picture-o"></i> Painting
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-xs line">
-            <i class="fa fa-user"></i> Bio
-          </a>
-        </li>
-      </ul>
-    </li>
-
-    <li>
-      <span data-neatline-slug="george-walton-signature">George Walton</span>
-      <ul class="links">
-        <li>
-          <a data-neatline-slug="savannah" class="btn btn-xs line">
-            <i class="fa fa-map-marker"></i> Map
-          </a>
-        </li>
-        <li>
-          <a data-neatline-slug="george-walton-face" class="btn btn-xs line">
-            <i class="fa fa-picture-o"></i> Painting
-          </a>
-        </li>
-        <li>
-          <a class="btn btn-xs line">
-            <i class="fa fa-user"></i> Bio
-          </a>
-        </li>
-      </ul>
-    </li>
-
+    <li><span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span></li>
+    <li><span data-neatline-slug="lyman-hall-signature">Lyman Hall</span></li>
+    <li><span data-neatline-slug="george-walton-signature">George Walton</span></li>
   </ul>
 
   <h2>Column 2</h2>
