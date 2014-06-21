@@ -40,13 +40,19 @@ Neatline.module('Lines', function(Lines) {
      */
     highlight: function(args) {
 
-      if (_.contains(['MAP', 'TEXT'], args.source)) {
+      if (args.source == 'TEXT') {
 
-        // Get the model's vector layer.
+        // Get the model's vector layer and focus coordinate.
         var layer = Neatline.request('MAP:getVectorLayer', args.model);
+        var focus = args.model.get('map_focus');
 
-        // Get the centroid from the vector layer.
-        if (layer.features.length !== 0) {
+        // If a focus is defined, use it as the line endpoint.
+        if (focus) {
+          var lonlat = new OpenLayers.LonLat(focus.split(','));
+        }
+
+        // Otherwise, use the centroid from the vector layer.
+        else if (layer.features.length !== 0) {
           var lonlat = layer.getDataExtent().getCenterLonLat();
         }
 
@@ -56,13 +62,12 @@ Neatline.module('Lines', function(Lines) {
         var center = layer.getViewPortPxFromLonLat(lonlat);
 
         // Get the span position.
-        var span = Neatline.request('TEXT:getSpansByModel', args.model);
-        if (span.length == 0) return;
-
-        // Compute the span center.
+        var span = $(args.event.target);
         var offset = span.offset();
-        var x = offset.left + span.width() / 2;
-        var y = offset.top + span.height() / 2;
+
+        // Compute the top left corner.
+        var x = offset.left + span.outerWidth() + 5;
+        var y = offset.top + 5;
 
         // Render the line.
         this.view.show(x, y, center.x, center.y);
