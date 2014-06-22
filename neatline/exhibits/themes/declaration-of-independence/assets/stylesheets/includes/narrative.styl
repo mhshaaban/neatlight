@@ -29,29 +29,31 @@ div.narrative
     background transparent
     cursor pointer
 
-    &.highlighted, &:hover
+    &.highlighted
       background darken(white, 15%)
 
     &.selected
-      background lighten(black, 35%)
+      background lighten(black, 40%)
       color darken(white, 5%)
 
-  // TEXT
   .declaration
 
     h2, h3
       text-align center
+      margin 0
 
-    .title
+    h2.title
       font-size 36px
+      padding 10px 0
 
-    .subtitle
+    h3.subtitle
       font-size 20px
 
       span
         display block
-        margin-bottom 8px
         font-size 16px
+        margin 0
+        padding 10px 0
 
         &.big
           font-size 34px
@@ -65,12 +67,7 @@ div.narrative
     li
       margin-bottom 0.5em
 
-  // SIGNATURES
   .signers
-
-    [data-neatline-slug]
-      border-radius 2px
-      padding 2px
 
     ul.state
 
