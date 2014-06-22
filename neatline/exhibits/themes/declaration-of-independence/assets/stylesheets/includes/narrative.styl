@@ -24,23 +24,9 @@ div.narrative
     border-top 1px solid lighten(black, 80%)
 
   [data-neatline-slug]
-    padding 2px 0
-    background transparent
-    cursor pointer
+    clickable()
 
-    &.highlighted
-      background darken(white, 20%)
-
-    &.selected
-      background lighten(black, 35%)
-      color darken(white, 5%)
-
-      &.confederate
-        background $confederate
-
-      &.union
-        background $union
-
+  // TEXT
   .declaration
 
     h2, h3
@@ -63,36 +49,58 @@ div.narrative
     ul
       padding-left 2em
 
-    .divider
+    p.divider
       text-align center
 
     li
       margin-bottom 0.5em
 
+  // SIGNATURES
   .signers
+
+    [data-neatline-slug], button
+      clickable()
+      border-radius 2px
+      padding 2px
 
     ul.state
 
       li
         margin 10px 0
 
-    ul.links
-      padding 0
+      ul.links
+        padding 0
 
-      li
-        display inline
+        li
+          display inline
 
-        &:not(:last-child):after
-          content " •"
+          &:not(:last-child):after
+            content " •"
+            font-size 14px
 
-        a.line
-          font-size 12px
-          color $link-color
-          padding 1px
-          cursor pointer
+          button
+            font-size 13px
 
-          &:hover
-            background darken(white, 15%)
+            &:focus
+              outline none
 
-          i
-            font-size 10px
+            i
+              font-size 12px
+
+      &.confederate
+
+        button
+          color $confederate
+
+        [data-neatline-slug].selected
+          color darken(white, 5%)
+          background $confederate
+
+      &.union
+
+        button
+          color $union
+
+        [data-neatline-slug].selected
+          color darken(white, 5%)
+          background $union

@@ -7,5 +7,5 @@
  */
 
 Neatline.on('start', function() {
-  $('ul.links a').tooltip();
+  $('ul.links button').tooltip();
 });

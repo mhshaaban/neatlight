@@ -11,3 +11,16 @@ overlay-container()
   font-family $body-font
   background-color $bg-color
   color $text-color
+
+clickable()
+
+  padding 2px 0
+  background transparent
+  cursor pointer
+
+  &.highlighted, &:hover
+    background darken(white, 15%)
+
+  &.selected
+    background lighten(black, 35%)
+    color darken(white, 5%)

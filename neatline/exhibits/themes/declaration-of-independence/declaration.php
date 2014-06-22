@@ -89,73 +89,73 @@
 
 <hr />
 
-<div id="signers" class="signers">
+<div class="signers">
 
   <h2>Column 1</h2>
 
   <h3>Georgia</h3>
 
-  <ul class="state">
+  <ul class="state confederate">
 
     <li>
-      <span data-neatline-slug="button-gwinnett-signature" class="confederate">Button Gwinnett</span>
+      <span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span>
       <ul class="links">
         <li>
-          <a data-neatline-slug="st-catherines-island" class="btn btn-xs line">
+          <button data-neatline-slug="st-catherines-island" class="btn btn-link line">
             <i class="fa fa-map-marker"></i> Map
-          </a>
+          </button>
         </li>
         <li>
-          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
+          <button class="line btn btn-link" data-toggle="tooltip" title="Not pictured!">
             <i class="fa fa-picture-o"></i> Painting
-          </a>
+          </button>
         </li>
         <li>
-          <a class="btn btn-xs line">
+          <button class="btn btn-link line">
             <i class="fa fa-user"></i> Bio
-          </a>
+          </button>
         </li>
       </ul>
     </li>
 
     <li>
-      <span data-neatline-slug="lyman-hall-signature" class="confederate">Lyman Hall</span>
+      <span data-neatline-slug="lyman-hall-signature">Lyman Hall</span>
       <ul class="links">
         <li>
-          <a data-neatline-slug="sunbury" class="btn btn-xs line">
+          <button data-neatline-slug="sunbury" class="btn btn-link line">
             <i class="fa fa-map-marker"></i> Map
-          </a>
+          </button>
         </li>
         <li>
-          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
+          <button class="btn btn-link line" data-toggle="tooltip" title="Not pictured!">
             <i class="fa fa-picture-o"></i> Painting
-          </a>
+          </button>
         </li>
         <li>
-          <a class="btn btn-xs line">
+          <button class="btn btn-link line">
             <i class="fa fa-user"></i> Bio
-          </a>
+          </button>
         </li>
       </ul>
     </li>
 
     <li>
-      <span data-neatline-slug="george-walton-signature" class="confederate">George Walton</span>
+      <span data-neatline-slug="george-walton-signature">George Walton</span>
       <ul class="links">
         <li>
-          <a data-neatline-slug="savannah" class="btn btn-xs line">
+          <button data-neatline-slug="savannah" class="btn btn-link line">
             <i class="fa fa-map-marker"></i> Map
-          </a>
+          </button>
         </li>
         <li>
-          <a data-neatline-slug="george-walton-face" class="btn btn-xs line">
+          <button data-neatline-slug="george-walton-face" class="btn btn-link line">
             <i class="fa fa-picture-o"></i> Painting
-          </a>
+          </button>
         </li>
         <li>
-          <a class="btn btn-xs line">
+          <button class="btn btn-link line">
             <i class="fa fa-user"></i> Bio
-          </a>
+          </button>
         </li>
       </ul>
     </li>
