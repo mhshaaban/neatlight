@@ -95,17 +95,78 @@
 
   <h3>Georgia</h3>
 
-  <ul>
-    <li><span data-neatline-slug="button-gwinnett-signature" class="confederate">Button Gwinnett</span></li>
-    <li><span data-neatline-slug="lyman-hall-signature" class="confederate">Lyman Hall</span></li>
-    <li><span data-neatline-slug="george-walton-signature" class="confederate">George Walton</span></li>
+  <ul class="state">
+
+    <li>
+      <span data-neatline-slug="button-gwinnett-signature" class="confederate">Button Gwinnett</span>
+      <ul class="links">
+        <li>
+          <a data-neatline-slug="st-catherines-island" class="btn btn-xs line">
+            <i class="fa fa-map-marker"></i> Map
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
+            <i class="fa fa-picture-o"></i> Painting
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-xs line">
+            <i class="fa fa-user"></i> Bio
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <span data-neatline-slug="lyman-hall-signature" class="confederate">Lyman Hall</span>
+      <ul class="links">
+        <li>
+          <a data-neatline-slug="sunbury" class="btn btn-xs line">
+            <i class="fa fa-map-marker"></i> Map
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-xs line" data-toggle="tooltip" title="Not pictured!">
+            <i class="fa fa-picture-o"></i> Painting
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-xs line">
+            <i class="fa fa-user"></i> Bio
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <span data-neatline-slug="george-walton-signature" class="confederate">George Walton</span>
+      <ul class="links">
+        <li>
+          <a data-neatline-slug="savannah" class="btn btn-xs line">
+            <i class="fa fa-map-marker"></i> Map
+          </a>
+        </li>
+        <li>
+          <a data-neatline-slug="george-walton-face" class="btn btn-xs line">
+            <i class="fa fa-picture-o"></i> Painting
+          </a>
+        </li>
+        <li>
+          <a class="btn btn-xs line">
+            <i class="fa fa-user"></i> Bio
+          </a>
+        </li>
+      </ul>
+    </li>
+
   </ul>
 
   <h2>Column 2</h2>
 
   <h3>North Carolina</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="william-hooper-signature" class="confederate">William Hooper</span></li>
     <li><span data-neatline-slug="joseph-hewes-signature" class="confederate">Joseph Hewes</span></li>
     <li><span data-neatline-slug="john-penn-signature" class="confederate">John Penn</span></li>
@@ -113,7 +174,7 @@
 
   <h3>South Carolina</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="edward-rutledge-signature" class="confederate">Edward Rutledge</span></li>
     <li><span data-neatline-slug="thomas-heyward-signature" class="confederate">Thomas Heyward, Jr.</span></li>
     <li><span data-neatline-slug="thomas-lynch-signature" class="confederate">Thomas Lynch, Jr.</span></li>
@@ -124,13 +185,13 @@
 
   <h3>Massachusetts</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="john-hancock-signature" class="union">John Hancock</span></li>
   </ul>
 
   <h3>Maryland:</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="samuel-chase-signature" class="union">Samuel Chase</span></li>
     <li><span data-neatline-slug="william-paca-signature" class="union">William Paca</span></li>
     <li><span data-neatline-slug="thomas-stone-signature" class="union">Thomas Stone</span></li>
@@ -139,7 +200,7 @@
 
   <h3>Virginia</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="george-wythe-signature" class="confederate">George Wythe</span></li>
     <li><span data-neatline-slug="richard-henry-lee-signature" class="confederate">Richard Henry Lee</span></li>
     <li><span data-neatline-slug="thomas-jefferson-signature" class="confederate">Thomas Jefferson</span></li>
@@ -153,7 +214,7 @@
 
   <h3>Pennsylvania</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="robert-morris-signature" class="union">Robert Morris</span></li>
     <li><span data-neatline-slug="benjamin-rush-signature" class="union">Benjamin Rush</span></li>
     <li><span data-neatline-slug="benjamin-franklin-signature" class="union">Benjamin Franklin</span></li>
@@ -167,7 +228,7 @@
 
   <h3>Delaware</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="caesar-rodney-signature" class="union">Caesar Rodney</span></li>
     <li><span data-neatline-slug="george-read-signature" class="union">George Read</span></li>
     <li><span data-neatline-slug="thomas-mckean-signature" class="union">Thomas McKean</span></li>
@@ -177,7 +238,7 @@
 
   <h3>New York</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="william-floyd-signature" class="union">William Floyd</span></li>
     <li><span data-neatline-slug="philip-livingston-signature" class="union">Philip Livingston</span></li>
     <li><span data-neatline-slug="francis-lewis-signature" class="union">Francis Lewis</span></li>
@@ -186,7 +247,7 @@
 
   <h3>New Jersey</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="richard-stockton-signature" class="union">Richard Stockton</span></li>
     <li><span data-neatline-slug="john-witherspoon-signature" class="union">John Witherspoon</span></li>
     <li><span data-neatline-slug="francis-hopkinson-signature" class="union">Francis Hopkinson</span></li>
@@ -198,14 +259,14 @@
 
   <h3>New Hampshire</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="josiah-bartlett-signature" class="union">Josiah Bartlett</span></li>
     <li><span data-neatline-slug="william-whipple-signature" class="union">William Whipple</span></li>
   </ul>
 
   <h3>Massachusetts</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="samuel-adams-signature" class="union">Samuel Adams</span></li>
     <li><span data-neatline-slug="john-adams-signature" class="union">John Adams</span></li>
     <li><span data-neatline-slug="robert-treat-paine-signature" class="union">Robert Treat Paine</span></li>
@@ -214,14 +275,14 @@
 
   <h3>Rhode Island</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="stephen-hopkins-signature" class="union">Stephen Hopkins</span></li>
     <li><span data-neatline-slug="william-ellery-signature" class="union">William Ellery</span></li>
   </ul>
 
   <h3>Connecticut</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="roger-sherman-signature" class="union">Roger Sherman</span></li>
     <li><span data-neatline-slug="samuel-huntington-signature" class="union">Samuel Huntington</span></li>
     <li><span data-neatline-slug="william-williams-signature" class="union">William Williams</span></li>
@@ -230,7 +291,7 @@
 
   <h3>New Hampshire</h3>
 
-  <ul>
+  <ul class="state">
     <li><span data-neatline-slug="matthew-thornton-signature" class="union">Matthew Thornton</span></li>
   </ul>
 
