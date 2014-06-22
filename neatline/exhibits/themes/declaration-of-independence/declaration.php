@@ -91,8 +91,6 @@
 
 <div class="signers">
 
-  <h2>Column 1</h2>
-
   <h3>Georgia</h3>
 
   <ul class="state confederate">
@@ -100,8 +98,6 @@
     <li><span data-neatline-slug="lyman-hall-signature">Lyman Hall</span></li>
     <li><span data-neatline-slug="george-walton-signature">George Walton</span></li>
   </ul>
-
-  <h2>Column 2</h2>
 
   <h3>North Carolina</h3>
 
@@ -119,8 +115,6 @@
     <li><span data-neatline-slug="thomas-lynch-signature">Thomas Lynch, Jr.</span></li>
     <li><span data-neatline-slug="arthur-middleton-signature">Arthur Middleton</span></li>
   </ul>
-
-  <h2>Column 3</h2>
 
   <h3>Massachusetts</h3>
 
@@ -149,8 +143,6 @@
     <li><span data-neatline-slug="carter-braxton-signature">Carter Braxton</span></li>
   </ul>
 
-  <h2>Column 4</h2>
-
   <h3>Pennsylvania</h3>
 
   <ul class="state union">
@@ -173,8 +165,6 @@
     <li><span data-neatline-slug="thomas-mckean-signature">Thomas McKean</span></li>
   </ul>
 
-  <h2>Column 5</h2>
-
   <h3>New York</h3>
 
   <ul class="state union">
@@ -193,8 +183,6 @@
     <li><span data-neatline-slug="john-hart-signature">John Hart</span></li>
     <li><span data-neatline-slug="abraham-clark-signature">Abraham Clark</span></li>
   </ul>
-
-  <h2>Column 6</h2>
 
   <h3>New Hampshire</h3>
 
