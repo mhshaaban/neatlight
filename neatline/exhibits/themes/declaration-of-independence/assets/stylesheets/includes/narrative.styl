@@ -32,8 +32,14 @@ div.narrative
       background darken(white, 20%)
 
     &.selected
-      background darken(white, 30%)
-      color $text-color
+      background lighten(black, 30%)
+      color darken(white, 5%)
+
+      &.confederate
+        background $confederate
+
+      &.union
+        background $union
 
   .declaration
 
