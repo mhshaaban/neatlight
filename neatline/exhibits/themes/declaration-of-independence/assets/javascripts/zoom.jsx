@@ -18,9 +18,9 @@ Neatline.module('Zoom', function(Lines) {
      */
     render: function() {
       return (
-        <div className="zoom">
-          <span onClick={this.zoomIn}>+</span>
-          <span onClick={this.zoomOut}>-</span>
+        <div className="buttons">
+          <div className="btn in" onClick={this.zoomIn}>+</div>
+          <div className="btn out" onClick={this.zoomOut}>-</div>
         </div>
       );
     },

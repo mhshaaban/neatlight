@@ -11,3 +11,28 @@
   position fixed
   left $text-gutter + $text-width + 20px
   top 20px
+
+  .btn
+
+    display block
+    height 40px
+    width 40px
+    margin-bottom 20px
+    line-height 35px
+    border-radius 1px
+    padding 0
+
+    overlay-container()
+    font-family Georgia
+    font-size 35px
+    text-align center
+
+    &:hover
+      border 1px solid white
+      color white
+
+      &.in
+        background $confederate
+
+      &.out
+        background $union
