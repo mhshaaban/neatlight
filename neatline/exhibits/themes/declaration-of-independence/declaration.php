@@ -3,13 +3,10 @@
 
 <div class="declaration">
 
-  <h2 data-neatline-slug="in-congress" class="title">IN CONGRESS, July 4, 1776.</h2>
-
-  <h3 class="subtitle">
-    <span data-neatline-slug="unanimous-declaration" class="big">The unanimous Declaration</span>
-    <span data-neatline-slug="of-the-thirteen-united">of the thirteen united</span>
-    <span data-neatline-slug="states-of-america" class="big">States of America,</span>
-  </h3>
+  <h1 data-neatline-slug="in-congress">IN CONGRESS, July 4, 1776.</h2>
+  <h2 data-neatline-slug="unanimous-declaration">The unanimous Declaration</h2>
+  <h4 data-neatline-slug="of-the-thirteen-united">of the thirteen united</h2>
+  <h2 data-neatline-slug="states-of-america">States of America,</h2>
 
   <p class="divider">&sect;</p>
 
@@ -21,7 +18,7 @@
 
   <p><span data-neatline-slug="s8">The history of the present King of Great Britain is a history of repeated injuries and usurpations, all having in direct object the establishment of an absolute Tyranny over these States.</span> <span data-neatline-slug="s9">To prove this, let Facts be submitted to a candid world.</span></p>
 
-  <ul>
+  <ul class="grievances">
 
     <li><span data-neatline-slug="s10">He has refused his Assent to Laws, the most wholesome and necessary for the public good.</span></li>
 
