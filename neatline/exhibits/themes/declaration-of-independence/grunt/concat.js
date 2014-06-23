@@ -10,9 +10,11 @@ module.exports = {
 
   dist: {
     src: [
-      'bower_components/nprogress/nprogress.js',
+      'bower_components/react/react.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
-      'assets/javascripts/**/*.js'
+      'bower_components/nprogress/nprogress.js',
+      'assets/javascripts/**/*.js',
+      'script.jsx' // React components.
     ],
     dest: 'script.js'
   }

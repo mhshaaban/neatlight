@@ -1,6 +1,7 @@
 
 compile:
   - stylus
+  - react
   - concat
 
 compile:min:

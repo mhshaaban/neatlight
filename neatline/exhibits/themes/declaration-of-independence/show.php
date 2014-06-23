@@ -24,4 +24,7 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
+<!-- Zoom. -->
+<div id="zoom"></div>
+
 <?php echo foot(); ?>
