@@ -54,13 +54,14 @@ div.narrative
 
   .signers
 
+    [data-neatline-slug]
+      border-radius 2px
+      padding 2px 4px
+
     h3
       font-weight bold
 
     ul.state
-
-      li
-        margin 8px 0
 
       &.confederate
 
@@ -71,3 +72,10 @@ div.narrative
 
         [data-neatline-slug].selected
           background $union
+
+      li
+        margin 8px 0
+
+        span.hancock
+          padding 5px 10px
+          font-size 2em

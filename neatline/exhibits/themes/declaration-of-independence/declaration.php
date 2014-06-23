@@ -116,7 +116,7 @@
   <h3>Massachusetts</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="john-hancock-signature">John Hancock</span></li>
+    <li><span data-neatline-slug="john-hancock-signature" class="hancock">John Hancock</span></li>
   </ul>
 
   <h3>Maryland:</h3>
