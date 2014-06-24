@@ -10,7 +10,18 @@ module.exports = {
 
   dist: {
     files: {
-      'script.jsx': 'assets/javascripts/**/*.jsx'
+      'script.js': [
+
+        // Vendor
+        'bower_components/react/react.js',
+        'bower_components/bootstrap/dist/js/bootstrap.js',
+        'bower_components/nprogress/nprogress.js',
+
+        // Source
+        'assets/javascripts/**/*.jsx',
+        'assets/javascripts/**/*.js'
+
+      ]
     }
   }
 
