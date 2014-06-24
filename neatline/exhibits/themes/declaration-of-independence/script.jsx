@@ -19,8 +19,12 @@ Neatline.module('Zoom', function(Lines) {
     render: function() {
       return (
         React.DOM.div( {className:"buttons"}, 
-          React.DOM.div( {className:"btn in", onClick:this.zoomIn}, "+"),
-          React.DOM.div( {className:"btn out", onClick:this.zoomOut}, "-")
+          React.DOM.div( {className:"btn in", onClick:this.zoomIn}, 
+            React.DOM.i( {className:"fa fa-plus"} )
+          ),
+          React.DOM.div( {className:"btn out", onClick:this.zoomOut}, 
+            React.DOM.i( {className:"fa fa-minus"} )
+          )
         )
       );
     },
