@@ -24,7 +24,8 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
-<!-- Zoom. -->
+<!-- React. -->
+<div id="loader"></div>
 <div id="zoom"></div>
 
 <?php echo foot(); ?>
