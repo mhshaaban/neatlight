@@ -12,9 +12,8 @@ Neatline.module('Zoom', function(Lines) {
 
   var ZoomWidget = React.createClass({
 
-
     /**
-     * Render the markup.
+     * Render the buttons.
      */
     render: function() {
       return (
@@ -29,7 +28,6 @@ Neatline.module('Zoom', function(Lines) {
       );
     },
 
-
     /**
      * Zoom the map in.
      */
@@ -37,14 +35,12 @@ Neatline.module('Zoom', function(Lines) {
       Neatline.request('MAP:getMap').zoomIn();
     },
 
-
     /**
      * Zoom the map out.
      */
     zoomOut: function() {
       Neatline.request('MAP:getMap').zoomOut();
     }
-
 
   });
 
