@@ -26,8 +26,7 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     highlight: function(args) {
-      console.log(args);
-      // TODO
+      var signers = this._getSignersBySlug(args.model.get('slug'));
     },
 
 
@@ -37,9 +36,21 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     unhighlight: function(args) {
-      console.log(args);
       // TODO
     },
+
+
+    /**
+     * Given a text/painting/map slug, get an array of one or more signers
+     * that are associated with the record.
+     *
+     * @param {String} slug: An instance slug.
+     */
+    _getSignersBySlug: function(slug) {
+      return _.filter(Toggle.signers, function(signer) {
+        return _.contains(_.values(signer.records), slug);
+      });
+    }
 
 
   });
