@@ -27,5 +27,6 @@
 <!-- React. -->
 <div id="loader"></div>
 <div id="zoom"></div>
+<div id="toggle"></div>
 
 <?php echo foot(); ?>

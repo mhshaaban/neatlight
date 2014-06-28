@@ -7,10 +7,10 @@
  * @jsx         React.DOM
  */
 
-Neatline.module('Zoom', function(Lines) {
+Neatline.module('Zoom', function(Zoom) {
 
 
-  var Zoom = React.createClass({
+  var ZoomButtons = React.createClass({
 
     /**
      * Render the buttons.
@@ -45,9 +45,8 @@ Neatline.module('Zoom', function(Lines) {
   });
 
 
-  // Render the component.
-  Neatline.on('start', function() {
-    React.renderComponent(<Zoom />, $('#zoom').get(0));
+  Zoom.addInitializer(function() {
+    React.renderComponent(<ZoomButtons />, $('#zoom').get(0));
   });
 
 

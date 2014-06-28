@@ -7,10 +7,10 @@
  * @jsx         React.DOM
  */
 
-Neatline.module('Loader', function(Lines) {
+Neatline.module('Loader', function(Loader) {
 
 
-  var Loader = React.createClass({
+  var Spinner = React.createClass({
 
     /**
      * Render the spinner.
@@ -22,9 +22,8 @@ Neatline.module('Loader', function(Lines) {
   });
 
 
-  // Render the component.
-  Neatline.on('start', function() {
-    React.renderComponent(<Loader />, $('#loader').get(0));
+  Loader.addInitializer(function() {
+    React.renderComponent(<Spinner />, $('#loader').get(0));
   });
 
 
