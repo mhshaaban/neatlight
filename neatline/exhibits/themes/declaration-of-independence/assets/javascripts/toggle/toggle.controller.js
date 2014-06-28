@@ -25,7 +25,12 @@ Neatline.module('Toggle', function(Toggle) {
      * Render the top-level component.
      */
     init: function() {
-      console.log('init');
+
+      this.toggle = React.renderComponent(
+        Toggle.Widget(),
+        $('#toggle').get(0)
+      );
+
     },
 
 
