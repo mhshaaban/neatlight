@@ -22,6 +22,14 @@ Neatline.module('Toggle', function(Toggle) {
 
 
     /**
+     * Render the top-level component.
+     */
+    init: function() {
+      console.log('init');
+    },
+
+
+    /**
      * Highlight a signer.
      *
      * @param {Object} args: Event arguments.
@@ -54,11 +62,6 @@ Neatline.module('Toggle', function(Toggle) {
     }
 
 
-  });
-
-
-  Toggle.addInitializer(function() {
-    new Toggle.Controller();
   });
 
 
