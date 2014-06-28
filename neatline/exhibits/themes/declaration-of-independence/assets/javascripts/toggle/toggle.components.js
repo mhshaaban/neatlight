@@ -16,7 +16,10 @@ Neatline.module('Toggle', function(Toggle) {
      * Render the top-level markup.
      */
     getInitialState: function() {
-      return { signer: null };
+      return {
+        signer: null,
+        selected: false
+      };
     },
 
     /**
@@ -34,19 +37,49 @@ Neatline.module('Toggle', function(Toggle) {
     },
 
     /**
-     * Set the current signer.
+     * Highlight a signer.
      *
      * @param {Object} signer
      */
-    setSigner: function(signer) {
-      this.setState({ signer: signer });
+    highlight: function(signer) {
+      if (!this.state.selected) {
+        this.setState({
+          signer: signer
+        });
+      }
     },
 
     /**
-     * Unset the current signer.
+     * Unhighlight the current signer.
      */
-    clearSigner: function() {
-      this.setState({ signer: null });
+    unhighlight: function() {
+      if (!this.state.selected) {
+        this.setState({
+          signer: null
+        });
+      }
+    },
+
+    /**
+     * Select a signer.
+     *
+     * @param {Object} signer
+     */
+    select: function(signer) {
+      this.setState({
+        signer: signer,
+        selected: true
+      });
+    },
+
+    /**
+     * Unselect a signer.
+     */
+    unselect: function() {
+      this.setState({
+        signer: null,
+        selected: false
+      });
     },
 
   });

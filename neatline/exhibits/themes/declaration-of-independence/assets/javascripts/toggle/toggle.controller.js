@@ -17,7 +17,9 @@ Neatline.module('Toggle', function(Toggle) {
 
     events: [
       'highlight',
-      'unhighlight'
+      'unhighlight',
+      'select',
+      'unselect'
     ],
 
 
@@ -43,7 +45,7 @@ Neatline.module('Toggle', function(Toggle) {
 
       // Render the signer, if just one match.
       if (signers.length === 1) {
-        this.toggle.setSigner(signers[0]);
+        this.toggle.highlight(signers[0]);
       }
 
     },
@@ -51,11 +53,37 @@ Neatline.module('Toggle', function(Toggle) {
 
     /**
      * Unhighlight a signer.
+     */
+    unhighlight: function() {
+      this.toggle.unhighlight();
+    },
+
+
+    /**
+     * Select a signer.
      *
      * @param {Object} args: Event arguments.
      */
-    unhighlight: function(args) {
-      this.toggle.clearSigner();
+    select: function(args) {
+
+      // Get all signers associated with a record.
+      var signers = this._getSignersBySlug(args.model.get('slug'));
+
+      // Render the signer, if just one match.
+      if (signers.length === 1) {
+        this.toggle.select(signers[0]);
+      }
+
+    },
+
+
+    /**
+     * Unselect a signer.
+     *
+     * @param {Object} args: Event arguments.
+     */
+    unselect: function(args) {
+      this.toggle.unselect();
     },
 
 
