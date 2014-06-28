@@ -25,12 +25,9 @@ Neatline.module('Toggle', function(Toggle) {
      * Render the top-level component.
      */
     init: function() {
-
       this.toggle = React.renderComponent(
-        Toggle.Widget(),
-        $('#toggle').get(0)
+        Toggle.Widget(), $('#toggle').get(0)
       );
-
     },
 
 
@@ -40,7 +37,15 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     highlight: function(args) {
+
+      // Get all signers associated with a record.
       var signers = this._getSignersBySlug(args.model.get('slug'));
+
+      // Render the signer, if just one match.
+      if (signers.length === 1) {
+        this.toggle.setSigner(signers[0]);
+      }
+
     },
 
 
@@ -50,7 +55,7 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     unhighlight: function(args) {
-      // TODO
+      this.toggle.clearSigner();
     },
 
 
