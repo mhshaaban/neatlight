@@ -269,11 +269,49 @@ Neatline.module('Toggle', function(Toggle) {
     },
 
     /**
+     * Set the slug order array for the `toggle` method.
+     */
+    componentWillMount: function() {
+
+      var self = this;
+      var order = ['text', 'painting', 'map'];
+      var slugs = [];
+
+      // Build out an ordered list of target slugs.
+      _.each(order, function(key) {
+        var slug = self.props.signer.records[key];
+        if (slug) slugs.push(slug);
+      });
+
+      this.setState({ order: slugs });
+
+    },
+
+    /**
      * Toggle through the targets.
      */
     toggle: function() {
-      var next;
-      // TODO
+
+      var order = this.state.order, next;
+
+      // Get the index of the current slug.
+      var slug = this.props.model.get('slug');
+      var index = _.indexOf(order, slug);
+
+      // Get the slug for the next record.
+      if (index < (order.length-1)) next = order[index+1]
+      else next = order[0];
+
+      // Get the record out of the map collection.
+      var record = Neatline.request('MAP:getRecords').findWhere({
+        slug: next
+      });
+
+      // Publish the event.
+      Neatline.vent.trigger('select', {
+        model: record, source: 'TOGGLE'
+      });
+
     }
 
   });
