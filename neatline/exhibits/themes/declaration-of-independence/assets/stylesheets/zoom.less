@@ -1,0 +1,51 @@
+
+/**
+ * @package     omeka
+ * @subpackage  neatline-NeatLight
+ * @copyright   2014 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+#zoom {
+
+  position: fixed;
+  left: @text-gutter + @text-width + 20px;
+  top: 20px;
+
+  .btn {
+
+    .overlay;
+    display: block;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    border-radius: 2px;
+    padding: 0;
+    font-size: 20px;
+    text-align: center;
+
+    &:hover {
+
+      border: 1px solid white;
+      color: white;
+
+      &.in {
+        background: @confederate;
+        &:active {
+          background: darken(@confederate, 30%);
+        }
+      }
+
+      &.out {
+        background: @union;
+        &:active {
+          background: darken(@union, 30%);
+        }
+      }
+
+    }
+
+  }
+
+}

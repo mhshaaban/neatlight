@@ -1,6 +1,6 @@
 
 compile:
-  - stylus
+  - less
   - react
 
 compile:min:
