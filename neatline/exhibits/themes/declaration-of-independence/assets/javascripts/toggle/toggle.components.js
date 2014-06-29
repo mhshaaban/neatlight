@@ -15,149 +15,44 @@ Neatline.module('Toggle', function(Toggle) {
     /**
      * Render the top-level markup.
      */
-    getInitialState: function() {
-      return {
-        signer: null,
-        model: null,
-        selected: false
-      };
-    },
-
-    /**
-     * Render the top-level markup.
-     */
     render: function() {
-
       return (
-        <ul className="toggle">
-
-          <CurrentSigner signer={this.state.signer} />
-
-          <TargetButton
-            model={this.state.model}
-            name="Text"
-            icon="list-alt" />
-
-          <TargetButton
-            model={this.state.model}
-            name="Painting"
-            icon="user" />
-
-          <TargetButton
-            model={this.state.model}
-            name="Map"
-            icon="globe" />
-
-        </ul>
+        <h1>Toggle</h1>
       );
-
     },
 
     /**
-     * Highlight a signer.
+     * Highlight a signer (or signers).
      *
-     * @param {Object} signer
-     * @param {Object} model
+     * @param {Object} signers: The signers associated with the record.
+     * @param {model} model: The highlighted record.
      */
-    highlight: function(signer, model) {
-      if (!this.state.selected) {
-        this.setState({
-          signer: signer,
-          model: model
-        });
-      }
+    highlight: function(signers, model) {
+      console.log(signers, model);
     },
 
     /**
-     * Unhighlight the current signer.
+     * Unhighlight the current signer(s).
      */
-    unhighlight: function() {
-      if (!this.state.selected) {
-        this.setState({
-          signer: null,
-          model: null
-        });
-      }
+    unhighlight: function(signers, model) {
+      console.log(signers, model);
     },
 
     /**
-     * Select a signer.
+     * Select a signer (or signers).
      *
-     * @param {Object} signer
-     * @param {Object} model
+     * @param {Object} signers: The signers associated with the record.
+     * @param {model} model: The selected record.
      */
-    select: function(signer, model) {
-      this.setState({
-        signer: signer,
-        model: model,
-        selected: true
-      });
+    select: function(signers, model) {
+      console.log(signers, model);
     },
 
     /**
-     * Unselect a signer.
+     * Unselect the current signer(s).
      */
-    unselect: function() {
-      this.setState({
-        signer: null,
-        model: null,
-        selected: false
-      });
-    }
-
-  });
-
-
-  var CurrentSigner = React.createClass({
-
-    /**
-     * Render the name of the current signer.
-     */
-    render: function() {
-
-      // If a signer is defined, display the name.
-      if (this.props.signer) {
-        return (
-          <li className="name">
-            <span>{this.props.signer.name}</span>
-          </li>
-        );
-      }
-
-      // Otherwise, display the exhibit title.
-      else {
-        return (
-          <li className="name">
-            <span>The Declaration of Independence</span>
-          </li>
-        );
-      }
-
-    }
-
-  });
-
-
-  var TargetButton = React.createClass({
-
-    /**
-     * Render the target button.
-     */
-    render: function() {
-
-      var classes = { glyphicon: true };
-
-      // Construct the icon class.
-      var icon = 'glyphicon-'+this.props.icon;
-      classes[icon] = true;
-
-      return (
-        <li className="target">
-          <span className={React.addons.classSet(classes)} />
-          <span className="name">{this.props.name}</span>
-        </li>
-      );
-
+    unselect: function(signers, model) {
+      console.log(signers, model);
     }
 
   });

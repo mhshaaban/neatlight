@@ -39,15 +39,8 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     highlight: function(args) {
-
-      // Get all signers associated with a record.
       var signers = this._getSignersBySlug(args.model.get('slug'));
-
-      // Render the signer, if just one match.
-      if (signers.length === 1) {
-        this.toggle.highlight(signers[0], args.model);
-      }
-
+      this.toggle.highlight(signers, args.model);
     },
 
 
@@ -65,15 +58,8 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {Object} args: Event arguments.
      */
     select: function(args) {
-
-      // Get all signers associated with a record.
       var signers = this._getSignersBySlug(args.model.get('slug'));
-
-      // Render the signer, if just one match.
-      if (signers.length === 1) {
-        this.toggle.select(signers[0], args.model);
-      }
-
+      this.toggle.select(signers, args.model);
     },
 
 
