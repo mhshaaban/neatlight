@@ -21,7 +21,8 @@ Neatline.module('Toggle', function(Toggle) {
       if (this.state.signers.length === 0) {
         return (
           <Declaration
-            model={this.state.model} />
+            model={this.state.model}
+          />
         )
       }
 
@@ -30,7 +31,8 @@ Neatline.module('Toggle', function(Toggle) {
         return (
           <Signer
             signer={this.state.signers[0]}
-            model={this.state.model} />
+            model={this.state.model}
+          />
         )
       }
 
@@ -38,7 +40,8 @@ Neatline.module('Toggle', function(Toggle) {
       else if (this.state.signers.length > 1) {
         return (
           <Hometown
-            signers={this.state.signers} />
+            signers={this.state.signers}
+          />
         )
       }
 
@@ -137,19 +140,22 @@ Neatline.module('Toggle', function(Toggle) {
             text="Text"
             icon="list-alt"
             slug="text"
-            model={this.props.model} />
+            model={this.props.model}
+          />
 
           <TargetButton
             text="Painting"
             icon="user"
             slug="painting"
-            model={this.props.model} />
+            model={this.props.model}
+          />
 
           <TargetButton
             text="Map"
             icon="globe"
             slug="map"
-            model={this.props.model} />
+            model={this.props.model}
+          />
 
           <li className="toggle" onClick={this.toggle}>
             <span className="glyphicon glyphicon-refresh" />
@@ -212,7 +218,8 @@ Neatline.module('Toggle', function(Toggle) {
             icon="list-alt"
             slug={this.props.signer.records.text}
             model={this.props.model}
-            key="text" />
+            key="text"
+          />
         );
       }
 
@@ -224,7 +231,8 @@ Neatline.module('Toggle', function(Toggle) {
             icon="user"
             slug={this.props.signer.records.painting}
             model={this.props.model}
-            key="painting" />
+            key="painting"
+          />
         );
       }
 
@@ -237,7 +245,8 @@ Neatline.module('Toggle', function(Toggle) {
             toggleSlug={this.props.signer.records.text}
             slug={this.props.signer.records.map}
             model={this.props.model}
-            key="map" />
+            key="map"
+          />
         );
       }
 
@@ -249,11 +258,22 @@ Neatline.module('Toggle', function(Toggle) {
           </li>
 
           {targets}
-          <ToggleButton />
+
+          <li className="toggle" onClick={this.toggle}>
+            <span className="glyphicon glyphicon-refresh" />
+          </li>
 
         </ul>
       );
 
+    },
+
+    /**
+     * Toggle through the targets.
+     */
+    toggle: function() {
+      var next;
+      // TODO
     }
 
   });
