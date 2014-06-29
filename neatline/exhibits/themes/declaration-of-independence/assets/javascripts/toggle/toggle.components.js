@@ -332,10 +332,17 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
       return (
-        <li className="toggle">
+        <li className="toggle" onClick={this.toggle}>
           <span className="glyphicon glyphicon-refresh" />
         </li>
       );
+    },
+
+    /**
+     * Toggle to the next target.
+     */
+    toggle: function() {
+      console.log('toggle');
     }
 
   });
