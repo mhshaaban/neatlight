@@ -232,8 +232,15 @@ Neatline.module('Toggle', function(Toggle) {
      * When one signer is highlighted/selected.
      */
     render: function() {
+
+      var classes = {
+        toggle: true,
+        confederate: this.props.model.hasTag('confederate'),
+        union: this.props.model.hasTag('union')
+      };
+
       return (
-        <ul className="toggle">
+        <ul className={React.addons.classSet(classes)}>
 
           <li className="current">
             <span>{this.props.signer.name}</span>
@@ -267,6 +274,7 @@ Neatline.module('Toggle', function(Toggle) {
 
         </ul>
       );
+
     },
 
     /**

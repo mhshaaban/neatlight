@@ -6,6 +6,22 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
+.toggle-select(@color) {
+
+  li {
+
+    &.selected,
+    &.target:hover:not(.disabled),
+    &.toggle:hover,
+    &.signer:hover {
+      background: @color;
+      color: darken(white, 5%);
+    }
+
+  }
+
+}
+
 #toggle {
 
   .select(none);
@@ -32,34 +48,21 @@
         font-weight: bold;
       }
 
-      &.target, &.signer {
-
-        &.selected {
-          background: @union;
-          color: darken(white, 5%);
-        }
-
-        &.disabled {
-          cursor: not-allowed;
-          opacity: 0.6;
-        }
-
-        &:hover:not(.disabled) {
-          background: @union;
-          color: darken(white, 5%);
-        }
-
-        .glyphicon {
-          margin-right: 6px;
-        }
-
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
       }
 
-      &.toggle:hover {
-        background: @union;
-        color: darken(white, 5%);
+      &.target .glyphicon {
+        margin-right: 6px;
       }
 
+    }
+
+    .toggle-select(@union); // Union by default.
+
+    &.confederate {
+      .toggle-select(@confederate);
     }
 
   }
