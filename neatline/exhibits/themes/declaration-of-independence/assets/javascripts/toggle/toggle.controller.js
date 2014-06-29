@@ -16,10 +16,14 @@ Neatline.module('Toggle', function(Toggle) {
     slug: 'TOGGLE',
 
     events: [
+
       'highlight',
       'unhighlight',
       'select',
-      'unselect'
+      'unselect',
+
+      {'MAP:move': 'move'}
+
     ],
 
 
@@ -79,6 +83,16 @@ Neatline.module('Toggle', function(Toggle) {
      */
     unselect: function(args) {
       this.toggle.unselect();
+    },
+
+
+    /**
+     * When the map is moved, unselect a generic exhibit target.
+     *
+     * @param {Object} args: Event arguments.
+     */
+    move: function(args) {
+      this.toggle.unselectGenericTarget();
     },
 
 

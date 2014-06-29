@@ -98,6 +98,23 @@ Neatline.module('Toggle', function(Toggle) {
      */
     unselect: function(signers, model) {
       this.replaceState(this.getInitialState());
+    },
+
+    /**
+     * If the currently-selected model is one of the generic, exhibit-wide
+     * text/painting/map targets, unselect it.
+     */
+    unselectGenericTarget: function(signers, model) {
+      if (this.state.model) {
+
+        var slug = this.state.model.get('slug');
+
+        // Is the model an exhibit-generic target?
+        if (_.contains(['text', 'painting', 'map'], slug)) {
+          this.unselect();
+        }
+
+      }
     }
 
   });
