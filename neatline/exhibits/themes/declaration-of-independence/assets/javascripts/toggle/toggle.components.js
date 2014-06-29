@@ -232,49 +232,6 @@ Neatline.module('Toggle', function(Toggle) {
      * When one signer is highlighted/selected.
      */
     render: function() {
-
-      var targets = [];
-
-      // Text:
-      if (this.props.signer.records.text) {
-        targets.push(
-          <TargetButton
-            text="Text"
-            icon="list-alt"
-            slug={this.props.signer.records.text}
-            model={this.props.model}
-            key="text"
-          />
-        );
-      }
-
-      // Painting:
-      if (this.props.signer.records.painting) {
-        targets.push(
-          <TargetButton
-            text="Painting"
-            icon="user"
-            slug={this.props.signer.records.painting}
-            model={this.props.model}
-            key="painting"
-          />
-        );
-      }
-
-      // Map:
-      if (this.props.signer.records.map) {
-        targets.push(
-          <TargetButton
-            text="Map"
-            icon="globe"
-            toggleSlug={this.props.signer.records.text}
-            slug={this.props.signer.records.map}
-            model={this.props.model}
-            key="map"
-          />
-        );
-      }
-
       return (
         <ul className="toggle">
 
@@ -282,7 +239,27 @@ Neatline.module('Toggle', function(Toggle) {
             <span>{this.props.signer.name}</span>
           </li>
 
-          {targets}
+          <TargetButton
+            text="Text"
+            icon="list-alt"
+            slug={this.props.signer.records.text}
+            model={this.props.model}
+          />
+
+          <TargetButton
+            text="Painting"
+            icon="user"
+            slug={this.props.signer.records.painting}
+            model={this.props.model}
+          />
+
+          <TargetButton
+            text="Map"
+            icon="globe"
+            toggleSlug={this.props.signer.records.text}
+            slug={this.props.signer.records.map}
+            model={this.props.model}
+          />
 
           <li className="toggle" onClick={this.toggle}>
             <span className="glyphicon glyphicon-refresh" />
@@ -290,7 +267,6 @@ Neatline.module('Toggle', function(Toggle) {
 
         </ul>
       );
-
     },
 
     /**
@@ -375,6 +351,7 @@ Neatline.module('Toggle', function(Toggle) {
 
       // Classes on the container <li>.
       var itemClasses = {
+        disabled: !this.props.slug,
         target: true
       };
 
