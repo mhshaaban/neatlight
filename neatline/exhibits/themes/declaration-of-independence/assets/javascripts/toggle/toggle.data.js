@@ -493,7 +493,7 @@ Neatline.module('Toggle', function(Toggle) {
       records: {
         text: 'william-williams-signature',
         painting: 'william-williams-face',
-        map: 'labanon'
+        map: 'lebanon'
       }
     },
 
