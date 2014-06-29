@@ -24,12 +24,12 @@ Neatline.module('Toggle', function(Toggle) {
 
       // If 1 signer is selected, show the spinner for that signer.
       else if (this.state.signers.length === 1) {
-        return (<Signer />)
+        return (<Signer signer={this.state.signers[0]} />)
       }
 
       // If multiple signers are resolved, show a list of names.
       else if (this.state.signers.length > 1) {
-        return (<Hometown />)
+        return (<Hometown signers={this.state.signers} />)
       }
 
     },
@@ -100,7 +100,30 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
       return (
-        <h1>Declaration</h1>
+        <ul className="toggle">
+
+          <li className="current">
+            <span>The Declaration of Independence</span>
+          </li>
+
+          <TargetButton
+            text="Text"
+            icon="list-alt"
+            slug="text" />
+
+          <TargetButton
+            text="Painting"
+            icon="user"
+            slug="painting" />
+
+          <TargetButton
+            text="Map"
+            icon="globe"
+            slug="map" />
+
+          <ToggleButton />
+
+        </ul>
       );
     }
 
@@ -114,7 +137,30 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
       return (
-        <h1>Signer</h1>
+        <ul className="toggle">
+
+          <li className="current">
+            <span>{this.props.signer.name}</span>
+          </li>
+
+          <TargetButton
+            text="Text"
+            icon="list-alt"
+            slug={this.props.signer.records.text} />
+
+          <TargetButton
+            text="Painting"
+            icon="user"
+            slug={this.props.signer.records.painting} />
+
+          <TargetButton
+            text="Map"
+            icon="globe"
+            slug={this.props.signer.records.map} />
+
+          <ToggleButton />
+
+        </ul>
       );
     }
 
@@ -127,8 +173,58 @@ Neatline.module('Toggle', function(Toggle) {
      * When one hometown points to multiple signers.
      */
     render: function() {
+
+      var signers = _.map(this.props.signers, function(signer) {
+        return (
+          <li className="signer">
+            <span>{signer.name}</span>
+          </li>
+        )
+      });
+
       return (
-        <h1>Hometown</h1>
+        <ul className="signers">
+          {signers}
+        </ul>
+      );
+
+    }
+
+  });
+
+
+  var TargetButton = React.createClass({
+
+    /**
+     * A text/painting/map toggle button.
+     */
+    render: function() {
+
+      var cx = { glyphicon: true };
+      cx['glyphicon-'+this.props.icon] = true;
+
+      return (
+        <li className="target">
+          <span className={React.addons.classSet(cx)} />
+          <span className="name">{this.props.text}</span>
+        </li>
+      );
+
+    }
+
+  });
+
+
+  var ToggleButton = React.createClass({
+
+    /**
+     * A toggle button.
+     */
+    render: function() {
+      return (
+        <li className="toggle">
+          <span className="glyphicon glyphicon-refresh" />
+        </li>
       );
     }
 
