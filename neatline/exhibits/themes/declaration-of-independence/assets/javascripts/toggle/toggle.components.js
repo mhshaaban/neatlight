@@ -119,17 +119,20 @@ Neatline.module('Toggle', function(Toggle) {
           <TargetButton
             text="Text"
             icon="list-alt"
-            slug="text" />
+            slug="text"
+            model={this.props.model} />
 
           <TargetButton
             text="Painting"
             icon="user"
-            slug="painting" />
+            slug="painting"
+            model={this.props.model} />
 
           <TargetButton
             text="Map"
             icon="globe"
-            slug="map" />
+            slug="map"
+            model={this.props.model} />
 
           <ToggleButton />
 
@@ -156,18 +159,21 @@ Neatline.module('Toggle', function(Toggle) {
           <TargetButton
             text="Text"
             icon="list-alt"
-            slug={this.props.signer.records.text} />
+            slug={this.props.signer.records.text}
+            model={this.props.model} />
 
           <TargetButton
             text="Painting"
             icon="user"
-            slug={this.props.signer.records.painting} />
+            slug={this.props.signer.records.painting}
+            model={this.props.model} />
 
           <TargetButton
             text="Map"
             icon="globe"
             toggleSlug={this.props.signer.records.text}
-            slug={this.props.signer.records.map} />
+            slug={this.props.signer.records.map}
+            model={this.props.model} />
 
           <ToggleButton />
 
@@ -207,12 +213,32 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
 
-      var cx = { glyphicon: true };
-      cx['glyphicon-'+this.props.icon] = true;
+      // Classes on the container <li>.
+      var itemClasses = {
+        target: true
+      };
+
+      // Is the button currently selected?
+      if (this.props.model) {
+        var slug = this.props.model.get('slug');
+        itemClasses['selected'] = (slug == this.props.slug)
+      }
+
+      // Glyphicon classes.
+      var iconClasses = {
+        glyphicon: true
+      };
+
+      // Construct the icon name.
+      iconClasses['glyphicon-'+this.props.icon] = true;
+
+      // Convert to class strings.
+      var itemCx = React.addons.classSet(itemClasses);
+      var iconCx = React.addons.classSet(iconClasses);
 
       return (
-        <li className="target" onClick={this.select}>
-          <span className={React.addons.classSet(cx)} />
+        <li className={itemCx} onClick={this.select}>
+          <span className={iconCx} />
           <span className="name">{this.props.text}</span>
         </li>
       );
