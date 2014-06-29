@@ -309,7 +309,9 @@ Neatline.module('Toggle', function(Toggle) {
 
       // Publish the event.
       Neatline.vent.trigger('select', {
-        model: record, source: 'TOGGLE'
+        model: record,
+        toggleSlug: this.props.signer.records.text,
+        source: 'TOGGLE'
       });
 
     }
