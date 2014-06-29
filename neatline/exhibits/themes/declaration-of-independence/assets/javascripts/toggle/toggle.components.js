@@ -65,12 +65,20 @@ Neatline.module('Toggle', function(Toggle) {
      * @param {model} model: The highlighted record.
      */
     highlight: function(signers, model) {
+
+      // Flip off a generic selection.
+      if (this.genericTargetIsSelected() && !_.isEmpty(signers)) {
+        this.unselect();
+      }
+
+      // Highlight if no selection.
       if (!this.state.selected) {
         this.setState({
           signers: signers,
           model: model
         });
       }
+
     },
 
     /**
@@ -108,16 +116,33 @@ Neatline.module('Toggle', function(Toggle) {
      * text/painting/map targets, unselect it.
      */
     unselectGenericTarget: function(signers, model) {
+      if (this.genericTargetIsSelected()) {
+        this.unselect();
+      }
+    },
+
+    /**
+     * Is an exhibit-generic target currently selected?
+     *
+     * @return {Boolean}
+     */
+    genericTargetIsSelected: function() {
+
+      var isGeneric = false;
+
       if (this.state.model) {
 
         var slug = this.state.model.get('slug');
 
         // Is the model an exhibit-generic target?
         if (_.contains(['text', 'painting', 'map'], slug)) {
-          this.unselect();
+          isGeneric = true;
         }
 
       }
+
+      return isGeneric;
+
     }
 
   });
