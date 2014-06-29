@@ -19,17 +19,27 @@ Neatline.module('Toggle', function(Toggle) {
 
       // When no signer is selected, show the exhibit-wide spinner.
       if (this.state.signers.length === 0) {
-        return (<Declaration />)
+        return (
+          <Declaration
+            model={this.state.model} />
+        )
       }
 
       // If 1 signer is selected, show the spinner for that signer.
       else if (this.state.signers.length === 1) {
-        return (<Signer signer={this.state.signers[0]} />)
+        return (
+          <Signer
+            signer={this.state.signers[0]}
+            model={this.state.model} />
+        )
       }
 
       // If multiple signers are resolved, show a list of names.
       else if (this.state.signers.length > 1) {
-        return (<Hometown signers={this.state.signers} />)
+        return (
+          <Hometown
+            signers={this.state.signers} />
+        )
       }
 
     },
@@ -156,6 +166,7 @@ Neatline.module('Toggle', function(Toggle) {
           <TargetButton
             text="Map"
             icon="globe"
+            toggleSlug={this.props.signer.records.text}
             slug={this.props.signer.records.map} />
 
           <ToggleButton />
@@ -175,11 +186,7 @@ Neatline.module('Toggle', function(Toggle) {
     render: function() {
 
       var signers = _.map(this.props.signers, function(signer) {
-        return (
-          <li className="signer">
-            <span>{signer.name}</span>
-          </li>
-        )
+        return (<ResidentButton signer={signer} />);
       });
 
       return (
@@ -204,11 +211,88 @@ Neatline.module('Toggle', function(Toggle) {
       cx['glyphicon-'+this.props.icon] = true;
 
       return (
-        <li className="target">
+        <li className="target" onClick={this.select}>
           <span className={React.addons.classSet(cx)} />
           <span className="name">{this.props.text}</span>
         </li>
       );
+
+    },
+
+    /**
+     * By default, no origin slug.
+     */
+    getDefaultProps: function() {
+      return {
+        toggleSlug: null
+      };
+    },
+
+    /**
+     * Select the target.
+     */
+    select: function() {
+      this.publish('select', this.props.slug);
+    },
+
+    /**
+     * Publish an event with the model, identified by slug.
+     */
+    publish: function(event, slug) {
+
+      // Pop the record out of the map collection.
+      var record = Neatline.request('MAP:getRecords').findWhere({
+        slug: slug
+      });
+
+      // Publish the event.
+      Neatline.vent.trigger(event, {
+        model: record,
+        toggleSlug: this.props.toggleSlug,
+        source: 'TOGGLE'
+      });
+
+    }
+
+  });
+
+
+  var ResidentButton = React.createClass({
+
+    /**
+     * A text/painting/map toggle button.
+     */
+    render: function() {
+      return (
+        <li className="signer" onClick={this.select}>
+          <span>{this.props.signer.name}</span>
+        </li>
+      );
+    },
+
+    /**
+     * Select the target.
+     */
+    select: function() {
+      this.publish('select', this.props.signer.records.map);
+    },
+
+    /**
+     * Publish an event with the model, identified by slug.
+     */
+    publish: function(event, slug) {
+
+      // Get the record out of the map collection.
+      var record = Neatline.request('MAP:getRecords').findWhere({
+        slug: slug
+      });
+
+      // Publish the event.
+      Neatline.vent.trigger(event, {
+        model: record,
+        toggleSlug: this.props.signer.records.text,
+        source: 'TOGGLE'
+      });
 
     }
 
