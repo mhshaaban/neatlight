@@ -151,10 +151,45 @@ Neatline.module('Toggle', function(Toggle) {
             slug="map"
             model={this.props.model} />
 
-          <ToggleButton />
+          <li className="toggle" onClick={this.toggle}>
+            <span className="glyphicon glyphicon-refresh" />
+          </li>
 
         </ul>
       );
+    },
+
+    /**
+     * Toggle through the targets.
+     */
+    toggle: function() {
+
+      var next;
+
+      // Get the slug for the next record.
+      if (this.props.model) {
+
+        var order = ['text', 'painting', 'map'];
+        var slug = this.props.model.get('slug');
+        var index = _.indexOf(order, slug);
+
+        if (index < (order.length-1)) next = order[index+1]
+        else next = order[0];
+
+      } else {
+        next = 'text';
+      }
+
+      // Get the record out of the map collection.
+      var record = Neatline.request('MAP:getRecords').findWhere({
+        slug: next
+      });
+
+      // Publish the event.
+      Neatline.vent.trigger('select', {
+        model: record, source: 'TOGGLE'
+      });
+
     }
 
   });
@@ -360,29 +395,6 @@ Neatline.module('Toggle', function(Toggle) {
         source: 'TOGGLE'
       });
 
-    }
-
-  });
-
-
-  var ToggleButton = React.createClass({
-
-    /**
-     * A toggle button.
-     */
-    render: function() {
-      return (
-        <li className="toggle" onClick={this.toggle}>
-          <span className="glyphicon glyphicon-refresh" />
-        </li>
-      );
-    },
-
-    /**
-     * Toggle to the next target.
-     */
-    toggle: function() {
-      console.log('toggle');
     }
 
   });
