@@ -29,17 +29,24 @@ Neatline.module('Zoom', function(Zoom) {
     },
 
     /**
+     * Cache the map instance.
+     */
+    componentWillMount: function() {
+      this.setState({ map: Neatline.request('MAP:getMap') });
+    },
+
+    /**
      * Zoom the map in.
      */
     zoomIn: function() {
-      Neatline.request('MAP:getMap').zoomIn();
+      this.state.map.zoomIn();
     },
 
     /**
      * Zoom the map out.
      */
     zoomOut: function() {
-      Neatline.request('MAP:getMap').zoomOut();
+      this.state.map.zoomOut();
     }
 
   });
