@@ -395,7 +395,9 @@ Neatline.module('Toggle', function(Toggle) {
      * Select the target.
      */
     select: function() {
-      this.publish('select', this.props.slug);
+      if (this.props.slug) {
+        this.publish('select', this.props.slug);
+      }
     },
 
     /**
