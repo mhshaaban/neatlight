@@ -8,6 +8,7 @@
 
 #toggle {
 
+  .select(none);
   position: fixed;
   top: 20px;
   right: 20px;
@@ -52,6 +53,11 @@
           margin-right: 6px;
         }
 
+      }
+
+      &.toggle:hover {
+        background: @union;
+        color: darken(white, 5%);
       }
 
     }
