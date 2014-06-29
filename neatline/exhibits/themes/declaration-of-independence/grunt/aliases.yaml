@@ -5,7 +5,7 @@ compile:
 
 compile:min:
   - compile
-  - cssmin
+  #- cssmin
   - uglify
 
 default:

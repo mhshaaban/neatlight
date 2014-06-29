@@ -10,13 +10,12 @@ module.exports = {
 
   dist: {
     files: {
-      'style.css': 'assets/stylesheets/style.styl'
+      'style.css': 'assets/stylesheets/manifest.less'
     }
   },
 
   options: {
-    paths: ['bower_components'],
-    'include css': true
+    paths: ['bower_components']
   }
 
 };
