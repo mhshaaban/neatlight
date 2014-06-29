@@ -32,6 +32,7 @@ Neatline.module('Toggle', function(Toggle) {
           <Signer
             signer={this.state.signers[0]}
             model={this.state.model}
+            selected={this.state.selected}
           />
         )
       }
@@ -233,14 +234,15 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
 
-      var classes = {
+      // Construct the class string.
+      var signerCx = React.addons.classSet({
         toggle: true,
         confederate: this.props.model.hasTag('confederate'),
         union: this.props.model.hasTag('union')
-      };
+      });
 
       return (
-        <ul className={React.addons.classSet(classes)}>
+        <ul className={signerCx}>
 
           <li className="current">
             <span>{this.props.signer.name}</span>
@@ -251,6 +253,7 @@ Neatline.module('Toggle', function(Toggle) {
             icon="list-alt"
             slug={this.props.signer.records.text}
             model={this.props.model}
+            selected={this.props.selected}
           />
 
           <TargetButton
@@ -258,6 +261,7 @@ Neatline.module('Toggle', function(Toggle) {
             icon="user"
             slug={this.props.signer.records.painting}
             model={this.props.model}
+            selected={this.props.selected}
           />
 
           <TargetButton
@@ -266,6 +270,7 @@ Neatline.module('Toggle', function(Toggle) {
             toggleSlug={this.props.signer.records.text}
             slug={this.props.signer.records.map}
             model={this.props.model}
+            selected={this.props.selected}
           />
 
           <li className="toggle" onClick={this.toggle}>
@@ -363,10 +368,15 @@ Neatline.module('Toggle', function(Toggle) {
         target: true
       };
 
-      // Is the button currently selected?
+      // If a model is bound to the button.
       if (this.props.model) {
-        var slug = this.props.model.get('slug');
-        itemClasses['selected'] = (slug == this.props.slug)
+
+        // Is the button highlighted or selected?
+        if (this.props.model.get('slug') == this.props.slug) {
+          itemClasses['selected'] = this.props.selected;
+          itemClasses['highlighted'] = !this.props.selected;
+        }
+
       }
 
       // Glyphicon classes.

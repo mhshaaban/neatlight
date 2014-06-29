@@ -10,10 +10,15 @@
 
   li {
 
-    &.selected,
+    &.highlighted,
     &.target:hover:not(.disabled),
     &.toggle:hover,
     &.signer:hover {
+      background: lighten(@color, 5%);
+      color: darken(white, 5%);
+    }
+
+    &.selected {
       background: @color;
       color: darken(white, 5%);
     }
