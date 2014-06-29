@@ -70,7 +70,7 @@ Neatline.module('Toggle', function(Toggle) {
       records: {
         text: 'edward-rutledge-signature',
         painting: 'edward-rutledge-face',
-        map: 'charlestown'
+        map: 'charleston'
       }
     },
 
