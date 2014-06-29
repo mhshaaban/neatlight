@@ -45,7 +45,7 @@ Neatline.module('Toggle', function(Toggle) {
 
       // Render the signer, if just one match.
       if (signers.length === 1) {
-        this.toggle.highlight(signers[0]);
+        this.toggle.highlight(signers[0], args.model);
       }
 
     },
@@ -71,7 +71,7 @@ Neatline.module('Toggle', function(Toggle) {
 
       // Render the signer, if just one match.
       if (signers.length === 1) {
-        this.toggle.select(signers[0]);
+        this.toggle.select(signers[0], args.model);
       }
 
     },

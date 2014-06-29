@@ -8,14 +8,14 @@
 
 module.exports = {
 
+  options: {
+    paths: ['bower_components']
+  },
+
   dist: {
     files: {
       'style.css': 'assets/stylesheets/manifest.less'
     }
-  },
-
-  options: {
-    paths: ['bower_components']
   }
 
 };
