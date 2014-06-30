@@ -252,7 +252,7 @@ Neatline.module('Toggle', function(Toggle) {
       return (
         <ul className={signerCx}>
 
-          <li className="current">
+          <li className="current" onClick={this.showBio}>
             <span>{name}</span>
           </li>
 
@@ -336,6 +336,13 @@ Neatline.module('Toggle', function(Toggle) {
         source: 'TOGGLE'
       });
 
+    },
+
+    /**
+     * Shwo the biography modal.
+     */
+    showBio: function() {
+      // TODO
     }
 
   });
