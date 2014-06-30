@@ -27,21 +27,12 @@
 
     &:hover {
 
-      border: 1px solid white;
-      color: white;
+      background: darken(@union, 10%);
+      color: darken(white, 5%);
 
-      &.in {
-        background: @confederate;
-        &:active {
-          background: darken(@confederate, 30%);
-        }
-      }
-
-      &.out {
+      &:active {
         background: @union;
-        &:active {
-          background: darken(@union, 30%);
-        }
+        box-shadow: 0 0 5px @union, 0 0 5px @union;
       }
 
     }
