@@ -238,6 +238,13 @@ Neatline.module('Toggle', function(Toggle) {
      */
     render: function() {
 
+      var name = this.props.signer.name;
+
+      // If we're focused on a location, show the name.
+      if (this.props.model.hasTag('hometown')) {
+        name = this.props.model.get('title') + ' ~ ' + name;
+      }
+
       // Construct the class string.
       var signerCx = React.addons.classSet({
         toggle: true,
@@ -249,7 +256,7 @@ Neatline.module('Toggle', function(Toggle) {
         <ul className={signerCx}>
 
           <li className="current">
-            <span>{this.props.signer.name}</span>
+            <span>{name}</span>
           </li>
 
           <TargetButton
