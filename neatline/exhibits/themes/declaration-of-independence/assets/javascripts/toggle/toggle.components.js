@@ -43,6 +43,7 @@ Neatline.module('Toggle', function(Toggle) {
         return (
           <Hometown
             signers={this.state.signers}
+            model={this.state.model}
           />
         )
       }
@@ -357,7 +358,13 @@ Neatline.module('Toggle', function(Toggle) {
 
       return (
         <ul className="signers">
+
+          <li className="current">
+            <span>{this.props.model.get('title')}</span>
+          </li>
+
           {signers}
+
         </ul>
       );
 
