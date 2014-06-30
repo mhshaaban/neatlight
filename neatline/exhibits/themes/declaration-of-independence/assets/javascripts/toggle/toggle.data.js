@@ -84,7 +84,7 @@ Neatline.module('Toggle', function(Toggle) {
     },
 
     {
-      name: 'Joseph Lynch',
+      name: 'Thomas Lynch',
       records: {
         text: 'thomas-lynch-signature',
         painting: 'thomas-lynch-face',

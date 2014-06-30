@@ -1,5 +1,17 @@
+<?php
 
-<!-- vim: set linebreak wrap nolist tabstop=2 shiftwidth=2 softtabstop=2: -->
+/* vim: set linebreak wrap nolist tabstop=2 shiftwidth=2 softtabstop=2: */
+
+/**
+ * @package     omeka
+ * @subpackage  neatline
+ * @copyright   2014 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
+ */
+
+require_once dirname(__FILE__).'/functions.php';
+
+?>
 
 <div class="declaration">
 
@@ -91,132 +103,343 @@
   <h3>Georgia</h3>
 
   <ul class="state confederate">
-    <li><span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span></li>
-    <li><span data-neatline-slug="lyman-hall-signature">Lyman Hall</span></li>
-    <li><span data-neatline-slug="george-walton-signature">George Walton</span></li>
+    <li>
+      <span data-neatline-slug="button-gwinnett-signature">Button Gwinnett</span>
+      <?php echo doi_map_icon('st-catherines-island'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="lyman-hall-signature">Lyman Hall</span>
+      <?php echo doi_map_icon('sunbury'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="george-walton-signature">George Walton</span>
+      <?php echo doi_painting_icon('george-walton-face'); ?>
+      <?php echo doi_map_icon('savannah'); ?>
   </ul>
 
   <h3>North Carolina</h3>
 
   <ul class="state confederate">
-    <li><span data-neatline-slug="william-hooper-signature">William Hooper</span></li>
-    <li><span data-neatline-slug="joseph-hewes-signature">Joseph Hewes</span></li>
-    <li><span data-neatline-slug="john-penn-signature">John Penn</span></li>
+    <li>
+      <span data-neatline-slug="william-hooper-signature">William Hooper</span>
+      <?php echo doi_painting_icon('william-hooper-face'); ?>
+      <?php echo doi_map_icon('wilmington'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="joseph-hewes-signature">Joseph Hewes</span>
+      <?php echo doi_painting_icon('joseph-hewes-face'); ?>
+      <?php echo doi_map_icon('edenton'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="john-penn-signature">John Penn</span>
+      <?php echo doi_map_icon('stovall'); ?>
+    </li>
   </ul>
 
   <h3>South Carolina</h3>
 
   <ul class="state confederate">
-    <li><span data-neatline-slug="edward-rutledge-signature">Edward Rutledge</span></li>
-    <li><span data-neatline-slug="thomas-heyward-signature">Thomas Heyward, Jr.</span></li>
-    <li><span data-neatline-slug="thomas-lynch-signature">Thomas Lynch, Jr.</span></li>
-    <li><span data-neatline-slug="arthur-middleton-signature">Arthur Middleton</span></li>
+    <li>
+      <span data-neatline-slug="edward-rutledge-signature">Edward Rutledge</span>
+      <?php echo doi_painting_icon('edward-rutledge-face'); ?>
+      <?php echo doi_map_icon('charleston'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-heyward-signature">Thomas Heyward, Jr.</span>
+      <?php echo doi_painting_icon('thomas-heyward-face'); ?>
+      <?php echo doi_map_icon('white-hall-plantation'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-lynch-signature">Thomas Lynch, Jr.</span>
+      <?php echo doi_painting_icon('thomas-lynch-face'); ?>
+      <?php echo doi_map_icon('peach-tree-plantation'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="arthur-middleton-signature">Arthur Middleton</span>
+      <?php echo doi_painting_icon('arthur-middleton-face'); ?>
+      <?php echo doi_map_icon('middleton-place'); ?>
+    </li>
   </ul>
 
   <h3>Massachusetts</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="john-hancock-signature" class="hancock">John Hancock</span></li>
+    <li>
+      <span data-neatline-slug="john-hancock-signature" class="hancock">John Hancock</span>
+      <?php echo doi_painting_icon('john-hancock-face'); ?>
+      <?php echo doi_map_icon('boston'); ?>
+    </li>
   </ul>
 
   <h3>Maryland:</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="samuel-chase-signature">Samuel Chase</span></li>
-    <li><span data-neatline-slug="william-paca-signature">William Paca</span></li>
-    <li><span data-neatline-slug="thomas-stone-signature">Thomas Stone</span></li>
-    <li><span data-neatline-slug="charles-carroll-signature">Charles Carroll of Carrollton</span></li>
+    <li>
+      <span data-neatline-slug="samuel-chase-signature">Samuel Chase</span>
+      <?php echo doi_painting_icon('samuel-chase-face'); ?>
+      <?php echo doi_map_icon('annapolis'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="william-paca-signature">William Paca</span>
+      <?php echo doi_painting_icon('william-paca-face'); ?>
+      <?php echo doi_map_icon('wye-plantation'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-stone-signature">Thomas Stone</span>
+      <?php echo doi_map_icon('habre-de-venture'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="charles-carroll-signature">Charles Carroll</span>
+      <?php echo doi_painting_icon('charles-carroll-face'); ?>
+      <?php echo doi_map_icon('carrollton-manor'); ?>
+    </li>
   </ul>
 
   <h3>Virginia</h3>
 
   <ul class="state confederate">
-    <li><span data-neatline-slug="george-wythe-signature">George Wythe</span></li>
-    <li><span data-neatline-slug="richard-henry-lee-signature">Richard Henry Lee</span></li>
-    <li><span data-neatline-slug="thomas-jefferson-signature">Thomas Jefferson</span></li>
-    <li><span data-neatline-slug="benjamin-harrison-signature">Benjamin Harrison</span></li>
-    <li><span data-neatline-slug="thomas-nelson-signature">Thomas Nelson, Jr.</span></li>
-    <li><span data-neatline-slug="francis-lightfoot-lee-signature">Francis Lightfoot Lee</span></li>
-    <li><span data-neatline-slug="carter-braxton-signature">Carter Braxton</span></li>
+    <li>
+      <span data-neatline-slug="george-wythe-signature">George Wythe</span>
+      <?php echo doi_painting_icon('george-wythe-face'); ?>
+      <?php echo doi_map_icon('williamsburg'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="richard-henry-lee-signature">Richard Henry Lee</span>
+      <?php echo doi_painting_icon('richard-henry-lee-face'); ?>
+      <?php echo doi_map_icon('chantilly'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-jefferson-signature">Thomas Jefferson</span>
+      <?php echo doi_painting_icon('thomas-jefferson-face'); ?>
+      <?php echo doi_map_icon('monticello'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="benjamin-harrison-signature">Benjamin Harrison</span>
+      <?php echo doi_painting_icon('benjamin-harrison-face'); ?>
+      <?php echo doi_map_icon('berkeley-plantation'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-nelson-signature">Thomas Nelson, Jr.</span>
+      <?php echo doi_map_icon('yorktown'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="francis-lightfoot-lee-signature">Francis Lightfoot Lee</span>
+      <?php echo doi_painting_icon('francis-lightfoot-lee-face'); ?>
+      <?php echo doi_map_icon('menokin'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="carter-braxton-signature">Carter Braxton</span>
+      <?php echo doi_map_icon('elsing-green'); ?>
+    </li>
   </ul>
 
   <h3>Pennsylvania</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="robert-morris-signature">Robert Morris</span></li>
-    <li><span data-neatline-slug="benjamin-rush-signature">Benjamin Rush</span></li>
-    <li><span data-neatline-slug="benjamin-franklin-signature">Benjamin Franklin</span></li>
-    <li><span data-neatline-slug="john-morton-signature">John Morton</span></li>
-    <li><span data-neatline-slug="george-clymer-signature">George Clymer</span></li>
-    <li><span data-neatline-slug="james-smith-signature">James Smith</span></li>
-    <li><span data-neatline-slug="george-taylor-signature">George Taylor</span></li>
-    <li><span data-neatline-slug="james-wilson-signature">James Wilson</span></li>
-    <li><span data-neatline-slug="george-ross-signature">George Ross</span></li>
+    <li>
+      <span data-neatline-slug="robert-morris-signature">Robert Morris</span>
+      <?php echo doi_painting_icon('robert-morris-face'); ?>
+      <?php echo doi_map_icon('philadelphia'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="benjamin-rush-signature">Benjamin Rush</span>
+      <?php echo doi_painting_icon('benjamin-rush-face'); ?>
+      <?php echo doi_map_icon('philadelphia'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="benjamin-franklin-signature">Benjamin Franklin</span>
+      <?php echo doi_painting_icon('benjamin-franklin-face'); ?>
+      <?php echo doi_map_icon('philadelphia'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="john-morton-signature">John Morton</span>
+      <?php echo doi_painting_icon('john-morton-face'); ?>
+      <?php echo doi_map_icon('philadelphia'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="george-clymer-signature">George Clymer</span>
+      <?php echo doi_painting_icon('george-clymer-face'); ?>
+      <?php echo doi_map_icon('philadelphia'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="james-smith-signature">James Smith</span>
+      <?php echo doi_map_icon('york'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="george-taylor-signature">George Taylor</span>
+      <?php echo doi_map_icon('easton'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="james-wilson-signature">James Wilson</span>
+      <?php echo doi_painting_icon('james-wilson-face'); ?>
+      <?php echo doi_map_icon('carlisle'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="george-ross-signature">George Ross</span>
+      <?php echo doi_map_icon('lancaster'); ?>
+    </li>
   </ul>
 
   <h3>Delaware</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="caesar-rodney-signature">Caesar Rodney</span></li>
-    <li><span data-neatline-slug="george-read-signature">George Read</span></li>
-    <li><span data-neatline-slug="thomas-mckean-signature">Thomas McKean</span></li>
+    <li>
+      <span data-neatline-slug="caesar-rodney-signature">Caesar Rodney</span>
+      <?php echo doi_map_icon('dover'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="george-read-signature">George Read</span>
+      <?php echo doi_painting_icon('george-read-face'); ?>
+      <?php echo doi_map_icon('new-castle'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="thomas-mckean-signature">Thomas McKean</span>
+      <?php echo doi_painting_icon('thomas-mckean-face'); ?>
+      <?php echo doi_map_icon('new-castle'); ?>
+    </li>
   </ul>
 
   <h3>New York</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="william-floyd-signature">William Floyd</span></li>
-    <li><span data-neatline-slug="philip-livingston-signature">Philip Livingston</span></li>
-    <li><span data-neatline-slug="francis-lewis-signature">Francis Lewis</span></li>
-    <li><span data-neatline-slug="lewis-morris-signature">Lewis Morris</span></li>
+    <li>
+      <span data-neatline-slug="william-floyd-signature">William Floyd</span>
+      <?php echo doi_painting_icon('william-floyd-face'); ?>
+      <?php echo doi_map_icon('brookhaven'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="philip-livingston-signature">Philip Livingston</span>
+      <?php echo doi_painting_icon('philip-livingston-face'); ?>
+      <?php echo doi_map_icon('new-york'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="francis-lewis-signature">Francis Lewis</span>
+      <?php echo doi_painting_icon('francis-lewis-face'); ?>
+      <?php echo doi_map_icon('new-york'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="lewis-morris-signature">Lewis Morris</span>
+      <?php echo doi_painting_icon('lewis-morris-face'); ?>
+      <?php echo doi_map_icon('new-york'); ?>
+    </li>
   </ul>
 
   <h3>New Jersey</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="richard-stockton-signature">Richard Stockton</span></li>
-    <li><span data-neatline-slug="john-witherspoon-signature">John Witherspoon</span></li>
-    <li><span data-neatline-slug="francis-hopkinson-signature">Francis Hopkinson</span></li>
-    <li><span data-neatline-slug="john-hart-signature">John Hart</span></li>
-    <li><span data-neatline-slug="abraham-clark-signature">Abraham Clark</span></li>
+    <li>
+      <span data-neatline-slug="richard-stockton-signature">Richard Stockton</span>
+      <?php echo doi_painting_icon('richard-stockton-face'); ?>
+      <?php echo doi_map_icon('princeton'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="john-witherspoon-signature">John Witherspoon</span>
+      <?php echo doi_painting_icon('john-witherspoon-face'); ?>
+      <?php echo doi_map_icon('princeton'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="francis-hopkinson-signature">Francis Hopkinson</span>
+      <?php echo doi_painting_icon('francis-hopkinson-face'); ?>
+      <?php echo doi_map_icon('bordentown'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="john-hart-signature">John Hart</span>
+      <?php echo doi_map_icon('hopewell'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="abraham-clark-signature">Abraham Clark</span>
+      <?php echo doi_painting_icon('abraham-clark-face'); ?>
+      <?php echo doi_map_icon('roselle'); ?>
+    </li>
   </ul>
 
   <h3>New Hampshire</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="josiah-bartlett-signature">Josiah Bartlett</span></li>
-    <li><span data-neatline-slug="william-whipple-signature">William Whipple</span></li>
+    <li>
+      <span data-neatline-slug="josiah-bartlett-signature">Josiah Bartlett</span>
+      <?php echo doi_painting_icon('josiah-bartlett-face'); ?>
+      <?php echo doi_map_icon('kingston'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="william-whipple-signature">William Whipple</span>
+      <?php echo doi_painting_icon('william-whipple-face'); ?>
+      <?php echo doi_map_icon('portsmouth'); ?>
+    </li>
   </ul>
 
   <h3>Massachusetts</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="samuel-adams-signature">Samuel Adams</span></li>
-    <li><span data-neatline-slug="john-adams-signature">John Adams</span></li>
-    <li><span data-neatline-slug="robert-treat-paine-signature">Robert Treat Paine</span></li>
-    <li><span data-neatline-slug="elbridge-gerry-signature">Elbridge Gerry</span></li>
+    <li>
+      <span data-neatline-slug="samuel-adams-signature">Samuel Adams</span>
+      <?php echo doi_painting_icon('samuel-adams-face'); ?>
+      <?php echo doi_map_icon('boston'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="john-adams-signature">John Adams</span>
+      <?php echo doi_painting_icon('john-adams-face'); ?>
+      <?php echo doi_map_icon('boston'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="robert-treat-paine-signature">Robert Treat Paine</span>
+      <?php echo doi_painting_icon('robert-treat-paine-face'); ?>
+      <?php echo doi_map_icon('taunton'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="elbridge-gerry-signature">Elbridge Gerry</span>
+      <?php echo doi_painting_icon('elbridge-gerry-face'); ?>
+      <?php echo doi_map_icon('marblehead'); ?>
+    </li>
   </ul>
 
   <h3>Rhode Island</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="stephen-hopkins-signature">Stephen Hopkins</span></li>
-    <li><span data-neatline-slug="william-ellery-signature">William Ellery</span></li>
+    <li>
+      <span data-neatline-slug="stephen-hopkins-signature">Stephen Hopkins</span>
+      <?php echo doi_painting_icon('stephen-hopkins-face'); ?>
+      <?php echo doi_map_icon('providence'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="william-ellery-signature">William Ellery</span>
+      <?php echo doi_painting_icon('william-ellery-face'); ?>
+      <?php echo doi_map_icon('newport'); ?>
+    </li>
   </ul>
 
   <h3>Connecticut</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="roger-sherman-signature">Roger Sherman</span></li>
-    <li><span data-neatline-slug="samuel-huntington-signature">Samuel Huntington</span></li>
-    <li><span data-neatline-slug="william-williams-signature">William Williams</span></li>
-    <li><span data-neatline-slug="oliver-wolcott-signature">Oliver Wolcott</span></li>
+    <li>
+      <span data-neatline-slug="roger-sherman-signature">Roger Sherman</span>
+      <?php echo doi_painting_icon('roger-sherman-face'); ?>
+      <?php echo doi_map_icon('new-haven'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="samuel-huntington-signature">Samuel Huntington</span>
+      <?php echo doi_painting_icon('samuel-huntington-face'); ?>
+      <?php echo doi_map_icon('norwich'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="william-williams-signature">William Williams</span>
+      <?php echo doi_painting_icon('william-williams-face'); ?>
+      <?php echo doi_map_icon('lebanon'); ?>
+    </li>
+    <li>
+      <span data-neatline-slug="oliver-wolcott-signature">Oliver Wolcott</span>
+      <?php echo doi_painting_icon('oliver-wolcott-face'); ?>
+      <?php echo doi_map_icon('litchfield'); ?>
+    </li>
   </ul>
 
   <h3>New Hampshire</h3>
 
   <ul class="state union">
-    <li><span data-neatline-slug="matthew-thornton-signature">Matthew Thornton</span></li>
+    <li>
+      <span data-neatline-slug="matthew-thornton-signature">Matthew Thornton</span>
+      <?php echo doi_map_icon('londonderry'); ?>
+    </li>
   </ul>
 
 </div>
