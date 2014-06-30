@@ -498,10 +498,10 @@ Neatline.module('Toggle', function(Toggle) {
     },
 
     {
-      name: 'Oliver Wolocott',
+      name: 'Oliver Wolcott',
       records: {
-        text: 'oliver-wolocott-signature',
-        painting: 'oliver-wolocott-face',
+        text: 'oliver-wolcott-signature',
+        painting: 'oliver-wolcott-face',
         map: 'litchfield'
       }
     },
@@ -512,6 +512,51 @@ Neatline.module('Toggle', function(Toggle) {
         text: 'matthew-thornton-signature',
         painting: false,
         map: 'londonderry'
+      }
+    },
+
+    {
+      name: 'George Clinton',
+      records: {
+        text: false,
+        painting: 'george-clinton-face',
+        map: false
+      }
+    },
+
+    {
+      name: 'Thomas Willing',
+      records: {
+        text: false,
+        painting: 'thomas-willing-face',
+        map: false
+      }
+    },
+
+    {
+      name: 'Robert Livingston',
+      records: {
+        text: false,
+        painting: 'robert-livingston-face',
+        map: false
+      }
+    },
+
+    {
+      name: 'Charles Thomson',
+      records: {
+        text: false,
+        painting: 'charles-thomson-face',
+        map: false
+      }
+    },
+
+    {
+      name: 'John Dickinson',
+      records: {
+        text: false,
+        painting: 'john-dickinson-face',
+        map: false
       }
     }
 

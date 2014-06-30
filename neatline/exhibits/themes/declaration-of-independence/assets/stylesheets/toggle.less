@@ -18,7 +18,7 @@
     }
 
     &.selected, &.toggle:hover {
-      background: lighten(@color, 5%);
+      background: @color;
       color: darken(white, 5%);
     }
 
@@ -48,7 +48,7 @@
       font-size: 12px;
       cursor: pointer;
 
-      &.current {
+      &.current, &.signer {
         font-weight: bold;
       }
 
