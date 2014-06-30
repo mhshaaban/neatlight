@@ -160,10 +160,6 @@ Neatline.module('Toggle', function(Toggle) {
       return (
         <ul className="toggle">
 
-          <li className="current">
-            <span>The Declaration of Independence</span>
-          </li>
-
           <TargetButton
             text="Text"
             icon="list-alt"
