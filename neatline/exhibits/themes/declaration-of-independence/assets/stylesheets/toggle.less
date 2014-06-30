@@ -11,15 +11,14 @@
   li {
 
     &.highlighted,
-    &.target:hover:not(.disabled),
-    &.toggle:hover,
+    &.target:hover:not(.disabled):not(.selected),
     &.signer:hover {
-      background: lighten(@color, 5%);
+      background: darken(@color, 10%);
       color: darken(white, 5%);
     }
 
-    &.selected {
-      background: @color;
+    &.selected, &.toggle:hover {
+      background: lighten(@color, 5%);
       color: darken(white, 5%);
     }
 
@@ -49,7 +48,7 @@
       font-size: 12px;
       cursor: pointer;
 
-      &.current, &.signer {
+      &.current {
         font-weight: bold;
       }
 

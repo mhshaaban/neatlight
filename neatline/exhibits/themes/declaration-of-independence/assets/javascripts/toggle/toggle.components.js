@@ -22,6 +22,7 @@ Neatline.module('Toggle', function(Toggle) {
         return (
           <Declaration
             model={this.state.model}
+            selected={this.state.selected}
           />
         )
       }
@@ -166,6 +167,7 @@ Neatline.module('Toggle', function(Toggle) {
             text="Text"
             icon="list-alt"
             slug="text"
+            selected={this.props.selected}
             model={this.props.model}
           />
 
@@ -173,6 +175,7 @@ Neatline.module('Toggle', function(Toggle) {
             text="Painting"
             icon="user"
             slug="painting"
+            selected={this.props.selected}
             model={this.props.model}
           />
 
@@ -180,6 +183,7 @@ Neatline.module('Toggle', function(Toggle) {
             text="Map"
             icon="globe"
             slug="map"
+            selected={this.props.selected}
             model={this.props.model}
           />
 
@@ -252,16 +256,16 @@ Neatline.module('Toggle', function(Toggle) {
             text="Text"
             icon="list-alt"
             slug={this.props.signer.records.text}
-            model={this.props.model}
             selected={this.props.selected}
+            model={this.props.model}
           />
 
           <TargetButton
             text="Painting"
             icon="user"
             slug={this.props.signer.records.painting}
-            model={this.props.model}
             selected={this.props.selected}
+            model={this.props.model}
           />
 
           <TargetButton
@@ -269,8 +273,8 @@ Neatline.module('Toggle', function(Toggle) {
             icon="globe"
             toggleSlug={this.props.signer.records.text}
             slug={this.props.signer.records.map}
-            model={this.props.model}
             selected={this.props.selected}
+            model={this.props.model}
           />
 
           <li className="toggle" onClick={this.toggle}>
