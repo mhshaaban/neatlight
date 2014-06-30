@@ -66,8 +66,9 @@ Neatline.module('Toggle', function(Toggle) {
       // When Benjamin Franklin is selected, and "Map" is clicked/toggled, the
       // toggle widget should retain its selection on Benjan Franklin, instead
       // of displaying the list of signers from Philadelphia.
-      var slug = args.toggleSlug ?
-        args.toggleSlug :
+
+      var slug = args.signerSlug ?
+        args.signerSlug :
         args.model.get('slug');
 
       var signers = this._getSignersBySlug(slug);

@@ -275,7 +275,7 @@ Neatline.module('Toggle', function(Toggle) {
           <TargetButton
             text="Map"
             icon="globe"
-            toggleSlug={this.props.signer.records.text}
+            signerSlug={this.props.signer.records.text}
             slug={this.props.signer.records.map}
             selected={this.props.selected}
             model={this.props.model}
@@ -332,7 +332,7 @@ Neatline.module('Toggle', function(Toggle) {
       // Publish the event.
       Neatline.vent.trigger('select', {
         model: record,
-        toggleSlug: this.props.signer.records.text,
+        signerSlug: this.props.signer.records.text,
         source: 'TOGGLE'
       });
 
@@ -426,7 +426,7 @@ Neatline.module('Toggle', function(Toggle) {
      */
     getDefaultProps: function() {
       return {
-        toggleSlug: null
+        signerSlug: null
       };
     },
 
@@ -452,7 +452,7 @@ Neatline.module('Toggle', function(Toggle) {
       // Publish the event.
       Neatline.vent.trigger(event, {
         model: record,
-        toggleSlug: this.props.toggleSlug,
+        signerSlug: this.props.signerSlug,
         source: 'TOGGLE'
       });
 
@@ -494,7 +494,7 @@ Neatline.module('Toggle', function(Toggle) {
       // Publish the event.
       Neatline.vent.trigger(event, {
         model: record,
-        toggleSlug: this.props.signer.records.text,
+        signerSlug: this.props.signer.records.text,
         source: 'TOGGLE'
       });
 
