@@ -21,8 +21,8 @@ Neatline.module('Toggle.Components', function(Components) {
      */
     render: function() {
 
-      // Alias <TargetButton />.
       var TargetButton = Components.TargetButton;
+      var Tooltip = ReactBootstrap.Tooltip;
 
       // By default, just the signer's name.
       var name = this.props.signer.name;
@@ -49,7 +49,13 @@ Neatline.module('Toggle.Components', function(Components) {
         <ul className={widgetCx}>
 
           <li className={nameCx} onClick={this.showBio}>
+
+            <Tooltip placement="left" positionLeft={-100}>
+              Click for biography!
+            </Tooltip>
+
             <span>{name}</span>
+
           </li>
 
           <TargetButton
