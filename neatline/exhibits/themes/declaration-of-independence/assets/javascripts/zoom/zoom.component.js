@@ -12,6 +12,7 @@ Neatline.module('Zoom', function(Zoom) {
 
   Zoom.Component = React.createClass({
 
+
     /**
      * Render the buttons.
      */
@@ -28,12 +29,14 @@ Neatline.module('Zoom', function(Zoom) {
       );
     },
 
+
     /**
      * Cache the map instance.
      */
     componentWillMount: function() {
       this.setState({ map: Neatline.request('MAP:getMap') });
     },
+
 
     /**
      * Zoom the map in.
@@ -42,12 +45,14 @@ Neatline.module('Zoom', function(Zoom) {
       this.state.map.zoomIn();
     },
 
+
     /**
      * Zoom the map out.
      */
     zoomOut: function() {
       this.state.map.zoomOut();
     }
+
 
   });
 
