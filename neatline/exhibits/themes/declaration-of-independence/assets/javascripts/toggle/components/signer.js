@@ -179,15 +179,11 @@ Neatline.module('Toggle.Components', function(Components) {
       var Modal = ReactBootstrap.Modal;
 
       return (
-        <Modal
-          title={this.props.signer.name}
-          onRequestHide={this.hideBio}>
-
+        <Modal onRequestHide={this.hideBio}>
           <div
             className="modal-body"
             dangerouslySetInnerHTML={{__html: this.state.biography}}>
           </div>
-
         </Modal>
       );
 
