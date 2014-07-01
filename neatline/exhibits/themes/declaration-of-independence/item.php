@@ -50,9 +50,11 @@
     )); ?>
 
     <span>From</span>
-    <a href="<?php echo $source; ?>" target="_blank">
-      Signers of the Declaration
-    </a>:
+
+    <a
+      href="<?php echo $source; ?>"
+      target="_blank"
+    >Signers of the Declaration</a>:
 
   </div>
 

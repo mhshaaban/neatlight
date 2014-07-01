@@ -14,29 +14,46 @@
 
     .modal-body {
 
-      padding: 50px;
+      padding: 0;
+
+      .close {
+        margin: 0 15px 0 0;
+        font-size: 60px;
+        font-weight: 200;
+      }
+
+      .signer {
+        padding: 50px;
+      }
 
       .header {
         text-align: center;
       }
 
-      .content {
+      .picture {
+        text-align: center;
+        img {
+          max-width: 400px;
+        }
+      }
 
-        .picture {
-          text-align: center;
-          img {
-            max-width: 400px;
-          }
+      .source {
+
+        text-align: center;
+        font-style: italic;
+
+        a {
+          font-weight: bold;
         }
 
-        .summary {
-          font-size: 1.3em;
-        }
+      }
 
-        .text {
-          margin-top: 10px;
-        }
+      .summary {
+        font-size: 1.3em;
+      }
 
+      .text {
+        margin-top: 20px;
       }
 
     }

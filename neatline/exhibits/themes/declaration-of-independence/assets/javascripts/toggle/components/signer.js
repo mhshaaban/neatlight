@@ -189,9 +189,14 @@ Neatline.module('Toggle.Components', function(Components) {
 
       return (
         <Modal onRequestHide={this.hideBio}>
-          <div
-            className="modal-body"
-            dangerouslySetInnerHTML={{__html: this.state.biography}}>
+          <div className="modal-body">
+
+            <button className="close" onClick={this.hideBio}>×</button>
+
+            <div className="signer"
+              dangerouslySetInnerHTML={{__html: this.state.biography}}>
+            </div>
+
           </div>
         </Modal>
       );
