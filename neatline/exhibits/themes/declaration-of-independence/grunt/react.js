@@ -12,6 +12,7 @@ module.exports = {
     files: {
       'script.js': [
         'bower_components/react/react-with-addons.js',
+        'bower_components/react-boostrap/react-bootstrap.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
         'bower_components/nprogress/nprogress.js',
         'assets/javascripts/**/*.js'
