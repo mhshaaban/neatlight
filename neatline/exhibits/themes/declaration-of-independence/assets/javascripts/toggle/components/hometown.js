@@ -28,7 +28,7 @@ Neatline.module('Toggle.Components', function(Components) {
       return (
         <ul className="signers">
 
-          <li className="current">
+          <li className="hometown">
             <span>{this.props.model.get('title')}</span>
           </li>
 

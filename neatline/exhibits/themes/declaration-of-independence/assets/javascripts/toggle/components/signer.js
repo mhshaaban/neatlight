@@ -42,7 +42,7 @@ Neatline.module('Toggle.Components', function(Components) {
       // Disable the name if a bio doesn't exist.
       var nameCx = React.addons.classSet({
         disabled: !this.props.signer.records.text,
-        current: true
+        name: true
       });
 
       return (
@@ -51,7 +51,7 @@ Neatline.module('Toggle.Components', function(Components) {
           <li className={nameCx} onClick={this.showBio}>
 
             <Tooltip placement="left" positionLeft={-100}>
-              Click for biography!
+              Click for biography
             </Tooltip>
 
             <span>{name}</span>

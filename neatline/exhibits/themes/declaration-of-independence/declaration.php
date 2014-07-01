@@ -161,16 +161,6 @@ require_once dirname(__FILE__).'/functions.php';
     </li>
   </ul>
 
-  <h3>Massachusetts</h3>
-
-  <ul class="state union">
-    <li>
-      <span data-neatline-slug="john-hancock-signature" class="hancock">John Hancock</span>
-      <?php echo doi_painting_icon('john-hancock-face'); ?>
-      <?php echo doi_map_icon('boston'); ?>
-    </li>
-  </ul>
-
   <h3>Maryland:</h3>
 
   <ul class="state union">
@@ -371,6 +361,11 @@ require_once dirname(__FILE__).'/functions.php';
   <h3>Massachusetts</h3>
 
   <ul class="state union">
+    <li>
+      <span data-neatline-slug="john-hancock-signature" class="hancock">John Hancock</span>
+      <?php echo doi_painting_icon('john-hancock-face'); ?>
+      <?php echo doi_map_icon('boston'); ?>
+    </li>
     <li>
       <span data-neatline-slug="samuel-adams-signature">Samuel Adams</span>
       <?php echo doi_painting_icon('samuel-adams-face'); ?>
