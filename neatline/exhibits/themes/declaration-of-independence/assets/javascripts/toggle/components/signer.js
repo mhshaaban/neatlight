@@ -32,17 +32,23 @@ Neatline.module('Toggle.Components', function(Components) {
         name = this.props.model.get('title') + ' ~ ' + name;
       }
 
-      // Construct the class string.
-      var signerCx = React.addons.classSet({
-        toggle: true,
+      // Set union/confederate highlight color.
+      var widgetCx = React.addons.classSet({
+        union: this.props.model.hasTag('union'),
         confederate: this.props.model.hasTag('confederate'),
-        union: this.props.model.hasTag('union')
+        toggle: true
+      });
+
+      // Disable the name if a bio doesn't exist.
+      var nameCx = React.addons.classSet({
+        disabled: !this.props.signer.records.text,
+        current: true
       });
 
       return (
-        <ul className={signerCx}>
+        <ul className={widgetCx}>
 
-          <li className="current" onClick={this.showBio}>
+          <li className={nameCx} onClick={this.showBio}>
             <span>{name}</span>
           </li>
 
@@ -179,8 +185,8 @@ Neatline.module('Toggle.Components', function(Components) {
      */
     renderOverlay: function() {
 
-      // Halt if the bio is hidden.
-      if (!this.state.bioIsOpen || !this.state.biography) {
+      // Halt if the bio is hidden or if no bio exists.
+      if (!this.state.bioIsOpen || !this.props.signer.records.text) {
         return <span />;
       }
 
