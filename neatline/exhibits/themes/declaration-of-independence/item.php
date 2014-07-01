@@ -27,9 +27,9 @@
 
 </div>
 
-<hr />
-
 <div class="content">
+
+  <hr />
 
   <div class="picture">
     <?php echo file_markup($item->Files, array(
@@ -42,6 +42,8 @@
         'Item Type Metadata', 'Biographical Summary'
     )); ?>
   </div>
+
+  <hr />
 
   <div class="text biography">
     <?php echo metadata('item', array(
