@@ -10,7 +10,7 @@
 Neatline.module('Zoom', function(Zoom) {
 
 
-  var ZoomButtons = React.createClass({
+  Zoom.Component = React.createClass({
 
     /**
      * Render the buttons.
@@ -49,11 +49,6 @@ Neatline.module('Zoom', function(Zoom) {
       this.state.map.zoomOut();
     }
 
-  });
-
-
-  Zoom.addInitializer(function() {
-    React.renderComponent(<ZoomButtons />, $('#zoom').get(0));
   });
 
 
