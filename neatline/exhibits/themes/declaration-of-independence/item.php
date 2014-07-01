@@ -32,15 +32,9 @@
   <hr />
 
   <div class="picture">
-
-    <!--
     <?php echo file_markup($item->Files, array(
       'imageSize' => 'fullsize'
     )); ?>
-    -->
-
-    <img src="http://placehold.it/400x400" />
-
   </div>
 
   <div class="text source">
