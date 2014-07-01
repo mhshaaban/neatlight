@@ -102,6 +102,23 @@ Neatline.module('Toggle.Components', function(Components) {
 
 
     /**
+     * Load the biography for the current signer.
+     */
+    componentDidMount: function() {
+
+      // Get a canonical model.
+      model = this.getBioModel();
+      if (!model) return;
+
+      // Load the bio for the signer.
+      model.loadItem(_.bind(function(metadata) {
+        this.setState({ biography: metadata });
+      }, this));
+
+    },
+
+
+    /**
      * By default, hide the biography modal.
      */
     getInitialState: function() {
@@ -162,18 +179,10 @@ Neatline.module('Toggle.Components', function(Components) {
      */
     renderOverlay: function() {
 
-      // Get a canonical model.
-      var model = this.getBioModel();
-
       // Halt if the bio is hidden.
-      if (!this.state.bioIsOpen || !model) {
+      if (!this.state.bioIsOpen || !this.state.biography) {
         return <span />;
       }
-
-      // Load the bio for the signer.
-      model.loadItem(_.bind(function(metadata) {
-        this.setState({ biography: metadata });
-      }, this));
 
       // Alias <Modal />.
       var Modal = ReactBootstrap.Modal;

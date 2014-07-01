@@ -32,9 +32,28 @@
   <hr />
 
   <div class="picture">
+
+    <!--
     <?php echo file_markup($item->Files, array(
       'imageSize' => 'fullsize'
     )); ?>
+    -->
+
+    <img src="http://placehold.it/400x400" />
+
+  </div>
+
+  <div class="text source">
+
+    <?php $source = metadata('item', array(
+        'Dublin Core', 'Source'
+    )); ?>
+
+    <span>From</span>
+    <a href="<?php echo $source; ?>" target="_blank">
+      Signers of the Declaration
+    </a>:
+
   </div>
 
   <div class="text summary">
