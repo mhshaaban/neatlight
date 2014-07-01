@@ -32,7 +32,7 @@ Neatline.module('Toggle', function(Toggle) {
      */
     init: function() {
       this.toggle = React.renderComponent(
-        Toggle.Widget(), $('#toggle').get(0)
+        Toggle.Components.Toggle(), $('#toggle').get(0)
       );
     },
 
