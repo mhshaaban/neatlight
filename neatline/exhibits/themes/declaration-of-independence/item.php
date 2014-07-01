@@ -32,7 +32,9 @@
 <div class="content">
 
   <div class="picture">
-    <?php echo files_for_item(); ?>
+    <?php echo file_markup($item->Files, array(
+      'imageSize' => 'fullsize'
+    )); ?>
   </div>
 
   <div class="text summary">
