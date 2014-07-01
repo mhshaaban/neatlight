@@ -13,6 +13,9 @@ Neatline.module('Toggle.Components', function(Components) {
   Components.Signer = React.createClass({
 
 
+    mixins: [ReactBootstrap.OverlayMixin],
+
+
     /**
      * When one signer is highlighted/selected.
      */
@@ -99,6 +102,16 @@ Neatline.module('Toggle.Components', function(Components) {
 
 
     /**
+     * By default, hide the biography modal.
+     */
+    getInitialState: function() {
+      return {
+        bioIsOpen: false
+      };
+    },
+
+
+    /**
      * Toggle through the targets.
      */
     toggle: function() {
@@ -129,10 +142,67 @@ Neatline.module('Toggle.Components', function(Components) {
 
 
     /**
-     * Shwo the biography modal.
+     * Trigger the biography modal.
      */
     showBio: function() {
-      // TODO
+      this.setState({ bioIsOpen: true });
+    },
+
+
+    /**
+     * Close the biography modal.
+     */
+    hideBio: function() {
+      this.setState({ bioIsOpen: false });
+    },
+
+
+    /**
+     * Render the biography modal.
+     */
+    renderOverlay: function() {
+
+      // Get a canonical model.
+      var model = this.getBioModel();
+
+      // Halt if the bio is hidden.
+      if (!this.state.bioIsOpen || !model) {
+        return <span />;
+      }
+
+      // Load the bio for the signer.
+      model.loadItem(_.bind(function(metadata) {
+        this.setState({ biography: metadata });
+      }, this));
+
+      // Alias <Modal />.
+      var Modal = ReactBootstrap.Modal;
+
+      return (
+        <Modal
+          title={this.props.signer.name}
+          onRequestHide={this.hideBio}>
+
+          <div
+            className="modal-body"
+            dangerouslySetInnerHTML={{__html: this.state.biography}}>
+          </div>
+
+        </Modal>
+      );
+
+    },
+
+
+    /**
+     * Get a canonical model for the biography modal.
+     *
+     * @return {Neatline.Shared.Record.Model}
+     */
+    getBioModel: function() {
+      return Neatline.request('MAP:getRecords').findWhere({
+        slug: this.props.signer.records.text
+      });
     }
 
 
