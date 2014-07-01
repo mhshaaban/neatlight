@@ -124,7 +124,9 @@ Neatline.module('Toggle.Components', function(Components) {
 
       // Load the bio for the signer.
       model.loadItem(_.bind(function(metadata) {
-        this.setState({ biography: metadata });
+        if (this.isMounted()) {
+          this.setState({ biography: metadata });
+        }
       }, this));
 
     },
