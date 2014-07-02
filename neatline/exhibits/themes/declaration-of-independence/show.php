@@ -24,6 +24,8 @@
     <div id="tutorial-button"></div>
   </header>
 
+  <hr />
+
   <?php include('declaration.php'); ?>
   <?php include('tutorial.php'); ?>
 
