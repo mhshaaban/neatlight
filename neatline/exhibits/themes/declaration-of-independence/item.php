@@ -33,7 +33,8 @@
 
   <div class="picture">
     <?php echo file_markup($item->Files, array(
-      'imageSize' => 'fullsize'
+      'imageSize' => 'fullsize',
+      'linkToFile' => false
     )); ?>
   </div>
 
