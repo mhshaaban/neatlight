@@ -81,10 +81,26 @@ Neatline.module('Tutorial', function(Tutorial) {
         <Modal onRequestHide={this.hideBio}>
           <div className="modal-body">
 
-            <button className="close" onClick={this.hide}>×</button>
+            <button
+              className="close"
+              onClick={this.hide}>×</button>
 
-            <div className="signer"
-              dangerouslySetInnerHTML={{__html: this.state.tutorial}}>
+            <div className="signer tutorial-modal">
+
+              <div
+                className="partial"
+                dangerouslySetInnerHTML={{
+                  __html: this.state.tutorial
+                }}></div>
+
+              <div className="actions">
+
+                <button
+                  className="btn btn-default"
+                  onClick={this.hide}>Got it</button>
+
+              </div>
+
             </div>
 
           </div>
