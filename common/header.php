@@ -21,6 +21,10 @@
       echo isset($title) ? ' | ' . $title : ''; ?>
     </title>
 
+    <!-- Google analytics. -->
+    <?php fire_plugin_hook('public_head', array('view'=>$this)); ?>
+
+    <!-- CSS/JS. -->
     <?php echo head_css(false); ?>
     <?php echo head_js(false); ?>
 
