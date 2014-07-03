@@ -78,7 +78,7 @@ Neatline.module('Tutorial', function(Tutorial) {
       var Modal = ReactBootstrap.Modal;
 
       return (
-        <Modal onRequestHide={this.hideBio}>
+        <Modal onRequestHide={this.hide}>
           <div className="modal-body">
 
             <button
