@@ -8,13 +8,10 @@
 
 module.exports = {
 
-  options: {
-    livereload: true
-  },
-
   dist: {
-    files: ['assets/**/*', '*.php'],
-    tasks: 'compile'
+    files: {
+      'style.css': ['assets/stylesheets/style.styl']
+    }
   }
 
 };

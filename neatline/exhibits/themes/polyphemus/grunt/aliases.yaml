@@ -1,0 +1,9 @@
+
+build:
+  - bower
+
+compile:
+  - uglify
+
+default:
+  - compile
