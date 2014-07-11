@@ -1,0 +1,8 @@
+{
+  "name": "polyphemus",
+  "version": "0.1.0",
+  "dependencies": {
+    "nprogress": "~0.1.4",
+    "bootstrap": "~3.1.1"
+  }
+}
