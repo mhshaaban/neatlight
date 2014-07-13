@@ -13,7 +13,6 @@ Neatline.on('start', function() {
   var position = function() {
     exhibit.outerHeight($(window).height());
     Neatline.execute('MAP:updateSize');
-    console.log('position');
   };
 
   $(window).resize(position);

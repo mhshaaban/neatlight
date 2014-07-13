@@ -8,6 +8,11 @@
 
 module.exports = {
 
+  options: {
+    paths: ['bower_components'],
+    'include css': true
+  },
+
   dist: {
     files: {
       'style.css': ['assets/stylesheets/style.styl']
