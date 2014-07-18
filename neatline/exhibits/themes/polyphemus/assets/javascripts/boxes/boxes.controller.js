@@ -16,50 +16,49 @@ Neatline.module('Boxes', function(Boxes) {
 
     events: [
       'highlight',
-      'unhighlight',
-      'select',
-      'unselect'
+      'unhighlight'
     ],
 
 
     /**
-     * TODO|dev
-     */
-    init: function() {
-      console.log('boxes');
-    },
-
-
-    /**
      * Box -> word highlights.
+     *
+     * @param {Object} args
      */
-    highlight: function() {
-      console.log('highlight');
+    highlight: function(args) {
+      if (args.model.hasTag('bbox')) {
+        Neatline.execute('MAP:renderHighlightIntent', args.model);
+        // TODO
+      }
     },
 
 
     /**
      * Box -> word unhighlights.
+     *
+     * @param {Object} args
      */
-    unhighlight: function() {
-      console.log('unhighlight');
+    unhighlight: function(args) {
+      Neatline.execute('MAP:renderDefaultIntent', args.model);
     },
 
 
     /**
-     * Box -> word selects.
+     * Given a bounding box record, get the corresponding word record.
+     *
+     * @param {Object} bboxRecord
      */
-    select: function() {
-      console.log('select');
-    },
+    getWordRecord: function(bboxRecord) {
 
+      // Get the slug for the corresponding word.
+      var wordSlug = 'w' + args.model.get('slug').slice(1);
 
-    /**
-     * Box -> word unselects.
-     */
-    unselect: function() {
-      console.log('unselect');
-    },
+      // Query for the model in the map collection.
+      return Neatline.request('MAP:getRecords').findWhere({
+        slug: wordSlug
+      });
+
+    }
 
 
   });
