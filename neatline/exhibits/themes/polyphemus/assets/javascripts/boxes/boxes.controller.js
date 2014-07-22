@@ -27,8 +27,11 @@ Neatline.module('Boxes', function(Boxes) {
      */
     highlight: function(args) {
       if (args.model.hasTag('bbox')) {
-        Neatline.execute('MAP:renderHighlightIntent', args.model);
-        // TODO
+
+        // Visually highlight the word.
+        var record = this.getWordRecord(args.model);
+        Neatline.execute('MAP:showHighlight', record);
+
       }
     },
 
@@ -39,7 +42,13 @@ Neatline.module('Boxes', function(Boxes) {
      * @param {Object} args
      */
     unhighlight: function(args) {
-      Neatline.execute('MAP:renderDefaultIntent', args.model);
+      if (args.model.hasTag('bbox')) {
+
+        // Visually unhighlight the word.
+        var record = this.getWordRecord(args.model);
+        Neatline.execute('MAP:hideHighlight', record);
+
+      }
     },
 
 
@@ -51,7 +60,7 @@ Neatline.module('Boxes', function(Boxes) {
     getWordRecord: function(bboxRecord) {
 
       // Get the slug for the corresponding word.
-      var wordSlug = 'w' + args.model.get('slug').slice(1);
+      var wordSlug = 'w' + bboxRecord.get('slug').slice(1);
 
       // Query for the model in the map collection.
       return Neatline.request('MAP:getRecords').findWhere({
