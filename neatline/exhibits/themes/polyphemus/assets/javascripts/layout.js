@@ -8,7 +8,7 @@
 
 Neatline.on('start', function() {
 
-  var exhibit = $('div.exhibit');
+  var exhibit = $('#neatline-map');
 
   var position = function() {
     exhibit.outerHeight($(window).height());
