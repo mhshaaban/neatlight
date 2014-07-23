@@ -5901,4 +5901,4 @@ button.close {
 	/* 'Disabled' state */
 	.ranger.disabled { cursor: default; opacity: 0.5; }
 	.ranger.disabled .ranger-disc { cursor: default; }
-*{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}#slider{position:absolute;left:50%;bottom:30px;margin-left:-35%;width:70%}
+*{-webkit-user-select:none;-moz-user-select:none;-khtml-user-select:none;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}.olControlLayerSwitcher,.olControlPanZoom{display:none}#slider{position:absolute;left:50%;bottom:30px;margin-left:-35%;width:70%}

@@ -33,7 +33,7 @@ Neatline.module('Slider', function(Slider) {
      * @param {Object} args
      */
     select: function(args) {
-      console.log('slider select');
+      // TODO
     }
 
 

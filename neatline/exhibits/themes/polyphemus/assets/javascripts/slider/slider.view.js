@@ -16,7 +16,27 @@ Neatline.module('Slider', function(Slider) {
      * Initialize the slider.
      */
     initialize: function() {
-      this.$el.ranger();
+      this.$el.ranger({ callback: this.publish });
+    },
+
+
+    /**
+     * Zoom to a word.
+     *
+     * @param Array word
+     */
+    publish: function(word) {
+
+      // Load the word record from the map.
+      var record = Neatline.request('MAP:getRecords').findWhere({
+        slug: 'w'+word
+      });
+
+      // Select the record.
+      Neatline.vent.trigger('select', {
+        model: record, source: 'SLIDER'
+      });
+
     }
 
 
