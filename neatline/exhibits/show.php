@@ -18,7 +18,9 @@
 )); ?>
 
 <!-- Exhibit -->
-<div class="exhibit"><?php echo nl_getExhibitMarkup(); ?></div>
+<div class="exhibit">
+  <?php echo nl_getExhibitMarkup(); ?>
+</div>
 
 <div id="neatline-narrative" class="narrative">
 
@@ -32,7 +34,7 @@
   <?php echo nl_getExhibitField('narrative'); ?>
 
   <!-- Colophon -->
-  <hr /><?php echo common('colophon'); ?>
+  <?php echo common('colophon'); ?>
 
 </div>
 
