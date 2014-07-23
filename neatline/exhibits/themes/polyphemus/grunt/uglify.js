@@ -13,6 +13,7 @@ module.exports = {
       'script.js': [
         'bower_components/nprogress/nprogress.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
+        'bower_components/Ranger/jquery.fs.ranger.js',
         'assets/javascripts/**/*.js'
       ]
     }
