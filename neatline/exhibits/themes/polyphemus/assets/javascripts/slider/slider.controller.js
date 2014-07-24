@@ -33,7 +33,9 @@ Neatline.module('Slider', function(Slider) {
      * @param {Object} args
      */
     select: function(args) {
-      // TODO
+      if (args.source !== this.slug) {
+        this.view.$el.val(args.model.get('slug').slice(1))
+      }
     }
 
 
