@@ -7,21 +7,12 @@
  */
 
 
-// FONTS
-// ----------------------------------------------------------------------------
-
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300")
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600")
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300")
 
-
-// VARIABLES
-// ----------------------------------------------------------------------------
-
-$font-body = "Source Sans Pro"
-$site-header = "Londrina Shadow"
-$font-header = "Oswald"
-$color-accent = #006ebb
+$accent-color = #006ebb
+$border-color = darken(white, 10%)
 
 
 // GENERIC STYLES
@@ -33,26 +24,20 @@ $color-accent = #006ebb
   -moz-box-sizing border-box
 
   ::selection
-    background $color-accent
+    background $accent-color
     color white
 
 body
-  font-family $font-body
+  font-family "Source Sans Pro"
   font-weight 300
   margin 0
 
 a
   text-decoration none
-  color $color-accent
+  color $accent-color
 
   &:hover
     text-decoration underline
-
-hr
-  height 1px
-  background black
-  font-size 0
-  border 0
 
 
 // EXHIBIT BROWSE
@@ -108,19 +93,13 @@ body.neatline.show
     h1.title
       margin 0
       padding-bottom 0.2em
-      font-family $font-header
+      font-family Oswald
       font-weight 200
-      border-bottom 1px solid darken(white, 10%)
+      border-bottom 1px solid $border-color
       font-size 40px
 
     p
-      line-height 27px
-
-      &.first:first-letter
-        float left
-        margin 0 5px 5px 0
-        font-family $font-header
-        font-size 100px
+      line-height 1.7em
 
   #static-bubble
 
@@ -132,9 +111,9 @@ body.neatline.show
       line-height 0.8em
 
       &:hover
-        color $color-accent
+        color $accent-color
         background none
 
   #colophon
-    border-top 1px solid darken(white, 10%)
+    border-top 1px solid $border-color
     font-size 0.8em;
