@@ -22,8 +22,6 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
-<div id="slider">
-  <input type="range" min="1" max="94" />
-</div>
+<div id="slider"></div>
 
 <?php echo foot(); ?>

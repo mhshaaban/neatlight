@@ -5856,49 +5856,168 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/* 
- * Ranger v3.0.5 - 2014-05-29 
- * A jQuery plugin for cross browser range inputs. Part of the formstone library. 
- * http://formstone.it/ranger/ 
- * 
- * Copyright 2014 Ben Plum; MIT Licensed 
- */ 
+/* Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+ */
+.noUi-target,
+.noUi-target * {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-ms-touch-action: none;
+-ms-user-select: none;
+-moz-user-select: none;
+-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.noUi-base {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.noUi-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+.noUi-handle {
+	position: relative;
+	z-index: 1;
+}
+.noUi-stacking .noUi-handle {
+/* This class is applied to the lower origin when
+   its values is > 50%. */
+	z-index: 10;
+}
+.noUi-stacking + .noUi-origin {
+/* Fix stacking order in IE7, which incorrectly
+   creates a new context for the origins. */
+	*z-index: -1;
+}
+.noUi-state-tap .noUi-origin {
+-webkit-transition: left 0.3s, top 0.3s;
+	transition: left 0.3s, top 0.3s;
+}
+.noUi-state-drag * {
+	cursor: inherit !important;
+}
 
- 	.ranger-element { *left: -9999px; opacity: 0; position: absolute; z-index: -1; }
- 	.ranger { overflow: hidden; width: 100%; }
- 	.ranger * {
-	 	-webkit-user-select: none;
-		   -moz-user-select: none;
-		    -ms-user-select: none;
-		     -o-user-select: none;
-		        user-select: none;
- 	}
-	.ranger .ranger-track { background: #fbfbfb; border: 1px solid #ddd; border-radius: 4px; float: left; height: 8px; margin: 10px 0; position: relative; width: 100%; }
-	.ranger .ranger-handle { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 1px; }
-	.ranger .ranger-disc { background: #DCDCDC; border: 1px solid #AFAFAF; border-radius: 100%; cursor: pointer; display: block; height: 14px; margin: -4px 0 0 -6px; width: 14px; }
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+	height: 18px;
+}
+.noUi-horizontal .noUi-handle {
+	width: 34px;
+	height: 28px;
+	left: -17px;
+	top: -6px;
+}
+.noUi-horizontal.noUi-extended {
+	padding: 0 15px;
+}
+.noUi-horizontal.noUi-extended .noUi-origin  {
+	right: -15px;
+}
+.noUi-vertical {
+	width: 18px;
+}
+.noUi-vertical .noUi-handle {
+	width: 28px;
+	height: 34px;
+	left: -6px;
+	top: -17px;
+}
+.noUi-vertical.noUi-extended {
+	padding: 15px 0;
+}
+.noUi-vertical.noUi-extended .noUi-origin  {
+	bottom: -15px;
+}
 
-	@media screen and (min-width: 740px) {
-		.ranger:hover .ranger-track { box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1); }
-		.ranger:hover .ranger-disc { background: #ccc; border-color: #999; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); }
-	}
+/* Styling;
+ */
+.noUi-background {
+	background: #FAFAFA;
+	box-shadow: inset 0 1px 1px #f0f0f0;
+}
+.noUi-connect {
+	background: #3FB8AF;
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
+-webkit-transition: background 450ms;
+	transition: background 450ms;
+}
+.noUi-origin {
+	border-radius: 2px;
+}
+.noUi-target {
+	border-radius: 4px;
+	border: 1px solid #D3D3D3;
+	box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+.noUi-target.noUi-connect {
+	box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
+}
 
-	.ranger.focus .ranger-track { box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1); }
-	.ranger.focus .ranger-disc { background: #ccc; border-color: #999; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); }
+/* Handles and cursors;
+ */
+.noUi-dragable {
+	cursor: w-resize;
+}
+.noUi-vertical .noUi-dragable {
+	cursor: n-resize;
+}
+.noUi-handle {
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	background: #FFF;
+	cursor: default;
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #EBEBEB,
+				0 3px 6px -3px #BBB;
+}
+.noUi-active {
+	box-shadow: inset 0 0 1px #FFF,
+				inset 0 1px 7px #DDD,
+				0 3px 6px -3px #BBB;
+}
 
-	/* Labels */
-	.ranger-labels .ranger-track { width: 80%; }
-	.ranger-labels .ranger-label { display: block; float: left; font-size: 12px; line-height: 28px; margin: 0 2% 0 0; text-align: right; width: 8%; }
-	.ranger-labels .ranger-label.max { float: right; margin: 0 0 0 2%; text-align: left; }
+/* Handle stripes;
+ */
+.noUi-handle:before,
+.noUi-handle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 14px;
+	width: 1px;
+	background: #E8E7E6;
+	left: 14px;
+	top: 6px;
+}
+.noUi-handle:after {
+	left: 17px;
+}
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+	width: 14px;
+	height: 1px;
+	left: 6px;
+	top: 14px;
+}
+.noUi-vertical .noUi-handle:after {
+	top: 17px;
+}
 
-	.ranger-vertical { height: 300px; width: 30px; }
-	.ranger-vertical .ranger-track { height: 75%; margin: 0 11px 0; width: 8px; }
-	.ranger-vertical .ranger-handle { bottom: 0; height: 1px; left: 0; top: auto; width: 100%; }
-	.ranger-vertical .ranger-disc { margin: -7px 0 0 -4px; }
-	.ranger-vertical .ranger-label,
-	.ranger-vertical .ranger-label.max { clear: both; float: none; height: 10%; padding: 5px 0 0; text-align: center; width: 100%; }
-	.ranger-vertical .ranger-label.max { padding: 0; }
-
-	/* 'Disabled' state */
-	.ranger.disabled { cursor: default; opacity: 0.5; }
-	.ranger.disabled .ranger-disc { cursor: default; }
-*{-webkit-user-select:none;-moz-user-select:none;-khtml-user-select:none;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}.olControlLayerSwitcher,.olControlPanZoom{display:none}#slider{position:absolute;left:50%;bottom:30px;margin-left:-35%;width:70%}
+/* Disabled state;
+ */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+	background: #B8B8B8;
+}
+[disabled] .noUi-handle {
+	cursor: not-allowed;
+}
+*{-webkit-user-select:none;-moz-user-select:none;-khtml-user-select:none;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}.olControlLayerSwitcher,.olControlPanZoom{display:none}#slider{position:absolute;background:#4872a8;left:50%;bottom:30px;margin-left:-35%;width:70%;}#slider .noUi-handle{cursor:ew-resize}

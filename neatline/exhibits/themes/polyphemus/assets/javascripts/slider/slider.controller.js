@@ -23,7 +23,7 @@ Neatline.module('Slider', function(Slider) {
      * Create the view.
      */
     init: function() {
-      this.view = new Slider.View({ el: $('#slider input') });
+      this.view = new Slider.View({ el: $('#slider') });
     },
 
 

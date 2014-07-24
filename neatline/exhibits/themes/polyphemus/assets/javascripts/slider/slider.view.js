@@ -16,20 +16,33 @@ Neatline.module('Slider', function(Slider) {
      * Initialize the slider.
      */
     initialize: function() {
-      this.$el.ranger({ callback: this.publish });
+
+      // Spin up the slider.
+      this.$el.noUiSlider({
+        range: { min: 1, max: 94 },
+        start: 1,
+        connect: 'lower',
+        step: 1
+      });
+
+      // Select words on slide.
+      this.$el.on('slide', _.bind(function(event, val) {
+        this.publish(parseInt(val));
+      }, this));
+
     },
 
 
     /**
      * Zoom to a word.
      *
-     * @param Array word
+     * @param Number id
      */
-    publish: function(word) {
+    publish: function(id) {
 
       // Load the word record from the map.
       var record = Neatline.request('MAP:getRecords').findWhere({
-        slug: 'w'+word
+        slug: 'w'+id
       });
 
       // Select the record.
