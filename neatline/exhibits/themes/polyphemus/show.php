@@ -1,6 +1,6 @@
 <?php
 
-/* vim: set linebreak wrap nolist tabstop=2 shiftwidth=2 softtabstop=2: */
+/* vim: set tabstop=2 shiftwidth=2 softtabstop=2: */
 
 /**
  * @package     omeka
@@ -20,6 +20,11 @@
 <!-- Exhibit. -->
 <div class="exhibit">
   <?php echo nl_getExhibitMarkup(); ?>
+</div>
+
+<!-- Transcription. -->
+<div id="neatline-narrative" class="narrative">
+  <?php include('poem.php'); ?>
 </div>
 
 <!-- Slider. -->

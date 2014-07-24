@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:100,300,400");
 /* Make clicks pass-through */
 #nprogress {
   pointer-events: none;
@@ -6020,4 +6021,4 @@ button.close {
 [disabled] .noUi-handle {
 	cursor: not-allowed;
 }
-*{-webkit-user-select:none;-moz-user-select:none;-khtml-user-select:none;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}.olControlLayerSwitcher,.olControlPanZoom{display:none}#slider{position:absolute;background:#4872a8;left:50%;bottom:30px;margin-left:-35%;width:70%;}#slider .noUi-handle{cursor:ew-resize}
+*{-webkit-user-select:none;-moz-user-select:none;-khtml-user-select:none;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.container{padding:0;width:auto}div.narrative{position:absolute;left:30px;top:0;padding:1em;background:rgba(34,75,127,0.85);color:#fff;font-family:Raleway;font-weight:200;font-size:10px;}div.narrative .stanza{margin-top:1em}.olControlLayerSwitcher,.olControlPanZoom{display:none}#slider{position:absolute;background:#4872a8;left:50%;bottom:30px;margin-left:-35%;width:70%;}#slider .noUi-handle{cursor:ew-resize}
