@@ -22,6 +22,7 @@
   <?php echo nl_getExhibitMarkup(); ?>
 </div>
 
+<!-- Slider. -->
 <div id="slider"></div>
 
 <?php echo foot(); ?>

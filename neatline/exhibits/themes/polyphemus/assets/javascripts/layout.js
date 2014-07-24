@@ -9,9 +9,10 @@
 Neatline.on('start', function() {
 
   var exhibit = $('#neatline-map');
+  var slider = $('#slider-container');
 
   var position = function() {
-    exhibit.outerHeight($(window).height());
+    exhibit.add(slider).outerHeight($(window).height());
     Neatline.execute('MAP:updateSize');
   };
 
