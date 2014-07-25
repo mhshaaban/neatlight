@@ -14,10 +14,12 @@ Neatline.module('Boxes', function(Boxes) {
 
     slug: 'BOXES',
 
-    events: [
-      'highlight',
-      'unhighlight'
-    ],
+    events: [{
+      highlight:    'on',
+      select:       'on',
+      unhighlight:  'off',
+      unselect:     'off',
+    }],
 
 
     /**
@@ -25,7 +27,7 @@ Neatline.module('Boxes', function(Boxes) {
      *
      * @param {Object} args
      */
-    highlight: function(args) {
+    on: function(args) {
       if (args.model.hasTag('bbox')) {
 
         // Visually highlight the word.
@@ -41,7 +43,7 @@ Neatline.module('Boxes', function(Boxes) {
      *
      * @param {Object} args
      */
-    unhighlight: function(args) {
+    off: function(args) {
       if (args.model.hasTag('bbox')) {
 
         // Visually unhighlight the word.

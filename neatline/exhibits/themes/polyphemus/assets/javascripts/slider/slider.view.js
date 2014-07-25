@@ -83,7 +83,7 @@ Neatline.module('Slider', function(Slider) {
 
       // Load the word record from the map.
       var record = Neatline.request('MAP:getRecords').findWhere({
-        slug: 'w'+id
+        slug: 'b'+id
       });
 
       // Select the record.
