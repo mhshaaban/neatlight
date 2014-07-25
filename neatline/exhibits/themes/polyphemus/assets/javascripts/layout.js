@@ -8,15 +8,20 @@
 
 Neatline.on('start', function() {
 
-  var exhibit = $('#neatline-map');
-  var slider = $('#slider-container');
+  // Set the exhibit height:
 
+  var map = $('#neatline-map');
   var position = function() {
-    exhibit.add(slider).outerHeight($(window).height());
+    map.outerHeight($(window).height());
     Neatline.execute('MAP:updateSize');
   };
 
   $(window).resize(position);
   position();
+
+  // Fix the narrative width:
+
+  var text = $('div.narrative');
+  text.width(text.width());
 
 });
