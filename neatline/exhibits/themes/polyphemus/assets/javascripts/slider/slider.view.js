@@ -63,7 +63,7 @@ Neatline.module('Slider', function(Slider) {
       var cid = parseInt(this.$el.val());
       var nid;
 
-      if (this.first) {
+      if (this.first && cid == 1) {
         nid = 1;
         this.first = false;
       } else {
