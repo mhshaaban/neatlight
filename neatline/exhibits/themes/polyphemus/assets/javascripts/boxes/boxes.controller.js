@@ -32,7 +32,7 @@ Neatline.module('Boxes', function(Boxes) {
 
         // Visually highlight the word.
         var record = this.getWordRecord(args.model);
-        Neatline.execute('MAP:showHighlight', record);
+        if (record) Neatline.execute('MAP:showHighlight', record);
 
       }
     },
@@ -48,7 +48,7 @@ Neatline.module('Boxes', function(Boxes) {
 
         // Visually unhighlight the word.
         var record = this.getWordRecord(args.model);
-        Neatline.execute('MAP:hideHighlight', record);
+        if (record) Neatline.execute('MAP:hideHighlight', record);
 
       }
     },
