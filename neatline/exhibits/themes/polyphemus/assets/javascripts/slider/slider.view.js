@@ -37,16 +37,16 @@ Neatline.module('Slider', function(Slider) {
       }, this));
 
       // Keyboard controls.
-      Mousetrap.bind('left',  _.bind(this.left, this));
-      Mousetrap.bind('right', _.bind(this.right, this));
+      Mousetrap.bind(['left', 'down'], _.bind(this.back, this));
+      Mousetrap.bind(['right', 'up'] , _.bind(this.forward, this));
 
     },
 
 
     /**
-     * Step forward.
+     * Step back.
      */
-    left: function() {
+    back: function() {
       var cid = parseInt(this.$el.val());
       var nid = cid > 1 ? cid-1 : this.options.max;
       this.slide(nid);
@@ -54,9 +54,9 @@ Neatline.module('Slider', function(Slider) {
 
 
     /**
-     * Step back.
+     * Step forward.
      */
-    right: function() {
+    forward: function() {
       var cid = parseInt(this.$el.val());
       var nid = cid < this.options.max ? cid+1 : 1;
       this.slide(nid);
