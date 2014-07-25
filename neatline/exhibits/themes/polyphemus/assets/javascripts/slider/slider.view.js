@@ -23,6 +23,8 @@ Neatline.module('Slider', function(Slider) {
      */
     initialize: function() {
 
+      this.first = true;
+
       // Spin up the slider.
       this.$el.noUiSlider({
         range: this.options,
@@ -57,9 +59,19 @@ Neatline.module('Slider', function(Slider) {
      * Step forward.
      */
     forward: function() {
+
       var cid = parseInt(this.$el.val());
-      var nid = cid < this.options.max ? cid+1 : 1;
+      var nid;
+
+      if (this.first) {
+        nid = 1;
+        this.first = false;
+      } else {
+        nid = cid < this.options.max ? cid+1 : 1;
+      }
+
       this.slide(nid);
+
     },
 
 
