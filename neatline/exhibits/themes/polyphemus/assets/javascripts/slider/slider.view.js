@@ -13,7 +13,7 @@ Neatline.module('Slider', function(Slider) {
 
 
     options: {
-      min: 1,
+      min: 0,
       max: 94
     },
 
@@ -23,13 +23,10 @@ Neatline.module('Slider', function(Slider) {
      */
     initialize: function() {
 
-      this.first = true;
-
       // Spin up the slider.
       this.$el.noUiSlider({
         range: this.options,
-        start: 1,
-        connect: 'lower',
+        start: 0,
         step: 1
       });
 
@@ -50,7 +47,7 @@ Neatline.module('Slider', function(Slider) {
      */
     back: function() {
       var cid = parseInt(this.$el.val());
-      var nid = cid > 1 ? cid-1 : this.options.max;
+      var nid = cid > 0 ? cid-1 : this.options.max;
       this.slide(nid);
     },
 
@@ -59,19 +56,9 @@ Neatline.module('Slider', function(Slider) {
      * Step forward.
      */
     forward: function() {
-
       var cid = parseInt(this.$el.val());
-      var nid;
-
-      if (this.first && cid == 1) {
-        nid = 1;
-        this.first = false;
-      } else {
-        nid = cid < this.options.max ? cid+1 : 1;
-      }
-
+      var nid = cid < this.options.max ? cid+1 : 0;
       this.slide(nid);
-
     },
 
 
