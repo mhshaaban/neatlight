@@ -13,6 +13,7 @@ module.exports = {
     src: [
       'bower_components/nprogress/nprogress.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/bootstrap-tour/build/js/bootstrap-tour.js',
       'bower_components/nouislider/Link.js',
       'bower_components/nouislider/jquery.nouislider.js',
       'bower_components/mousetrap/mousetrap.js',

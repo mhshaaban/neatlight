@@ -6,6 +6,7 @@
     "bootstrap": "~3.1.1",
     "Ranger": "~3.0.5",
     "nouislider": "~6.2.0",
-    "mousetrap": "~1.4.6"
+    "mousetrap": "~1.4.6",
+    "bootstrap-tour": "~0.9.3"
   }
 }
