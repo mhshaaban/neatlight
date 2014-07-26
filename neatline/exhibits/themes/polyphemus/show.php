@@ -30,4 +30,14 @@
 <!-- Slider. -->
 <div id="slider"></div>
 
+<!-- Zoom buttons. -->
+<div id="zoom">
+  <div class="btn in">
+    <i class="fa fa-plus"></i>
+  </div>
+  <div class="btn out">
+    <i class="fa fa-minus"></i>
+  </div>
+</div>
+
 <?php echo foot(); ?>

@@ -6,11 +6,16 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-#nprogress
+Neatline.on('start', function() {
 
-  .bar
-    background white
-    height 4px
+  var map = Neatline.request('MAP:getMap');
 
-  .peg
-    box-shadow 0 0 10px white, 0 0 5px white
+  $('.btn.in').click(function() {
+    map.zoomIn();
+  });
+
+  $('.btn.out').click(function() {
+    map.zoomOut();
+  });
+
+});
