@@ -12,7 +12,7 @@ $(function() {
     toastr.info(
       '<i class="fa fa-arrow-circle-left fa-lg"></i> ' +
       '<i class="fa fa-arrow-circle-right fa-lg"></i> ' +
-      'Scroll with the arrow keys.'
+      '<span class="text">Scroll with the arrow keys.</span>'
     );
   });
 

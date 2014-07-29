@@ -12,11 +12,14 @@
   top 30px
   font-family Raleway
 
-  .toast
-    background-color $title-color
-    padding 0.65em
+  > .toast-info
+
+    background-image none !important // Toastr started it.
+    box-shadow none
+    background-color $overlay-color
+    padding 10px
     width 240px
     border-radius 2px
 
-  > .toast-info
-    background-image none !important // Toastr started it.
+    .text
+      margin-left 5px
