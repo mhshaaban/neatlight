@@ -17,6 +17,7 @@ $(function() {
 
   Neatline.vent.on('MAP:ingest', function() {
     NProgress.done();
+    $('#spinner').hide();
   });
 
 });

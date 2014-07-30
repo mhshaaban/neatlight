@@ -27,6 +27,11 @@
   <?php include('poem.php'); ?>
 </div>
 
+<!-- Spinner. -->
+<div id="spinner">
+  <i class="fa fa-cog fa-spin"></i>
+</div>
+
 <!-- Slider. -->
 <div id="slider"></div>
 
