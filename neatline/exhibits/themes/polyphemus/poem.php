@@ -179,5 +179,5 @@
 <div class="stanza">
   By
   <a href="https://twitter.com/clured" target="_blank">@clured</a>.
-  <a href="http://dclure.org" target="_blank">Why?</a>
+  <a href="http://dclure.org/essays/polyphemus" target="_blank">Why?</a>
 </div>
