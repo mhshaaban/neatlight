@@ -8,7 +8,12 @@
 
 $(function() {
 
-  NProgress.configure({ showSpinner: false });
+  NProgress.configure({
+    showSpinner: false,
+    trickleRate: 0.05,
+    trickleSpeed: 100
+  });
+
   NProgress.start();
 
   Neatline.vent.on('MAP:ingest', function() {
