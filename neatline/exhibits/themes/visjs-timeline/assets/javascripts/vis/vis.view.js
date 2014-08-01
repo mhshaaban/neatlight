@@ -13,12 +13,27 @@ Neatline.module('Vis', function(Vis) {
 
 
     /**
-     * Initialize the timeline.
+     * Initialize the collection and timeline.
      */
-    initialize: function() {
+    initialize: function(options) {
 
-      // A collection for the events.
+      this.slug = options.slug;
+
+      // Spin up an empty records collection.
       this.records = new Neatline.Shared.Record.Collection();
+
+      // Create timeline.
+      this._initTimeline();
+      this._initHighlight();
+      this._initSelect();
+
+    },
+
+
+    /**
+     * Initialize the timeline and groups.
+     */
+    _initTimeline: function() {
 
       // Register the bands.
       var groups = new vis.DataSet();
@@ -29,6 +44,28 @@ Neatline.module('Vis', function(Vis) {
       // Spin up the timeline.
       this.timeline = new vis.Timeline(this.el);
       this.timeline.setGroups(groups);
+
+    },
+
+
+    /**
+     * Listen for event highlights.
+     */
+    _initHighlight: function() {
+      // TODO: Need to implement this in Vis.js.
+    },
+
+
+    /**
+     * Listen for event selections.
+     */
+    _initSelect: function() {
+
+      // When an event is selected.
+      this.timeline.on('select', _.bind(function(args) {
+        var model = this.records.get(args.items[0]);
+        this.publish('select', model);
+      }, this));
 
     },
 
@@ -60,7 +97,8 @@ Neatline.module('Vis', function(Vis) {
         var event = {
           id:       record.id,
           content:  record.get('title'),
-          start:    start
+          start:    start,
+          model:    record
         };
 
         // If defined, add end date.
@@ -81,7 +119,20 @@ Neatline.module('Vis', function(Vis) {
       // Render the collection.
       this.timeline.setItems(events);
 
-    }
+    },
+
+
+    /**
+     * Broadcast a public event.
+     *
+     * @param {String} event
+     * @param {Object} model
+     */
+    publish: function(event, model) {
+      Neatline.vent.trigger(event, {
+        model: model, source: this.slug
+      });
+    },
 
 
   });
