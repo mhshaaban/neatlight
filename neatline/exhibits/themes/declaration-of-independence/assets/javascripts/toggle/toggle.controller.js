@@ -22,7 +22,7 @@ Neatline.module('Toggle', function(Toggle) {
       'select',
       'unselect',
 
-      {'MAP:move': 'move'}
+      {'MAP:moveEnd': 'move'}
 
     ],
 
