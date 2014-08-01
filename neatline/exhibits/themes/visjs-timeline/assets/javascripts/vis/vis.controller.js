@@ -14,6 +14,10 @@ Neatline.module('Vis', function(Vis) {
 
     slug: 'VIS',
 
+    events: [
+      'select'
+    ],
+
 
     /**
      * Create the view.
@@ -26,6 +30,18 @@ Neatline.module('Vis', function(Vis) {
 
       this.view.load();
 
+    },
+
+
+    /**
+     * Select an event.
+     *
+     * @param {Object} args
+     */
+    select: function(args) {
+      if (args.source !== this.slug) {
+        this.view.renderSelect(args.model)
+      }
     }
 
 

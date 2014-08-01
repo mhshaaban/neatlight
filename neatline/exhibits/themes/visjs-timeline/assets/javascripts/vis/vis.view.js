@@ -12,6 +12,10 @@ Neatline.module('Vis', function(Vis) {
   Vis.View = Backbone.View.extend({
 
 
+    // STARTUP
+    // ------------------------------------------------------------------------
+
+
     /**
      * Initialize the collection and timeline.
      */
@@ -70,6 +74,10 @@ Neatline.module('Vis', function(Vis) {
     },
 
 
+    // RECORDS
+    // ------------------------------------------------------------------------
+
+
     /**
      * Load records for the timeline.
      */
@@ -122,6 +130,21 @@ Neatline.module('Vis', function(Vis) {
     },
 
 
+    // EVENTS
+    // ------------------------------------------------------------------------
+
+
+    /**
+     * Apply a record selection.
+     *
+     * @param {String} event
+     * @param {Object} model
+     */
+    renderSelect: function(model) {
+      this.timeline.setSelection([model.id]);
+    },
+
+
     /**
      * Broadcast a public event.
      *
@@ -132,7 +155,7 @@ Neatline.module('Vis', function(Vis) {
       Neatline.vent.trigger(event, {
         model: model, source: this.slug
       });
-    },
+    }
 
 
   });
