@@ -15,8 +15,12 @@ Neatline.module('Vis', function(Vis) {
     slug: 'VIS',
 
     events: [
+
       'select',
-      'unselect'
+      'unselect',
+
+      { 'MAP:moveStart': 'minimize' }
+
     ],
 
 
@@ -55,6 +59,14 @@ Neatline.module('Vis', function(Vis) {
       if (!_.contains([this.slug, 'EVENTS'], args.source)) {
         this.view.renderUnselect(args.model)
       }
+    },
+
+
+    /**
+     * Minimize the timeline.
+     */
+    minimize: function() {
+      this.view.minimize();
     }
 
 

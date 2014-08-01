@@ -12,6 +12,11 @@ Neatline.module('Vis', function(Vis) {
   Vis.View = Backbone.View.extend({
 
 
+    events: {
+      'click': 'maximize'
+    },
+
+
     // STARTUP
     // ------------------------------------------------------------------------
 
@@ -186,6 +191,22 @@ Neatline.module('Vis', function(Vis) {
     renderUnselect: function(model) {
       this.selected = _.without(this.selected, model.id);
       this.timeline.setSelection(this.selected);
+    },
+
+
+    /**
+     * Shrink the timeline.
+     */
+    minimize: function() {
+      this.$el.addClass('minimized');
+    },
+
+
+    /**
+     * Expand the timeline.
+     */
+    maximize: function() {
+      this.$el.removeClass('minimized');
     },
 
 
