@@ -18,7 +18,7 @@ $(function() {
     exhibit.css('background', 'black');
   };
 
-  Neatline.vent.on('MAP:move', function() {
+  Neatline.vent.on('MAP:moveEnd', function() {
 
     var zoom = Neatline.request('MAP:getMap').zoom;
 
