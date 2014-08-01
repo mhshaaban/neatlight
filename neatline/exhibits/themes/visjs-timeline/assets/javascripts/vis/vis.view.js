@@ -37,9 +37,50 @@ Neatline.module('Vis', function(Vis) {
      * Load records for the timeline.
      */
     load: function() {
-      this.records.update({ hasDate: true }, function(records) {
-        console.log(records);
+      var params = { hasDate: true };
+      this.records.update(params, _.bind(this.ingest, this));
+    },
+
+
+    /**
+     * Clear the timeline and render a new collection.
+     *
+     * @param {Object} records
+     */
+    ingest: function(records) {
+
+      var events = new vis.DataSet();
+
+      records.each(function(record) {
+
+        // Pass if no start date.
+        var start = record.get('start_date');
+        if (!start) return;
+
+        var event = {
+          id:       record.id,
+          content:  record.get('title'),
+          start:    start
+        };
+
+        // If defined, add end date.
+        var end = record.get('end_date');
+        if (end) event['end'] = end;
+
+        // Set the group.
+        _.each(Vis.bands, function(band) {
+          if (record.hasTag(band.tag)) {
+            event['group'] = band.tag;
+          }
+        });
+
+        events.add(event);
+
       });
+
+      // Render the collection.
+      this.timeline.setItems(events);
+
     }
 
 
