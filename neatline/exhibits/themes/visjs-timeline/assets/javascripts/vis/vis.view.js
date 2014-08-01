@@ -65,10 +65,22 @@ Neatline.module('Vis', function(Vis) {
      */
     _initSelect: function() {
 
+      this.selected = [] // The currently-selected ids.
+
       // When an event is selected.
       this.timeline.on('select', _.bind(function(args) {
-        var model = this.records.get(args.items[0]);
-        this.publish('select', model);
+
+        // Which ids were added and removed?
+        var added = _.difference(args.items, this.selected);
+        var removed = _.difference(this.selected, args.items);
+
+        // Select the added IDs, unselect the removed ones.
+        _.each(added, _.bind(this.publishSelect, this));
+        _.each(removed, _.bind(this.publishUnselect, this));
+
+        // Cache the new IDs.
+        this.selected = args.items;
+
       }, this));
 
     },
@@ -102,6 +114,7 @@ Neatline.module('Vis', function(Vis) {
         var start = record.get('start_date');
         if (!start) return;
 
+        // Default parameters.
         var event = {
           id:       record.id,
           content:  record.get('title'),
@@ -135,13 +148,44 @@ Neatline.module('Vis', function(Vis) {
 
 
     /**
-     * Apply a record selection.
+     * Publish a record selection.
      *
-     * @param {String} event
+     * @param {Number} id
+     */
+    publishSelect: function(id) {
+      this.publish('select', this.records.get(id));
+    },
+
+
+    /**
+     * Publish a record unselection.
+     *
+     * @param {Number} id
+     */
+    publishUnselect: function(id) {
+      this.publish('unselect', this.records.get(id));
+    },
+
+
+    /**
+     * Render a record selection.
+     *
      * @param {Object} model
      */
     renderSelect: function(model) {
-      this.timeline.setSelection([model.id]);
+      this.selected = [model.id]
+      this.timeline.setSelection(this.selected);
+    },
+
+
+    /**
+     * Remove a record selection.
+     *
+     * @param {Object} model
+     */
+    renderUnselect: function(model) {
+      this.selected = _.without(this.selected, model.id);
+      this.timeline.setSelection(this.selected);
     },
 
 

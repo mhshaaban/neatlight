@@ -15,7 +15,8 @@ Neatline.module('Vis', function(Vis) {
     slug: 'VIS',
 
     events: [
-      'select'
+      'select',
+      'unselect'
     ],
 
 
@@ -41,6 +42,18 @@ Neatline.module('Vis', function(Vis) {
     select: function(args) {
       if (args.source !== this.slug) {
         this.view.renderSelect(args.model)
+      }
+    },
+
+
+    /**
+     * Unselect an event.
+     *
+     * @param {Object} args
+     */
+    unselect: function(args) {
+      if (!_.contains([this.slug, 'EVENTS'], args.source)) {
+        this.view.renderUnselect(args.model)
       }
     }
 
