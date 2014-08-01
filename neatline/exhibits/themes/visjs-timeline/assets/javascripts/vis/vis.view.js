@@ -70,15 +70,15 @@ Neatline.module('Vis', function(Vis) {
       // When an event is selected.
       this.timeline.on('select', _.bind(function(args) {
 
-        // Which ids were added and removed?
-        var added = _.difference(args.items, this.selected);
-        var removed = _.difference(this.selected, args.items);
+        // Which IDs were added and removed?
+        var a = _.difference(args.items, this.selected);
+        var r = _.difference(this.selected, args.items);
 
-        // Select the added IDs, unselect the removed ones.
-        _.each(added, _.bind(this.publishSelect, this));
-        _.each(removed, _.bind(this.publishUnselect, this));
+        // Select the added IDs, unselect the removed.
+        _.each(a, _.bind(this.publishSelect, this));
+        _.each(r, _.bind(this.publishUnselect, this));
 
-        // Cache the new IDs.
+        // Set the new IDs.
         this.selected = args.items;
 
       }, this));
