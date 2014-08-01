@@ -17,18 +17,29 @@ Neatline.module('Vis', function(Vis) {
      */
     initialize: function() {
 
+      // A collection for the events.
+      this.records = new Neatline.Shared.Record.Collection();
+
       // Register the bands.
       var groups = new vis.DataSet();
       _.each(Vis.bands, function(band) {
         groups.add({ id: band.tag, content: band.title });
       });
 
-      // TODO|dev
-      var items = new vis.DataSet();
-
-      this.timeline = new vis.Timeline(this.el, items);
+      // Spin up the timeline.
+      this.timeline = new vis.Timeline(this.el);
       this.timeline.setGroups(groups);
 
+    },
+
+
+    /**
+     * Load records for the timeline.
+     */
+    load: function() {
+      this.records.update({ hasDate: true }, function(records) {
+        console.log(records);
+      });
     }
 
 
