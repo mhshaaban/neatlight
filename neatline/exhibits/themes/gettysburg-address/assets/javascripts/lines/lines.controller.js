@@ -19,8 +19,7 @@ Neatline.module('Lines', function(Lines) {
       'highlight',
       'unhighlight',
 
-      { 'select':   'unhighlight' },
-      { 'MAP:move': 'unhighlight' }
+      { 'select': 'unhighlight' }
 
     ],
 
