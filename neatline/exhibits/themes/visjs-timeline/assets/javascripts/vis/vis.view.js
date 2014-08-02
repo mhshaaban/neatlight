@@ -55,6 +55,11 @@ Neatline.module('Vis', function(Vis) {
       this.timeline = new vis.Timeline(this.el);
       this.timeline.setGroups(groups);
 
+      // Set display options.
+      //this.timeline.setOptions({
+        //padding: 2
+      //});
+
     },
 
 
