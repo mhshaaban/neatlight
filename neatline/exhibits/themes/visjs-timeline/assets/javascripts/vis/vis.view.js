@@ -35,6 +35,7 @@ Neatline.module('Vis', function(Vis) {
       this._initTimeline();
       this._initHighlight();
       this._initSelect();
+      this._initMaximize();
 
     },
 
@@ -88,6 +89,14 @@ Neatline.module('Vis', function(Vis) {
 
       }, this));
 
+    },
+
+
+    /**
+     * Maximize when the zoom level is changed.
+     */
+    _initMaximize: function() {
+      this.timeline.on('rangechanged', _.bind(this.maximize, this));
     },
 
 
