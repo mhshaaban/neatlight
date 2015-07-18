@@ -13,7 +13,7 @@
 
 <?php echo head(array(
   'title' => nl_getExhibitField('title'),
-  'bodyclass' => 'neatline show'
+  'bodyclass' => 'neatline declaration'
 )); ?>
 
 <!-- Transcription. -->
